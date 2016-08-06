@@ -4,6 +4,10 @@
   "description": "Healthy for you, Health for the planet",
   "private": true,
   "author": "Hong Chou Yu, Joann Im, Keith Wong, Ryan McChesney",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
   "keywords": [
     "Health",
     "Environment",
