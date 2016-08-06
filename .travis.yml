@@ -3,3 +3,11 @@ node_js:
   - '6'
   - '6.1'
 
+deploy:
+provider: heroku
+api_key:
+  secure: ea5d16c7-aa4e-4c43-910c-a0606cd097df
+app:
+  staging: murmuring-dusk-10598
+
+
