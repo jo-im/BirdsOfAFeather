@@ -1,13 +1,9 @@
 language: node_js
 node_js:
-  - '6'
-  - '6.1'
-
+- '6'
+- '6.1'
 deploy:
-provider: heroku
-api_key:
-  secure: ea5d16c7-aa4e-4c43-910c-a0606cd097df
-app:
-  staging: murmuring-dusk-10598
-
-
+  api_key:
+    secure: RrEAvcTdZ84jQDGqmSTfngtNy2xgi0CzHeJxH0sVOqPdyGAQ68Ad/ujEF+ngzbSNr218SZMXTRn2YUE4IDYImob6VVX0uBGCE3mF48AstsjWW3gONIE1ahDaP8BJHyQaGf6jrfI9OYJ2FkHWFfjVetZNk1CXCmlHxC5dSbX9844olkdnoS8QMJM6MNeptLPC/n+alJL10a7o8f5m/Hl84fBvIybrO0ZtDTz6LT6Sky4WN5HqBBU+wKGoX6sa4g2SiPFAS3Gr49I8JTIGatEgTgVJVKSSfmzSXJy97k7uNaOBv1ndbjAk/55L0x9WYt2xsE7L3GxskvvcklHf5oZXH0ZloNQmd1zYodwq+Qqw1sUcUm48A/rBg/tsQnqXZKa3Ks75cxsZ11m+tNbB/XGboCs6qygi2K+kRb/VOXh5rdUasjTA6CT9L4sNrzbIM2ftUNv8v8ph8cs18oz69zGIcA95551VGhs8QleCr9vpfs9LreQ5JfX4DiKu570Vbj+eMukn7jeG4/+0XJh9eOmCtOLTAc/kehpoJOH8EuuLv7WoKIYMA0/OxHN8x4K0XaVpU8m2Q0XQnNPFlcWpPcZKF9oMZad9ti9vUOJHF7GZ/ftOTiSTkCDPr0uyy1SsU7ZM8o0E5jnN+m6OQBtxl9yAXAZ3xgx9vsSWvD8o8UsVxOY=
+  app:
+    staging: murmuring-dusk-10598
