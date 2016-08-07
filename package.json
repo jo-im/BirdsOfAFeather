@@ -2,15 +2,8 @@
   "name": "birds_of_a_feather",
   "version": "1.0.0",
   "description": "Healthy for you, Health for the planet",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "start": "node server/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kwong3672/BirdsOfAFeather.git"
-  },
+  "private": true,
+  "author": "Hong Chou Yu, Joann Im, Keith Wong, Ryan McChesney",
   "keywords": [
     "Health",
     "Environment",
@@ -18,15 +11,17 @@
     "concerns",
     "allergy"
   ],
-  "author": "Hong Chou Yu, Joann Im, Keith Wong, Ryan McChesney",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kwong3672/BirdsOfAFeather/issues"
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "start": "react-native run-ios start && node server/server.js"
   },
-  "homepage": "https://github.com/kwong3672/BirdsOfAFeather#readme",
+
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "pg": "^6.0.3"
+    "pg": "^6.0.3",
+    "react": "15.2.1",
+    "react-native": "0.31.0"
   }
 }
