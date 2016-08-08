@@ -5,8 +5,9 @@ export default class AllergiesAndDiet extends Component {
   render() {
   	return (
   	  <View>
+  	    <Text>{"\n"}</Text>
   	    <Text>This is the allergy and diet page</Text>
-  	    <TouchableHighlight>
+  	    <TouchableHighlight onPress={this.props.onForward}>
   	      <Text>Continue</Text>
   	    </TouchableHighlight>
   	  </View>

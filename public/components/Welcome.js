@@ -5,6 +5,7 @@ export default class Welcome extends Component {
   render() {
   	return (
   	  <View>
+  	    <Text>{"\n"}</Text>
   	    <Text>This is the Welcome Page</Text>
   	    <TouchableHighlight>
   	      <Text>Health</Text>

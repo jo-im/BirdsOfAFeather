@@ -4,6 +4,7 @@ import { Navigator, Text, TouchableHighlight, View, StyleSheet } from 'react-nat
 import Splash from './Splash';
 import Welcome from './Welcome';
 import AllergiesAndDiet from './Allergies-Diet';
+import Scan from './Scan';
 
 export default class NavigatePage extends Component {
   render() {
@@ -57,8 +58,14 @@ class CurrentScene extends Component {
 
   	if (this.props.page === 'Allergies/Diet') {
   	  return (
-	  	  <AllergiesAndDiet />
-  	  )
+	  	  <AllergiesAndDiet onForward={this.props.onForward}/>
+  	  );
   	}
+
+    if (this.props.page === 'Scan') {
+      return (
+        <Scan onForward={this.props.onForward}/>
+      );
+    }
   }
 }
