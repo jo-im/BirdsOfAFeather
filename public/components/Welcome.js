@@ -19,6 +19,9 @@ export default class Welcome extends Component {
   	    <TouchableHighlight onPress={this.props.onForward}>
   	      <Text>Finish selecting concerns</Text>
   	    </TouchableHighlight>
+  	    <TouchableHighlight onPress={this.props.onBack}>
+  	      <Text>Go Back</Text>
+  	    </TouchableHighlight>
   	  </View>
   	);
   }

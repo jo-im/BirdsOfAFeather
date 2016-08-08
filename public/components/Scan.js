@@ -9,6 +9,9 @@ export default class Scan extends Component {
    	   <TouchableHighlight onPress={this.props.onForward}>
    	     <Text>Scan here</Text>
    	   </TouchableHighlight>
+   	   <TouchableHighlight onPress={this.props.onBack}>
+   	     <Text>Go Back</Text>
+   	   </TouchableHighlight>
    	 </View>
    	)
   }

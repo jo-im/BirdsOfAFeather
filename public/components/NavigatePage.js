@@ -40,6 +40,12 @@ export default class NavigatePage extends Component {
                 index: nextIndex
               })
   	        }}
+
+            onBack={ () => {
+              if (route.index > 0) {
+                navigator.pop();
+              }
+            }}
   	      />
   	    } 
   	  />
@@ -57,25 +63,25 @@ class CurrentScene extends Component {
 
   	if (this.props.page === 'Welcome') {
   	  return (
-        <Welcome onForward={this.props.onForward}/>
+        <Welcome onForward={this.props.onForward} onBack={this.props.onBack}/>
       );
   	}
 
   	if (this.props.page === 'Allergies/Diet') {
   	  return (
-	  	  <AllergiesAndDiet onForward={this.props.onForward}/>
+	  	  <AllergiesAndDiet onForward={this.props.onForward} onBack={this.props.onBack}/>
   	  );
   	}
 
     if (this.props.page === 'Scan') {
       return (
-        <Scan onForward={this.props.onForward}/>
+        <Scan onForward={this.props.onForward} onBack={this.props.onBack}/>
       );
     }
 
     if (this.props.page === 'Summary') {
       return (
-        <Summary />
+        <Summary onBack={this.props.onBack}/>
       );
     }
   }
