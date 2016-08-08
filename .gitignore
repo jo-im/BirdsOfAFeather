@@ -32,8 +32,6 @@ local.properties
 # node.js
 #
 node_modules/
-bower_components/
-.env
 npm-debug.log
 
 # BUCK
