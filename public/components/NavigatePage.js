@@ -5,6 +5,7 @@ import Splash from './Splash';
 import Welcome from './Welcome';
 import AllergiesAndDiet from './Allergies-Diet';
 import Scan from './Scan';
+import Summary from './Summary';
 
 export default class NavigatePage extends Component {
   render() {
@@ -28,6 +29,10 @@ export default class NavigatePage extends Component {
 
               if (nextIndex === 3) {
               	page = 'Scan'
+              }
+
+              if (nextIndex === 4) {
+                page = 'Summary'
               }
 
               navigator.push({
@@ -65,6 +70,12 @@ class CurrentScene extends Component {
     if (this.props.page === 'Scan') {
       return (
         <Scan onForward={this.props.onForward}/>
+      );
+    }
+
+    if (this.props.page === 'Summary') {
+      return (
+        <Summary />
       );
     }
   }
