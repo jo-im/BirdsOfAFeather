@@ -7,7 +7,6 @@ export default class Splash extends Component {
   	  <View>
   	    <Text>{"\n"}</Text>
   	    <Text>This is the Splash Page</Text>
-  	    <Image source='http://facebook.github.io/react/img/logo_og.png' />
   	    <TouchableHighlight onPress={this.props.onForward} >
   	    	<Text>Facebook Login</Text>
   	    </TouchableHighlight>
