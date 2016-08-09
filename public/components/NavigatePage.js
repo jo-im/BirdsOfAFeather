@@ -15,44 +15,11 @@ export default class NavigatePage extends Component {
   	    renderScene={(route, navigator) =>
   	      <CurrentScene
   	        page={route.page}
-
-            onForward={ () => {
-              let page;
-              const nextIndex = route.index + 1;
-              if (nextIndex === 1) {
-                page = 'Welcome'
-              }
-              
-              if (nextIndex === 2) {
-                page = 'Allergies/Diet'
-              }
-
-              if (nextIndex === 3) {
-                page = 'Scan'
-              }
-
-              if (nextIndex === 4) {
-                page = 'Summary'
-              }
-
-              navigator.push({
-                page: page,
-                index: nextIndex
-              })
-            }}
-
-            onBack={ () => {
-              if (route.index > 0) {
-                navigator.pop();
-              }
-            }}
-
+            onForward={this.props.onForward.bind(this, route, navigator)}
+            onBack={this.props.onBack.bind(this, route, navigator)}
             username={this.props.username}
-
             concerns={this.props.concerns}
-
             onSelectConcern={this.props.onSelectConcern}
-
             onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
           />
         } 
