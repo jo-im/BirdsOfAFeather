@@ -16,6 +16,7 @@ export default class NavigatePage extends Component {
             concerns={this.props.concerns}
             onSelectConcern={this.props.onSelectConcern}
             onSelectAllergy={this.props.onSelectAllergy}
+            onSelectDiet={this.props.onSelectDiet}
             onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
           />
         } 
