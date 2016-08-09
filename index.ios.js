@@ -12,9 +12,8 @@ import {
   View,
   Image
 } from 'react-native';
-
 import NavigatePage from './public/components/NavigatePage'
-var userInfo = require('./data/userInfo');
+const userInfo = require('./data/userInfo');
 
 class bof extends Component {
   constructor(props) {

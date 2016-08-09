@@ -1,11 +1,6 @@
 import React, {Component, PropTypes } from 'react';
-import { Navigator, Text, TouchableHighlight, View, StyleSheet } from 'react-native';
-
-import Splash from './Splash';
-import Welcome from './Welcome';
-import AllergiesAndDiet from './Allergies-Diet';
-import Scan from './Scan';
-import Summary from './Summary';
+import { Navigator } from 'react-native';
+import CurrentScene from './CurrentScene';
 
 export default class NavigatePage extends Component {
   render() {
@@ -28,36 +23,3 @@ export default class NavigatePage extends Component {
   }
 }
 
-class CurrentScene extends Component {
-  render() {
-  	if (this.props.page === 'Splash') {
-	  	return (
-		    <Splash onForward={this.props.onForward}/>
-	  	);
-  	} 
-
-  	if (this.props.page === 'Welcome') {
-  	  return (
-        <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}/>
-      );
-  	}
-
-  	if (this.props.page === 'Allergies/Diet') {
-  	  return (
-	  	  <AllergiesAndDiet onForward={this.props.onForward} onBack={this.props.onBack}/>
-  	  );
-  	}
-
-    if (this.props.page === 'Scan') {
-      return (
-        <Scan onForward={this.props.onForward} onBack={this.props.onBack}/>
-      );
-    }
-
-    if (this.props.page === 'Summary') {
-      return (
-        <Summary onBack={this.props.onBack} concerns={this.props.concerns}/>
-      );
-    }
-  }
-}
