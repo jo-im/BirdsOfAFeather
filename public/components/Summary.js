@@ -6,7 +6,7 @@ export default class Summary extends Component {
   	return (
   	  <View>
   	    <Text>{'\n'}</Text>
-  	    <Text>In Summary Page</Text>
+  	    <Text>User's concerns are {this.props.concerns}</Text>
   	    <TouchableHighlight onPress={this.props.onBack}>
   	      <Text>Go Back</Text>
   	    </TouchableHighlight>

@@ -27,24 +27,27 @@ export default class NavigatePage extends Component {
   	        page={route.page}
 
             userInfo={this.props.userInfo}
+
+            concerns={this.state.concerns}
             
             onSelectConcern={ (concern) => {
-              console.log('concern is', concern);
+              this.state.concerns.push(concern);
+              console.log('this.state.concerns is now', this.state.concerns);
             }}
 
-  	        onForward={ () => {
-  	          let page;
-  	          const nextIndex = route.index + 1;
-  	          if (nextIndex === 1) {
-  	          	page = 'Welcome'
-  	          }
+            onForward={ () => {
+              let page;
+              const nextIndex = route.index + 1;
+              if (nextIndex === 1) {
+                page = 'Welcome'
+              }
               
               if (nextIndex === 2) {
-              	page = 'Allergies/Diet'
+                page = 'Allergies/Diet'
               }
 
               if (nextIndex === 3) {
-              	page = 'Scan'
+                page = 'Scan'
               }
 
               if (nextIndex === 4) {
@@ -55,15 +58,19 @@ export default class NavigatePage extends Component {
                 page: page,
                 index: nextIndex
               })
-  	        }}
+            }}
 
             onBack={ () => {
               if (route.index > 0) {
                 navigator.pop();
               }
             }}
-  	      />
-  	    } 
+
+            onFinishSelectingConcerns={ () => {
+              console.log('Finish selecting all concerns and now going to setState and this.state.concerns is', this.state.concerns);
+            }}
+          />
+        } 
   	  />
   	);
   }
@@ -79,7 +86,7 @@ class CurrentScene extends Component {
 
   	if (this.props.page === 'Welcome') {
   	  return (
-        <Welcome onForward={this.props.onForward} onBack={this.props.onBack} userInfo={this.props.userInfo} onSelectConcern={this.props.onSelectConcern}/>
+        <Welcome onForward={this.props.onForward} onBack={this.props.onBack} userInfo={this.props.userInfo} onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}/>
       );
   	}
 
@@ -96,8 +103,9 @@ class CurrentScene extends Component {
     }
 
     if (this.props.page === 'Summary') {
+      console.log('Going to pass in concerns to Summary and this.props.concerns is --------------->', this.props.concerns);
       return (
-        <Summary onBack={this.props.onBack}/>
+        <Summary onBack={this.props.onBack} concerns={this.props.concerns}/>
       );
     }
   }
