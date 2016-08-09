@@ -19,6 +19,10 @@ class bof extends Component {
   constructor(props) {
     super(props);
 
+    this.onSelectConcern = this.onSelectConcern.bind(this);
+    this.onForward = this.onForward.bind(this);
+    this.onBack = this.onBack.bind(this);
+
     this.state = {
       username: userInfo.userInfo.name,
       concerns: [],
@@ -50,8 +54,8 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} concerns={this.state.concerns} onSelectConcern={this.onSelectConcern.bind(this)} 
-      onForward={this.onForward.bind(this)} onBack={this.onBack.bind(this)}/>
+      <NavigatePage username={this.state.username} concerns={this.state.concerns} onSelectConcern={this.onSelectConcern} 
+      onForward={this.onForward} onBack={this.onBack}/>
     );
   }
 }
