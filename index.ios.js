@@ -9,36 +9,21 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 
 import NavigatePage from './public/components/NavigatePage'
+var userInfo = require('./data/userInfo');
 
 class bof extends Component {
   render() {
+    console.log('In bof and userInfo is', userInfo);
+    console.log('In bo and userInfo.userInfo is', userInfo.userInfo);
     return (
-      <NavigatePage />
+      <NavigatePage userInfo={userInfo.userInfo}/>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('bof', () => bof);

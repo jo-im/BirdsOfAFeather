@@ -8,6 +8,16 @@ import Scan from './Scan';
 import Summary from './Summary';
 
 export default class NavigatePage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: this.props.userInfo.name,
+      concerns: [],
+      allergies: [],
+      diets: []
+    }
+  }
   render() {
   	return (
   	  <Navigator
@@ -15,6 +25,12 @@ export default class NavigatePage extends Component {
   	    renderScene={(route, navigator) =>
   	      <CurrentScene
   	        page={route.page}
+
+            userInfo={this.props.userInfo}
+            
+            onSelectConcern={ (concern) => {
+              console.log('concern is', concern);
+            }}
 
   	        onForward={ () => {
   	          let page;
@@ -63,7 +79,7 @@ class CurrentScene extends Component {
 
   	if (this.props.page === 'Welcome') {
   	  return (
-        <Welcome onForward={this.props.onForward} onBack={this.props.onBack}/>
+        <Welcome onForward={this.props.onForward} onBack={this.props.onBack} userInfo={this.props.userInfo} onSelectConcern={this.props.onSelectConcern}/>
       );
   	}
 
