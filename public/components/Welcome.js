@@ -8,7 +8,7 @@ export default class Welcome extends Component {
   	return (
   	  <View>
   	    <Text>{"\n"}</Text>
-  	    <Text style={style.styles.welcome}>Welcome {this.props.userInfo.name}</Text>
+  	    <Text style={style.styles.welcome}>Welcome {this.props.username}</Text>
   	    <Text style={{fontFamily: 'Didot-Italic', fontSize: 20, marginLeft: 10, height: 40}}>What are your concerns?</Text>
   	    <TouchableHighlight style={style.styles.health} onPress={this.props.onSelectConcern.bind(this, 'Health')}>
   	      <Text style={style.styles.text}>Health</Text>
@@ -19,7 +19,7 @@ export default class Welcome extends Component {
   	    <TouchableHighlight style={style.styles.society} onPress={this.props.onSelectConcern.bind(this, 'Society')}>
   	      <Text style={style.styles.text}>Society</Text>
   	    </TouchableHighlight>
-  	    <TouchableHighlight style={style.styles.next} onPress={() => {this.props.onForward(); this.props.onFinishSelectingConcerns();}}>
+  	    <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
   	      <Text style={style.styles.text}>Finish selecting concerns</Text>
   	    </TouchableHighlight>
   	    <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>

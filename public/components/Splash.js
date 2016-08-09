@@ -4,10 +4,8 @@ const style = require('./../style/styles');
 
 export default class Splash extends Component {
   render() {
-  	console.log('Inside Splash component, style is', style);
   	return (
   	  <View style={style.styles.container}>
-  	    <Text>{"\n"}</Text>
         <Image
           source={{uri: 'https://elixirgraphics.com/assets/img/theme_images/feather-icon-256x256-NEW.jpg'}}
           style={style.styles.icon}

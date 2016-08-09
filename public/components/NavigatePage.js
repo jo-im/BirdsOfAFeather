@@ -8,16 +8,6 @@ import Scan from './Scan';
 import Summary from './Summary';
 
 export default class NavigatePage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: this.props.userInfo.name,
-      concerns: [],
-      allergies: [],
-      diets: []
-    }
-  }
   render() {
   	return (
   	  <Navigator
@@ -25,15 +15,6 @@ export default class NavigatePage extends Component {
   	    renderScene={(route, navigator) =>
   	      <CurrentScene
   	        page={route.page}
-
-            userInfo={this.props.userInfo}
-
-            concerns={this.state.concerns}
-            
-            onSelectConcern={ (concern) => {
-              this.state.concerns.push(concern);
-              console.log('this.state.concerns is now', this.state.concerns);
-            }}
 
             onForward={ () => {
               let page;
@@ -66,9 +47,13 @@ export default class NavigatePage extends Component {
               }
             }}
 
-            onFinishSelectingConcerns={ () => {
-              console.log('Finish selecting all concerns and now going to setState and this.state.concerns is', this.state.concerns);
-            }}
+            username={this.props.username}
+
+            concerns={this.props.concerns}
+
+            onSelectConcern={this.props.onSelectConcern}
+
+            onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
           />
         } 
   	  />
@@ -86,7 +71,7 @@ class CurrentScene extends Component {
 
   	if (this.props.page === 'Welcome') {
   	  return (
-        <Welcome onForward={this.props.onForward} onBack={this.props.onBack} userInfo={this.props.userInfo} onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}/>
+        <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}/>
       );
   	}
 
@@ -103,7 +88,6 @@ class CurrentScene extends Component {
     }
 
     if (this.props.page === 'Summary') {
-      console.log('Going to pass in concerns to Summary and this.props.concerns is --------------->', this.props.concerns);
       return (
         <Summary onBack={this.props.onBack} concerns={this.props.concerns}/>
       );
