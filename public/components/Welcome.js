@@ -3,7 +3,6 @@ import { Navigator, Text, TouchableHighlight, View, StyleSheet } from 'react-nat
 
 export default class Welcome extends Component {
   render() {
-  	console.log('inside Welcome component and this.props.userInfo is', this.props.userInfo);
   	return (
   	  <View>
   	    <Text>{"\n"}</Text>
