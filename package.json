@@ -12,7 +12,7 @@
     "allergy"
   ],
   "scripts": {
-    "dev:buildserver": "babel ./server -d ./server-dist --presets es2015,stage-1 --copy-files",
+    "dev:buildserver": "babel ./server -d ./server-dist --watch --presets es2015,stage-1 --copy-files",
     "test": "echo \"Error: no test specified\"",
     "start": "react-native run-ios start && node server/server.js"
   },
