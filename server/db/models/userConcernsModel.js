@@ -5,8 +5,6 @@ import Sequelize from 'sequelize';
 
 // Join model
 const User_Concerns = sequelize.define ('User_Concerns', {
-  userId: Sequelize.INTEGER,
-  concernId: Sequelize.INTEGER
 });
 
 // Create foreign key constraints within join table
