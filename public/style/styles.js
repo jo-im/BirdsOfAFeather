@@ -52,5 +52,10 @@ module.exports.styles = StyleSheet.create({
   },
   society: {
     backgroundColor: '#3333ff'
+  },
+  allergyAndDietIcon: {
+    height: 50,
+    width: 50,
+    margin: 3
   }
 });

@@ -20,6 +20,7 @@ class bof extends Component {
     super(props);
 
     this.onSelectConcern = this.onSelectConcern.bind(this);
+    this.onSelectAllergy = this.onSelectAllergy.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
 
@@ -34,6 +35,10 @@ class bof extends Component {
   
   onSelectConcern(concern) {
     this.state.concerns.push(concern);
+  }
+
+  onSelectAllergy(allergy) {
+    console.log('an allergy has been clicked!');
   }
 
   onForward(route, navigator) {
@@ -55,7 +60,7 @@ class bof extends Component {
   render() {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} onSelectConcern={this.onSelectConcern} 
-      onForward={this.onForward} onBack={this.onBack}/>
+      onSelectAllergy={this.onSelectAllergy} onForward={this.onForward} onBack={this.onBack}/>
     );
   }
 }
