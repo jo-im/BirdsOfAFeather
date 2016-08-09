@@ -33,6 +33,12 @@ module.exports.styles = StyleSheet.create({
   	color: 'white', 
   	marginTop: 17
   },
+  concernQuestion: {
+    fontFamily: 'Didot-Italic', 
+    fontSize: 20, 
+    marginLeft: 10, 
+    height: 40
+  },
   welcome: {
   	textAlign: 'center', 
   	fontFamily: 'Didot-Italic', 

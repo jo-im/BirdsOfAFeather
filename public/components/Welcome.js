@@ -1,4 +1,4 @@
-import React, {Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Navigator, Text, TouchableHighlight, View, StyleSheet } from 'react-native';
 const style = require('./../style/styles');
 
@@ -9,7 +9,7 @@ export default class Welcome extends Component {
   	  <View>
   	    <Text>{"\n"}</Text>
   	    <Text style={style.styles.welcome}>Welcome {this.props.username}</Text>
-  	    <Text style={{fontFamily: 'Didot-Italic', fontSize: 20, marginLeft: 10, height: 40}}>What are your concerns?</Text>
+  	    <Text style={style.styles.concernQuestion}>What are your concerns?</Text>
   	    <TouchableHighlight style={style.styles.health} onPress={this.props.onSelectConcern.bind(this, 'Health')}>
   	      <Text style={style.styles.text}>Health</Text>
   	    </TouchableHighlight>

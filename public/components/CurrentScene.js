@@ -1,4 +1,4 @@
-import React, {Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Splash from './Splash';
 import Welcome from './Welcome';
 import AllergiesAndDiet from './Allergies-Diet';
