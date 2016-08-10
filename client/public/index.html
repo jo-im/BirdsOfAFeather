@@ -6,6 +6,27 @@
 </head>
 <body>
 <h1>Birds of a Feather Test 2</h1>
-<a href="/api/foodfacts/upc">api request</a>
+  <button onclick="getSampleData()">Get Sample Data</button> 
+
+  <script>
+    var getSampleData = function() {
+      console.log('button clicked');
+      $.ajax({
+        type: 'POST',
+        url: '/api/foodfacts/upc',
+        data: {
+          event: {
+            data: '0014100085461'
+          }
+        },
+        // dataType: 'application/json'
+        success: function(response) {
+          console.log(response);
+        }
+      });
+
+    };
+
+  </script>
 </body>
 </html>
