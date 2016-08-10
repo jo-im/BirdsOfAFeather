@@ -3,6 +3,7 @@ import Splash from './Splash';
 import Welcome from './Welcome';
 import AllergiesAndDiet from './Allergies-Diet';
 import Scan from './Scan';
+import UPCReader from './UPCReader';
 import Summary from './Summary';
 
 export default class CurrentScene extends Component {
@@ -34,6 +35,12 @@ export default class CurrentScene extends Component {
     if (this.props.page === 'Scan') {
       return (
         <Scan onForward={this.props.onForward} onBack={this.props.onBack}/>
+      );
+    }
+
+    if (this.props.page === 'UPCReader') {
+      return (
+        <UPCReader onForward={this.props.onForward} onBack={this.props.onBack} />
       );
     }
 
