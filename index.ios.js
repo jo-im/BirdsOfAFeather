@@ -34,7 +34,7 @@ class bof extends Component {
       allergies: [],
       diets: [],
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
-      productDescription: itemScanned.itemScanned
+      productDescription: itemScanned.itemScanned,
       userId: null,
       credential: {}
     }
