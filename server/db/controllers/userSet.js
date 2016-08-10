@@ -21,10 +21,3 @@ export const setNewUser = (user) => {
     return undefined;
   });
 };
-
-// 1	Ryan	123	faketokenhere	2016-08-09 21:18:25.46+00	2016-08-09 21:18:25.46+00
-console.log(setNewUser({
-  name: 'Ryan3',
-  facebookId: 222,
-  token: 'ajksdhlfk'
-}));
