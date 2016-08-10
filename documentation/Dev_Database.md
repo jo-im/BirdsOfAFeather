@@ -28,7 +28,18 @@ This script may be utilized to both reset your database's tables as well as for 
 Script will drop tables if they exist, set up tables as well as foreign key relations, and populate the concerns listing.
 
 ## Save a User ##
-
+Please include the following code as dependencies:
+```javascript
+import {setNewUser} from 'BirdsOfAFeather/server/db/controllers/userSet'
+```
+Input: User object in the form of:
+```javascript
+{
+  name: 'testUser',
+  facebookId: 222,
+  token: 'fakeToken'
+}
+```
 
 ## Get a User ##
 Please include the following code as dependencies:
@@ -81,3 +92,11 @@ Output: Array in the form of:
 ```
 
 ## Set and Update a User's Concerns ##
+Please include the following code as dependencies:
+```javascript
+import {setUserConcerns} from 'BirdsOfAFeather/server/db/controllers/concernSet'
+```
+Input:
+  * userConcern: Object with 'name' key and value matching database entry.
+  * user: Object with a 'id' key and value matching database entry for id in user table.
+Output: N/A - sets entry in DB
