@@ -40,12 +40,10 @@ class bof extends Component {
 
   onSelectAllergy(allergy) {
     this.state.allergies.push(allergy);
-    console.log('Now the user has these allergies:', this.state.allergies);
   }
 
   onSelectDiet(diet) {
     this.state.diets.push(diet);
-    console.log('Now the user has these diets:', this.state.diets);
   }
 
   onForward(route, navigator) {
