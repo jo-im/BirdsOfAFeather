@@ -39,11 +39,13 @@ class bof extends Component {
   }
 
   onSelectAllergy(allergy) {
-    console.log('an allergy has been clicked!', allergy);
+    this.state.allergies.push(allergy);
+    console.log('Now the user has these allergies:', this.state.allergies);
   }
 
   onSelectDiet(diet) {
-    console.log('A diet has been clicked!', diet);
+    this.state.diets.push(diet);
+    console.log('Now the user has these diets:', this.state.diets);
   }
 
   onForward(route, navigator) {
@@ -64,7 +66,7 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} concerns={this.state.concerns} onSelectConcern={this.onSelectConcern} 
+      <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} onSelectConcern={this.onSelectConcern} 
       onSelectAllergy={this.onSelectAllergy} onSelectDiet={this.onSelectDiet} onForward={this.onForward} onBack={this.onBack}/>
     );
   }
