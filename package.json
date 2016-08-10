@@ -30,7 +30,7 @@
     "react": "15.2.1",
     "react-native": "0.31.0",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
-    "require": "^2.4.20",
+    "request": "^2.74.0",
     "sequelize": "^3.23.6"
   },
   "devDependencies": {
