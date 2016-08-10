@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Navigator, Text, TouchableHighlight, View, StyleSheet } from 'react-native';
+import { Text, TouchableHighlight, View } from 'react-native';
 const style = require('./../style/styles');
 
 export default class Welcome extends Component {

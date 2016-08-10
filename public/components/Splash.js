@@ -1,5 +1,5 @@
-import React, {Component, PropTypes } from 'react';
-import { Navigator, Text, TouchableHighlight, View, StyleSheet, Image } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Text, TouchableHighlight, View, Image } from 'react-native';
 const style = require('./../style/styles');
 
 export default class Splash extends Component {
