@@ -1,5 +1,5 @@
-import React, {Component, PropTypes } from 'react';
-import { Navigator, Text, TouchableHighlight, View, StyleSheet } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Text, TouchableHighlight, View } from 'react-native';
 
 export default class Summary extends Component {
   render() {
