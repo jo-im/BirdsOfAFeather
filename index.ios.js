@@ -35,6 +35,8 @@ class bof extends Component {
       diets: [],
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
       productDescription: itemScanned.itemScanned
+      userId: null,
+      credential: {}
     }
   }
   
@@ -84,7 +86,7 @@ class bof extends Component {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
       productDescription={this.state.productDescription} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} onSelectDiet={this.onSelectDiet} 
-      goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack}/>
+      goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
 
