@@ -34,7 +34,7 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Scan') {
       return (
-        <Scan onForward={this.props.onForward} onBack={this.props.onBack}/>
+        <Scan goToSummary={this.props.goToSummary} onForward={this.props.onForward} onBack={this.props.onBack}/>
       );
     }
 
@@ -46,7 +46,8 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Summary') {
       return (
-        <Summary concerns={this.props.concerns} allergies={this.props.allergies} diets={this.props.diets} onBack={this.props.onBack} />
+        <Summary concerns={this.props.concerns} allergies={this.props.allergies} diets={this.props.diets} productDescription={this.props.productDescription} 
+        onBack={this.props.onBack} />
       );
     }
   }
