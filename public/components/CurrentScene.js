@@ -14,27 +14,28 @@ export default class CurrentScene extends Component {
   render() {
   	if (this.props.page === 'Splash') {
 	  	return (
-		    <Splash onForward={this.props.onForward}/>
+		    <Splash onForward={this.props.onForward} rootParent={this.props.rootParent} />
 	  	);
   	} 
 
   	if (this.props.page === 'Welcome') {
   	  return (
         <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} 
-        onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}/>
+        onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
+        rootParent={this.props.rootParent} />
       );
   	}
 
   	if (this.props.page === 'Allergies/Diet') {
   	  return (
 	  	  <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet}
-        onForward={this.props.onForward} onBack={this.props.onBack}/>
+        onForward={this.props.onForward} onBack={this.props.onBack} rootParent={this.props.rootParent} />
   	  );
   	}
 
     if (this.props.page === 'Scan') {
       return (
-        <Scan onForward={this.props.onForward} onBack={this.props.onBack}/>
+        <Scan goToSummary={this.props.goToSummary} onForward={this.props.onForward} onBack={this.props.onBack}/>
       );
     }
 
@@ -46,7 +47,8 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Summary') {
       return (
-        <Summary concerns={this.props.concerns} allergies={this.props.allergies} diets={this.props.diets} onBack={this.props.onBack} />
+        <Summary concerns={this.props.concerns} allergies={this.props.allergies} diets={this.props.diets} productDescription={this.props.productDescription} 
+        onBack={this.props.onBack} />
       );
     }
   }

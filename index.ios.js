@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import NavigatePage from './public/components/NavigatePage'
 const userInfo = require('./data/userInfo');
+const itemScanned = require('./data/itemScanned')
 
 class bof extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class bof extends Component {
     this.onSelectConcern = this.onSelectConcern.bind(this);
     this.onSelectAllergy = this.onSelectAllergy.bind(this);
     this.onSelectDiet = this.onSelectDiet.bind(this);
+    this.goToSummary = this.goToSummary.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
 
@@ -31,7 +33,10 @@ class bof extends Component {
       concerns: [],
       allergies: [],
       diets: [],
-      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary']
+      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+      productDescription: itemScanned.itemScanned,
+      userId: null,
+      credential: {}
     }
   }
   
@@ -47,10 +52,18 @@ class bof extends Component {
     this.state.diets.push(diet);
   }
 
+  goToSummary(route, navigator) {
+    let page;
+    const nextIndex = route.index + 2;
+    navigator.push({
+      page: this.state.pages[nextIndex],
+      index: nextIndex
+    })
+  }
+
   onForward(route, navigator) {
     let page;
     const nextIndex = route.index + 1;
-
     navigator.push({
       page: this.state.pages[nextIndex],
       index: nextIndex
@@ -71,8 +84,9 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} onSelectConcern={this.onSelectConcern} 
-      onSelectAllergy={this.onSelectAllergy} onSelectDiet={this.onSelectDiet} onForward={this.onForward} onBack={this.onBack}/>
+      <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
+      productDescription={this.state.productDescription} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} onSelectDiet={this.onSelectDiet} 
+      goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
 
