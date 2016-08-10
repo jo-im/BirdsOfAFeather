@@ -26,7 +26,7 @@ export default class UPCReader extends Component {
     );
   }
 
-  readBarCode(event) {
+  readBarCode(event, test) {
     console.log('inside readBarCode');
     fetch('http://10.6.24.1:3000/api/foodfacts/upc', 
       {  
@@ -40,7 +40,10 @@ export default class UPCReader extends Component {
           { event: event }
         )
       })
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data);
+      this.props.onForward();
+    })
     .catch(err => console.log(err));
   }
 

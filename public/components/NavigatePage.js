@@ -10,12 +10,14 @@ export default class NavigatePage extends Component {
   	    renderScene={(route, navigator) =>
   	      <CurrentScene
   	        page={route.page}
-            onForward={this.props.onForward.bind(this, route, navigator)}
-            onBack={this.props.onBack.bind(this, route, navigator)}
             username={this.props.username}
             concerns={this.props.concerns}
             allergies={this.props.allergies}
             diets={this.props.diets}
+            productDescription={this.props.productDescription}
+            goToSummary={this.props.goToSummary.bind(this, route, navigator)}
+            onForward={this.props.onForward.bind(this, route, navigator)}
+            onBack={this.props.onBack.bind(this, route, navigator)}
             onSelectConcern={this.props.onSelectConcern}
             onSelectAllergy={this.props.onSelectAllergy}
             onSelectDiet={this.props.onSelectDiet}
