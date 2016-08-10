@@ -8,7 +8,7 @@ import {
 import Camera from 'react-native-camera';
 import _ from 'lodash';
 
-class UPCReader extends Component {
+export default class UPCReader extends Component {
   render() {
     return (
       <View style={styles.container}>

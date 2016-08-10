@@ -31,7 +31,7 @@ class bof extends Component {
       concerns: [],
       allergies: [],
       diets: [],
-      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'Summary']
+      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary']
     }
   }
   
@@ -63,6 +63,12 @@ class bof extends Component {
     }
   }
 
+  // takePicture() {
+  //   this.camera.capture()
+  //     .then((data) => console.log(data))
+  //     .catch(err => console.error(err));
+  // }
+
   render() {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} onSelectConcern={this.onSelectConcern} 
@@ -70,11 +76,6 @@ class bof extends Component {
     );
   }
 
-  takePicture() {
-    this.camera.capture()
-      .then((data) => console.log(data))
-      .catch(err => console.error(err));
-  }
 
 }
 
