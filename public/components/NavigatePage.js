@@ -14,7 +14,11 @@ export default class NavigatePage extends Component {
             onBack={this.props.onBack.bind(this, route, navigator)}
             username={this.props.username}
             concerns={this.props.concerns}
+            allergies={this.props.allergies}
+            diets={this.props.diets}
             onSelectConcern={this.props.onSelectConcern}
+            onSelectAllergy={this.props.onSelectAllergy}
+            onSelectDiet={this.props.onSelectDiet}
             onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
           />
         } 

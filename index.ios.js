@@ -20,6 +20,8 @@ class bof extends Component {
     super(props);
 
     this.onSelectConcern = this.onSelectConcern.bind(this);
+    this.onSelectAllergy = this.onSelectAllergy.bind(this);
+    this.onSelectDiet = this.onSelectDiet.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
 
@@ -34,6 +36,14 @@ class bof extends Component {
   
   onSelectConcern(concern) {
     this.state.concerns.push(concern);
+  }
+
+  onSelectAllergy(allergy) {
+    this.state.allergies.push(allergy);
+  }
+
+  onSelectDiet(diet) {
+    this.state.diets.push(diet);
   }
 
   onForward(route, navigator) {
@@ -54,8 +64,8 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} concerns={this.state.concerns} onSelectConcern={this.onSelectConcern} 
-      onForward={this.onForward} onBack={this.onBack}/>
+      <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} onSelectConcern={this.onSelectConcern} 
+      onSelectAllergy={this.onSelectAllergy} onSelectDiet={this.onSelectDiet} onForward={this.onForward} onBack={this.onBack}/>
     );
   }
 }

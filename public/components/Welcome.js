@@ -4,7 +4,6 @@ const style = require('./../style/styles');
 
 export default class Welcome extends Component {
   render() {
-  	console.log('Inside the Welcome Component and this.props.onFinishSelectingConcerns is', this.props.onFinishSelectingConcerns);
   	return (
   	  <View>
   	    <Text>{"\n"}</Text>
