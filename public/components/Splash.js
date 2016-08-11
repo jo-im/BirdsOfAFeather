@@ -19,14 +19,20 @@ export default class Splash extends Component {
   }
 
   render() {
+<<<<<<< f456f4f9e394c370928c372f4e7efba5b19d2f05
     var _this = this;
   	return (
   	  <View style={style.styles.container}>
+=======
+    return (
+      <View style={style.styles.container}>
+>>>>>>> Delete all tab space issues
         <Image
           source={{uri: 'https://elixirgraphics.com/assets/img/theme_images/feather-icon-256x256-NEW.jpg'}}
           style={style.styles.icon}
         />
         <Text style={{height: 50}}>It's easy to get started. Sign in with Facebook to get access to bof.</Text>
+<<<<<<< f456f4f9e394c370928c372f4e7efba5b19d2f05
         
         <FBLogin style={{ marginBottom: 10, }}
         ref={(fbLogin) => { this.fbLogin = fbLogin }}
@@ -65,5 +71,12 @@ export default class Splash extends Component {
         />
   	  </View>
   	);
+=======
+        <TouchableHighlight style={style.styles.login} onPress={this.props.onForward} >                                                                                                                                                                                               
+          <Text style={style.styles.loginText}>Facebook Login</Text>
+        </TouchableHighlight>
+      </View>
+    );
+>>>>>>> Delete all tab space issues
   }
 }
