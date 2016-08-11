@@ -31,7 +31,7 @@ class bof extends Component {
     this.state = {
       username: userInfo.userInfo.name,
       concerns: [],
-      allergies: [],
+      allergies: ['peanut', 'shellfish'],
       diets: [],
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
       productDescription: itemScanned.itemScanned,
