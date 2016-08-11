@@ -14,21 +14,22 @@ export default class CurrentScene extends Component {
   render() {
   	if (this.props.page === 'Splash') {
 	  	return (
-		    <Splash onForward={this.props.onForward}/>
+		    <Splash onForward={this.props.onForward} rootParent={this.props.rootParent} />
 	  	);
   	} 
 
   	if (this.props.page === 'Welcome') {
   	  return (
         <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} 
-        onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}/>
+        onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
+        rootParent={this.props.rootParent} />
       );
   	}
 
   	if (this.props.page === 'Allergies/Diet') {
   	  return (
 	  	  <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet}
-        onForward={this.props.onForward} onBack={this.props.onBack}/>
+        onForward={this.props.onForward} onBack={this.props.onBack} rootParent={this.props.rootParent} />
   	  );
   	}
 

@@ -22,6 +22,7 @@ export default class NavigatePage extends Component {
             onSelectAllergy={this.props.onSelectAllergy}
             onSelectDiet={this.props.onSelectDiet}
             onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
+            rootParent={this.props.rootParent}
           />
         } 
   	  />
