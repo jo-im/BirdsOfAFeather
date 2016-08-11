@@ -13,9 +13,9 @@ import {
   View,
   Image
 } from 'react-native';
-import NavigatePage from './public/components/NavigatePage'
+import NavigatePage from './public/components/NavigatePage';
 const userInfo = require('./data/userInfo');
-const itemScanned = require('./data/itemScanned')
+const itemScanned = require('./data/itemScanned');
 
 class bof extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class bof extends Component {
       productDescription: itemScanned.itemScanned,
       user: null,
       credential: {}
-    }
+    };
   }
   
   onSelectConcern(concern) {
@@ -58,7 +58,7 @@ class bof extends Component {
     navigator.push({
       page: this.state.pages[nextIndex],
       index: nextIndex
-    })
+    });
   }
 
   onForward(route, navigator) {
@@ -67,7 +67,7 @@ class bof extends Component {
     navigator.push({
       page: this.state.pages[nextIndex],
       index: nextIndex
-    })
+    });
   }
   
   onBack(route, navigator) {
