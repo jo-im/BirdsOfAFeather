@@ -35,7 +35,7 @@ class bof extends Component {
       diets: [],
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
       productDescription: itemScanned.itemScanned,
-      userId: null,
+      user: null,
       credential: {}
     }
   }
