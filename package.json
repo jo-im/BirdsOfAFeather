@@ -12,13 +12,15 @@
     "allergy"
   ],
   "scripts": {
+    "dev:runios": "react-native run-ios start",
+    "dev:runfull": "npm run dev:runios && npm run start",
     "dev:buildserver": "babel ./server -d ./server-dist --watch --presets es2015,stage-1 --copy-files",
     "dev:_buildserverNoWatch": "babel ./server -d ./server-dist --presets es2015,stage-1 --copy-files",
     "dev:_builddbtables": "node ./server-dist/db/initialization/initializeSchema.js",
     "dev:_populateconcerns": "node ./server-dist/db/initialization/initializeConcerns.js",
     "dev:HARDresetdb": "npm run dev:_buildserverNoWatch && npm run dev:_builddbtables && npm run dev:_populateconcerns",
     "test": "echo \"Error: no test specified\"",
-    "start": "react-native run-ios start && node server/server.js"
+    "start": "npm run dev:_buildserverNoWatch && node server-dist/server.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
