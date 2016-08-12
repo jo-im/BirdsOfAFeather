@@ -16,7 +16,7 @@ const foodFactsHandler = (req, res) => {
     },
     function (error, response, body) {
       if (!error) {
-        parsedBody = JSON.parse(body);
+        var parsedBody = JSON.parse(body);
         console.log(parsedBody);
         res.send(parsedBody.results);
       } else {
