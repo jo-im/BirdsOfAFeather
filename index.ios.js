@@ -62,17 +62,14 @@ class bof extends Component {
   onFilterProductData(data) {
     var parsedData = JSON.parse(data._bodyInit);
     var allergiesProductContains = parsedData.allergies;
-
     this.state.grade = parsedData.score;
     this.state.productIngredients = parsedData.ingredientList;
 
-    var that = this;
-
     this.state.allergies.forEach(allergy => {
       if (allergiesProductContains[allergy]) {
-        that.state.productAllergies.push(allergy);
+        this.state.productAllergies.push(allergy);
         allergiesProductContains[allergy].forEach(allergyItContains => {
-          that.state.ingredientsToAvoid.push(allergyItContains);
+          this.state.ingredientsToAvoid.push(allergyItContains);
         });
       }
     });
