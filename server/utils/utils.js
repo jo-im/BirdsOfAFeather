@@ -34,9 +34,15 @@ const parseFoodFactsData = (data) => {
   const diet = {};
   const ingredientList = [];
 
+  _.forEach(data.product_allergens, function(allergen) {
+    var name = allergen.name;
+    allergies[name] = [];
+    diet[name] = true;
+  });
+
   const foodFactsData = {
-    allergies: '',
-    diet: '',
+    allergies: allergies,
+    diet: diet,
     imgURL: '',
     ingredientList: '',
     reportCard: '',
