@@ -33,6 +33,7 @@ class bof extends Component {
       concerns: [],
       allergies: ['peanut', 'shellfish'],
       diets: [],
+      selected: false,
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
       productDescription: itemScanned.itemScanned,
       user: null,
@@ -45,6 +46,7 @@ class bof extends Component {
   }
 
   onSelectAllergy(allergy) {
+    this.state.selected = true;
     this.state.allergies.push(allergy);
   }
 
@@ -85,8 +87,8 @@ class bof extends Component {
   render() {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
-      productDescription={this.state.productDescription} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} onSelectDiet={this.onSelectDiet} 
-      goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
+      selected={this.state.selected} productDescription={this.state.productDescription} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} 
+      onSelectDiet={this.onSelectDiet} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
 

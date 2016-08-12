@@ -14,6 +14,7 @@ export default class NavigatePage extends Component {
             concerns={this.props.concerns}
             allergies={this.props.allergies}
             diets={this.props.diets}
+            selected={this.props.selected}
             productDescription={this.props.productDescription}
             goToSummary={this.props.goToSummary.bind(this, route, navigator)}
             onForward={this.props.onForward.bind(this, route, navigator)}
