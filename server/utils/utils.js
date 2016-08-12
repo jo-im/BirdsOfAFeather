@@ -26,4 +26,9 @@ const foodFactsHandler = (req, res) => {
   );
 };
 
+const facebookHandler = (req, res) => {
+  console.log('here in facebookHandler: ', req.body);
+}
+
 exports.foodFactsHandler = foodFactsHandler;
+exports.facebookHandler = facebookHandler;

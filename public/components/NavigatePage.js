@@ -3,6 +3,14 @@ import { Navigator } from 'react-native';
 import CurrentScene from './CurrentScene';
 
 export default class NavigatePage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: 'hong'
+    }
+  }
+
   render() {
     return (
       <Navigator
