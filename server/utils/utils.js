@@ -1,5 +1,5 @@
 const request = require('request');
-require('dotenv').config();
+// require('dotenv').config();
 
 const foodFactsHandler = (req, res) => {
   console.log('inside foodfacts api');
@@ -7,7 +7,7 @@ const foodFactsHandler = (req, res) => {
   console.log(upc);
   request.post(
     'https://api.foodfacts.com/ci/api/foodfacts/food_find_product_by_upc/format/json',
-    { 
+    {
       form: {
         login: process.env.FOOD_FACTS_LOGIN,
         password: process.env.FOOD_FACTS_PASSWORD,
