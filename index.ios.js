@@ -68,10 +68,10 @@ class bof extends Component {
 
     var that = this;
 
-    this.state.allergies.forEach(function(allergy) {
+    this.state.allergies.forEach(allergy => {
       if (allergiesProductContains[allergy]) {
         that.state.productAllergies.push(allergy);
-        allergiesProductContains[allergy].forEach(function(allergyItContains) {
+        allergiesProductContains[allergy].forEach(allergyItContains => {
           that.state.ingredientsToAvoid.push(allergyItContains);
         });
       }
