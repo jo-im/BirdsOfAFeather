@@ -7,7 +7,6 @@ const style = require('./../style/styles');
 export default class Summary extends Component {
   constructor(props) {
     super(props);
-    console.log('Inside constructor of Summary and this.props is', this.props);
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(_.range(1))
@@ -15,7 +14,6 @@ export default class Summary extends Component {
   }
 
   renderRow(productDescription) {
-    console.log('inside renderRow and the productDescription is', productDescription);
     var header = (
       <View style={{backgroundColor: 'grey'}}>
         <Text style={{fontFamily: 'Didot-Italic', textAlign: 'center', color: 'white'}}>Click for all ingredients</Text>
@@ -23,7 +21,7 @@ export default class Summary extends Component {
     );
     var content = (
       <View>
-        <Text style={{fontFamily: 'Didot-Italic'}}>{this.props.productDescription.ingredients}</Text>
+        <Text style={{fontFamily: 'Didot-Italic'}}>{this.props.productIngredients}</Text>
       </View>
     );
 
@@ -45,7 +43,7 @@ export default class Summary extends Component {
         <Text>User's diets are {this.props.diets}</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Image source={{uri: this.props.productImage }} style={{height: 150, width: 150}}></Image>
-          <Text style={{textAlign: 'center', fontSize: 40, fontFamily: 'Didot-Italic'}}>Grade: 86</Text>
+          <Text style={{textAlign: 'center', fontSize: 40, fontFamily: 'Didot-Italic'}}>Grade: {this.props.grade}</Text>
         </View>
         <Text>{'\n'}</Text>
         <Text>{'\n'}</Text>
@@ -66,7 +64,7 @@ export default class Summary extends Component {
         <Text>{'\n'}</Text>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderRow.bind(this, this.props.productDescription)}
+          renderRow={this.renderRow.bind(this, this.props.productIngredients)}
         />
         <Text>{'\n'}</Text>
         <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
