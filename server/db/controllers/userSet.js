@@ -4,9 +4,11 @@ import {Concerns} from '../models/concernModel';
 import User_Concerns from '../models/userConcernsModel';
 import {Users} from '../models/userModel';
 
-export const setNewUser = (user) => {
+export const setNewUser = (user, response) => {
   let selectedUser = JSON.parse(user.event.data);
-  console.log('TRYING TO SET NEW USER', JSON.stringify(selectedUser.friends));
+
+  console.log('Trying to set new user');
+
   Users.findOrCreate({
     where: {
       username: selectedUser.username,
@@ -17,6 +19,10 @@ export const setNewUser = (user) => {
   })
   .then((selectedUser) => {
     console.log('Success in setting user');
+    if (response) {
+      response.send(JSON.stringify(selectedUser));
+    }
+
     return selectedUser;
   })
   .catch((err) => {
