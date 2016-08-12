@@ -21,7 +21,7 @@
     "dev:HARDresetdb": "npm run dev:_buildserverNoWatch && npm run dev:_builddbtables && npm run dev:_populateconcerns",
     "postinstall": "npm run dev:_buildserverNoWatch",
     "test": "echo \"Error: no test specified\"",
-    "start": "node server-dist/server.js"
+    "start": "node server/server.js"
   },
   "dependencies": {
     "babel-cli": "^6.11.4",
