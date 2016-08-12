@@ -1,5 +1,5 @@
 const request = require('request');
-// require('dotenv').config();
+require('dotenv').config();
 const _ = require('lodash');
 
 const foodFactsHandler = (req, res) => {
@@ -40,13 +40,31 @@ const parseFoodFactsData = (data) => {
     diet[name] = true;
   });
 
+  _.forEach(data.product_ingredients, function(ingredient) {
+    if (ingredient.name !== ',') {
+      if (ingredient.allergens !== null) {
+        ingredientList.push(ingredient.name);
+
+        var allergens = ingredient.allergens;
+        allergens = allergens.replace(/\d+:/g, '').split('|');
+        
+        _.forEach(allergens, function(allergen) {
+          if (allergies[allergen]) {
+            allergies[allergen].push(ingredient.name);
+          }
+        });
+        
+      }
+    }
+  });
+
   const foodFactsData = {
     allergies: allergies,
     diet: diet,
-    imgURL: '',
-    ingredientList: '',
-    reportCard: '',
-    score: '',
+    imgURL: data.product_detail.product_image,
+    ingredientList: ingredientList,
+    reportCard: data.report_card,
+    score: data.product_detail.food_facts_score
   };
   console.log(foodFactsData);
   return foodFactsData;
