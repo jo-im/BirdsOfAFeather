@@ -7,16 +7,40 @@ var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 const style = require('./../style/styles');
 
 export default class Splash extends Component {
-  async getUserFromFB() {
+  async getUserFromFB(userId, token) {
     try {
-      let response = await fetch('https://graph.facebook.com/v2.7/10153934567142545?fields=email,friends,friendlists,taggable_friends&access_token=EAAECYZBumdKsBABxVqpfmepo2BGSRFEvnkuRUEaE5ZBQsWN0o1ZBaTyKkCJR2cmxJnte1rzYgEWji8shsCrZAp1GViOqZCFIMlRfSiNxZBSZAALYEHU9DgBZAEAJ84f2CKh8ZCmb4k6V00zOBnoq5otmLInXajdQyLq7bhDRZBnqMTQQ7LohZBXF2dUeWYvqdMkcf4ZD');
+      let url = `https://graph.facebook.com/v2.4/${userId}?fields=id,name,email,friends&access_token=${token}`;
+      let response = await fetch(url);
       let responseJson = await response.json();
-      console.log('here in getUserFromFB: ', responseJson);
-      return responseJson;
+      let _this = this;
+      this.props.rootParent.setState({username: responseJson.name});
+      this.postUserToServer(responseJson);
     } catch(error) {
       console.error(error);
     }
   }
+
+  async postUserToServer(data) {
+    fetch('http://10.6.24.31:3000/api/facebook', 
+    {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: data.id,
+        username: data.name,
+        email: data.email,
+        friends: data.friends.data
+      })
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(err => console.log(err));
+  }
+
 
   render() {
     var _this = this;
@@ -33,9 +57,8 @@ export default class Splash extends Component {
         permissions={["email","user_friends"]}
         loginBehavior={FBLoginManager.LoginBehaviors.Native}
         onLogin={function(data){
-          console.log("Logged in!");
-          _this.props.rootParent.setState({ userId : data.credentials.userId });
-          _this.getUserFromFB();
+          console.log("Logged in as: ", data);
+          _this.getUserFromFB(data.credentials.userId, data.credentials.token);
           _this.props.onForward();
         }}
         onLogout={function(){
@@ -45,7 +68,8 @@ export default class Splash extends Component {
         onLoginFound={function(data){
           console.log("Existing login found.");
           console.log(data);
-          _this.setState({ user : data.credentials });
+          _this.setState({ userId : data.credentials.userId });
+          // _this.props.onForward();
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");
