@@ -43,17 +43,16 @@ const parseFoodFactsData = (data) => {
   _.forEach(data.product_ingredients, function(ingredient) {
     if (ingredient.name !== ',') {
       if (ingredient.allergens !== null) {
-        ingredientList.push(ingredient.name);
-
         var allergens = ingredient.allergens;
         allergens = allergens.replace(/\d+:/g, '').split('|');
+        ingredientList.push(ingredient.name);
         
         _.forEach(allergens, function(allergen) {
           if (allergies[allergen]) {
             allergies[allergen].push(ingredient.name);
           }
         });
-        
+
       }
     }
   });
@@ -71,10 +70,9 @@ const parseFoodFactsData = (data) => {
 
 };
 
-
 const facebookHandler = (req, res) => {
   console.log('here in facebookHandler: ', req.body);
-}
+};
 
 exports.foodFactsHandler = foodFactsHandler;
 exports.facebookHandler = facebookHandler;
