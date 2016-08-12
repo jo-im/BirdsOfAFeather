@@ -38,6 +38,7 @@ class bof extends Component {
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
       productDescription: itemScanned.itemScanned,
       productAllergies: [],
+      ingredientsToAvoid: [],
       user: null,
       credential: {}
     };
@@ -69,8 +70,9 @@ class bof extends Component {
 
     this.state.allergies.forEach(function(allergy) {
       if (allergiesProductContains[allergy]) {
+        that.state.productAllergies.push(allergy);
         allergiesProductContains[allergy].forEach(function(allergyItContains) {
-          that.state.productAllergies.push(allergyItContains);
+          that.state.ingredientsToAvoid.push(allergyItContains);
         });
       }
     });
@@ -112,7 +114,7 @@ class bof extends Component {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
       selected={this.state.selected} productDescription={this.state.productDescription} productAllergies={this.state.productAllergies}
-      onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} 
+      ingredientsToAvoid={this.state.ingredientsToAvoid} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} 
       onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }

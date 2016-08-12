@@ -62,7 +62,7 @@ export default class Summary extends Component {
           <Text style={{marginLeft: 10, fontFamily: 'Didot', fontSize: 18, color: 'purple'}}>Controversial</Text>
           <Text style={{marginLeft: 10, fontFamily: 'Didot', fontSize: 18, color: 'red'}}>Avoid</Text>
         </View>
-        <Text style={{color: 'red', fontFamily: 'Didot', textAlign: 'center'}}>{this.props.productDescription.badIngredients}</Text>
+        <Text style={{color: 'red', fontFamily: 'Didot', textAlign: 'center'}}>{this.props.ingredientsToAvoid}</Text>
         <Text>{'\n'}</Text>
         <ListView
           dataSource={this.state.dataSource}
