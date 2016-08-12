@@ -28,7 +28,7 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Allergies/Diet') {
       return (
-        <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet}
+        <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet} 
         selected={this.props.selected} onForward={this.props.onForward} onBack={this.props.onBack} rootParent={this.props.rootParent} />
       ); 
     }
@@ -42,14 +42,14 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'UPCReader') {
       return (
-        <UPCReader onForward={this.props.onForward} onBack={this.props.onBack} />
+        <UPCReader onFilterProductData={this.props.onFilterProductData} onForward={this.props.onForward} onBack={this.props.onBack} />
       );
     }
 
     if (this.props.page === 'Summary') {
       return (
         <Summary concerns={this.props.concerns} allergies={this.props.allergies} diets={this.props.diets} productDescription={this.props.productDescription} 
-        onBack={this.props.onBack} />
+        productAllergies={this.props.productAllergies} onBack={this.props.onBack} />
       );
     }
   }

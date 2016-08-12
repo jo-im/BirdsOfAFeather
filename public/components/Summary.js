@@ -40,6 +40,9 @@ export default class Summary extends Component {
     return (
       <View>
         <Text>{'\n'}</Text>
+        <Text>User's concerns are {this.props.concerns}</Text>
+        <Text>User's allergies are {this.props.allergies}</Text>
+        <Text>User's diets are {this.props.diets}</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Image source={require('./../../images/honey-nut-cheerios-m.jpg')} style={{height: 150, width: 150}}></Image>
           <Text style={{textAlign: 'center', fontSize: 40, fontFamily: 'Didot-Italic'}}>Grade: 86</Text>
@@ -48,9 +51,7 @@ export default class Summary extends Component {
         <Text>{'\n'}</Text>
         <Text>{'\n'}</Text>
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Allergies</Text>
-          <View style={{flex: 0.5, flexDirection: 'row'}}>
-            <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/bread-flat.png')}></Image>
-          </View>
+            <Text>{this.props.productAllergies}</Text>
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Dietary Concerns</Text>
           <View style={{flex: 0.5, flexDirection: 'row'}}>
             <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: 'http://pythagoreancrank.com/wp-content/uploads/2013/09/OrganicNotVegan.png'}}></Image>
