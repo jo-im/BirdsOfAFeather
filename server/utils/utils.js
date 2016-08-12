@@ -4,7 +4,7 @@ const request = require('request');
 const foodFactsHandler = (req, res) => {
   console.log('inside foodfacts api');
   const upc = req.body.event.data.slice(1);
-  console.log(upc);
+
   request.post(
     'https://api.foodfacts.com/ci/api/foodfacts/food_find_product_by_upc/format/json',
     {
