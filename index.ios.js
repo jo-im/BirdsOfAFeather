@@ -36,6 +36,7 @@ class bof extends Component {
       diets: [],
       selected: false,
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+      productImage: '',
       productDescription: itemScanned.itemScanned,
       productAllergies: [],
       ingredientsToAvoid: [],
@@ -58,14 +59,11 @@ class bof extends Component {
   }
 
   onFilterProductData(data) {
-    console.log('COMING THROUGH IS GOING TO BE THE DATA');
-    console.log(data._bodyInit);
-    console.log('IS DATA A STRING?????', typeof data._bodyInit);
     var parsedData = JSON.parse(data._bodyInit);
-    console.log(parsedData);
-    console.log('COMING THROUGH IS JUST THE ALLERGIES =======================================>');
-    console.log(parsedData.allergies);
     var allergiesProductContains = parsedData.allergies;
+    console.log('this should be the IMGurl', parsedData.imgURL);
+    
+
     var that = this;
 
     this.state.allergies.forEach(function(allergy) {
@@ -76,7 +74,10 @@ class bof extends Component {
         });
       }
     });
-
+    
+    this.setState({
+      productImage: parsedData.imgURL
+    });
     console.log('ALLERGIES THAT PRODUCT CONTAINS AND USER HAS IS', this.state.productAllergies);
   }
 
@@ -113,7 +114,7 @@ class bof extends Component {
   render() {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
-      selected={this.state.selected} productDescription={this.state.productDescription} productAllergies={this.state.productAllergies}
+      selected={this.state.selected} productImage={this.state.productImage} productDescription={this.state.productDescription} productAllergies={this.state.productAllergies}
       ingredientsToAvoid={this.state.ingredientsToAvoid} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} 
       onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );

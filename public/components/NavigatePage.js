@@ -23,6 +23,7 @@ export default class NavigatePage extends Component {
             allergies={this.props.allergies}
             diets={this.props.diets}
             selected={this.props.selected}
+            productImage={this.props.productImage}
             productDescription={this.props.productDescription}
             productAllergies={this.props.productAllergies}
             ingredientsToAvoid={this.props.ingredientsToAvoid}

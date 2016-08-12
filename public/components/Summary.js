@@ -44,7 +44,7 @@ export default class Summary extends Component {
         <Text>User's allergies are {this.props.allergies}</Text>
         <Text>User's diets are {this.props.diets}</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <Image source={require('./../../images/honey-nut-cheerios-m.jpg')} style={{height: 150, width: 150}}></Image>
+          <Image source={{uri: this.props.productImage }} style={{height: 150, width: 150}}></Image>
           <Text style={{textAlign: 'center', fontSize: 40, fontFamily: 'Didot-Italic'}}>Grade: 86</Text>
         </View>
         <Text>{'\n'}</Text>
