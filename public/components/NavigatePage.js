@@ -4,16 +4,17 @@ import CurrentScene from './CurrentScene';
 
 export default class NavigatePage extends Component {
   render() {
-  	return (
-  	  <Navigator
-  	    initialRoute={{ page: 'Splash', index: 0}}
-  	    renderScene={(route, navigator) =>
-  	      <CurrentScene
-  	        page={route.page}
+    return (
+      <Navigator
+        initialRoute={{ page: 'Splash', index: 0}}
+        renderScene={(route, navigator) =>
+        <CurrentScene
+            page={route.page}
             username={this.props.username}
             concerns={this.props.concerns}
             allergies={this.props.allergies}
             diets={this.props.diets}
+            selected={this.props.selected}
             productDescription={this.props.productDescription}
             goToSummary={this.props.goToSummary.bind(this, route, navigator)}
             onForward={this.props.onForward.bind(this, route, navigator)}
@@ -25,8 +26,8 @@ export default class NavigatePage extends Component {
             rootParent={this.props.rootParent}
           />
         } 
-  	  />
-  	);
+      />
+    );
   }
 }
 

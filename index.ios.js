@@ -13,9 +13,9 @@ import {
   View,
   Image
 } from 'react-native';
-import NavigatePage from './public/components/NavigatePage'
+import NavigatePage from './public/components/NavigatePage';
 const userInfo = require('./data/userInfo');
-const itemScanned = require('./data/itemScanned')
+const itemScanned = require('./data/itemScanned');
 
 class bof extends Component {
   constructor(props) {
@@ -31,13 +31,14 @@ class bof extends Component {
     this.state = {
       username: userInfo.userInfo.name,
       concerns: [],
-      allergies: [],
+      allergies: ['peanut', 'shellfish'],
       diets: [],
+      selected: false,
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
       productDescription: itemScanned.itemScanned,
       user: null,
       credential: {}
-    }
+    };
   }
   
   onSelectConcern(concern) {
@@ -45,6 +46,7 @@ class bof extends Component {
   }
 
   onSelectAllergy(allergy) {
+    this.state.selected = true;
     this.state.allergies.push(allergy);
   }
 
@@ -58,7 +60,7 @@ class bof extends Component {
     navigator.push({
       page: this.state.pages[nextIndex],
       index: nextIndex
-    })
+    });
   }
 
   onForward(route, navigator) {
@@ -67,7 +69,7 @@ class bof extends Component {
     navigator.push({
       page: this.state.pages[nextIndex],
       index: nextIndex
-    })
+    });
   }
   
   onBack(route, navigator) {
@@ -85,8 +87,8 @@ class bof extends Component {
   render() {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
-      productDescription={this.state.productDescription} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} onSelectDiet={this.onSelectDiet} 
-      goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
+      selected={this.state.selected} productDescription={this.state.productDescription} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} 
+      onSelectDiet={this.onSelectDiet} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
 

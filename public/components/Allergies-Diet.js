@@ -4,13 +4,18 @@ const style = require('./../style/styles');
 
 export default class AllergiesAndDiet extends Component {
   render() {
-  	return (
-  	  <View>
-  	    <Text>{'\n'}</Text>
-  	    <Text style={{textAlign: 'center', fontFamily: 'Didot-Italic', fontSize: 40}}>Any Allergies?</Text>
+    console.log('Inside AllergiesAndDiet and this.props.selected is', this.props.selected);
+    var selectedStyle = {
+      iconDecoration: this.props.selected ? { backgroundColor: 'red' } : style.styles.allergyAndDietIcon
+    };
+
+    return (
+      <View>
+        <Text>{'\n'}</Text>
+        <Text style={{textAlign: 'center', fontFamily: 'Didot-Italic', fontSize: 40}}>Any Allergies?</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Crab')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Crab-128.png'}}></Image>
+            <Image style={selectedStyle.iconDecoration} source={{uri: 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Crab-128.png'}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Peanuts')}>
             <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0001_peanuts.png'}}></Image>
@@ -29,7 +34,7 @@ export default class AllergiesAndDiet extends Component {
           </TouchableHighlight>
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this,'Corn')}>
+          <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Corn')}>
             <Image style={style.styles.allergyAndDietIcon} source={require('./../../images/corn-icon.png')}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Sulfite')}>
@@ -71,13 +76,13 @@ export default class AllergiesAndDiet extends Component {
             <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn0.iconfinder.com/data/icons/kitchen-colored-1/60/fish-dish-plate-chopstick-asian-512.png'}}></Image>
           </TouchableHighlight>
         </View>
-  	    <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
-  	      <Text style={style.styles.text}>Continue</Text>
-  	    </TouchableHighlight>
-  	    <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
-  	      <Text style={style.styles.text}>Go Back</Text>
-  	    </TouchableHighlight>
-  	  </View>
-  	)
+        <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
+          <Text style={style.styles.text}>Continue</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
+          <Text style={style.styles.text}>Go Back</Text>
+        </TouchableHighlight>
+      </View>
+    );
   }
 }
