@@ -73,8 +73,8 @@ const parseFoodFactsData = (data) => {
 
 const facebookHandler = (req, res) => {
   console.log('this is going to req handle', req.body);
-  setNewUser(req.body);
-
+  
+  setNewUser(req.body)
 };
 
 exports.foodFactsHandler = foodFactsHandler;
