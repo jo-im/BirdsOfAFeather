@@ -20,7 +20,7 @@
     "dev:_populateconcerns": "node ./server-dist/db/initialization/initializeConcerns.js",
     "dev:HARDresetdb": "npm run dev:_buildserverNoWatch && npm run dev:_builddbtables && npm run dev:_populateconcerns",
     "postinstall": "npm run dev:_buildserverNoWatch",
-    "test": "echo \"Error: no test specified\"",
+    "test": "mocha tests --recursive -R nyan",
     "start": "node server-dist/server.js"
   },
   "dependencies": {
@@ -42,7 +42,9 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2",
     "react-native-facebook-login": "^1.3.0",
-    "request": "^2.74.0"
+    "sinon": "^1.17.5"
   }
 }
