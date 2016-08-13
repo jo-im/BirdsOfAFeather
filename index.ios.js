@@ -67,27 +67,37 @@ class bof extends Component {
     var allergiesProductContains = parsedData.allergies;
     this.state.grade = parsedData.score;
     this.state.productIngredients = parsedData.ingredientList;
+    this.state.isVegan = true;
+    this.state.isVegetarian = true;
+    this.state.isPescatarian = true;
 
     if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
       this.state.isVegan = false;
     }
 
     if (this.state.diets.indexOf('Vegetarian') !== -1) {
-      allergiesProductContains['Animal-Derived'].forEach(allergies => {
-        if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
-          this.state.isVegetarian = false;
-        }
-      });
+      if (allergiesProductContains['Animal-Derived']) {
+        allergiesProductContains['Animal-Derived'].forEach(allergies => {
+          if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
+            this.state.isVegetarian = false;
+          }
+        });
+      }
     }
 
     if (this.state.diets.indexOf('Pescatarian') !== -1) {
-      allergiesProductContains['Animal-Derived'].forEach(allergies => {
-        if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1
-          && allergiesProductContains['Shellfish'].indexOf(allergies) === -1 && allergiesProductContains['Fish'].indexOf(allergies) === -1) {
-          this.state.isPescatarian = false;
-        }
-      });
+      if (allergiesProductContains['Animal-Derived']) {
+        allergiesProductContains['Animal-Derived'].forEach(allergies => {
+          if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1
+            && allergiesProductContains['Shellfish'].indexOf(allergies) === -1 && allergiesProductContains['Fish'].indexOf(allergies) === -1) {
+            this.state.isPescatarian = false;
+          }
+        });
+      }
     }
+
+    this.state.ingredientsToAvoid = [];
+    this.state.productAllergies = [];
 
     this.state.allergies.forEach(allergy => {
       if (allergiesProductContains[allergy]) {
@@ -97,9 +107,12 @@ class bof extends Component {
         });
       }
     });
-    
+
     this.setState({
-      productImage: parsedData.imgURL
+      productImage: parsedData.imgURL,
+      grade: parsedData.score,
+      productIngredients: parsedData.ingredientList,
+      ingredientsToAvoid: this.state.ingredientsToAvoid
     });
   }
 
@@ -122,6 +135,10 @@ class bof extends Component {
   }
   
   onBack(route, navigator) {
+    //if we are in the summary page and the user presses back
+      //go back to the scan page
+    //when the scan button is clicked
+      //clear all the product's information
     if (route.index > 0) {
       navigator.pop();
     }
