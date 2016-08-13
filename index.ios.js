@@ -175,10 +175,11 @@ class bof extends Component {
   
   onBack(route, navigator) {
     //if we are in the summary page and the user presses back
+    if (route.index === 5) {
       //go back to the scan page
-    //when the scan button is clicked
-      //clear all the product's information
-    if (route.index > 0) {
+      navigator.pop();
+      navigator.pop();
+    } else if (route.index > 0) {
       navigator.pop();
     }
   }
