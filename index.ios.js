@@ -15,8 +15,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import NavigatePage from './public/components/NavigatePage';
-const userInfo = require('./data/userInfo');
-const itemScanned = require('./data/itemScanned');
+
 
 class bof extends Component {
   constructor(props) {

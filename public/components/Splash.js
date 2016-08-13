@@ -111,7 +111,7 @@ export default class Splash extends Component {
           console.log("Existing login found.");
           console.log(data);
           _this.retrieveUserData(data.credentials.userId);
-          _this.props.onForward();
+          // _this.props.onForward();
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");
