@@ -24,6 +24,7 @@ class bof extends Component {
     this.onSelectConcern = this.onSelectConcern.bind(this);
     this.onSelectAllergy = this.onSelectAllergy.bind(this);
     this.onSelectDiet = this.onSelectDiet.bind(this);
+    this.onFilterProductData = this.onFilterProductData.bind(this);
     this.goToSummary = this.goToSummary.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
@@ -31,11 +32,15 @@ class bof extends Component {
     this.state = {
       username: userInfo.userInfo.name,
       concerns: [],
-      allergies: ['peanut', 'shellfish'],
+      allergies: [],
       diets: [],
       selected: false,
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
-      productDescription: itemScanned.itemScanned,
+      productImage: '',
+      grade: 'N/A',
+      productIngredients: [],
+      productAllergies: [],
+      ingredientsToAvoid: [],
       user: null,
       credential: {}
     };
@@ -52,6 +57,26 @@ class bof extends Component {
 
   onSelectDiet(diet) {
     this.state.diets.push(diet);
+  }
+
+  onFilterProductData(data) {
+    var parsedData = JSON.parse(data._bodyInit);
+    var allergiesProductContains = parsedData.allergies;
+    this.state.grade = parsedData.score;
+    this.state.productIngredients = parsedData.ingredientList;
+
+    this.state.allergies.forEach(allergy => {
+      if (allergiesProductContains[allergy]) {
+        this.state.productAllergies.push(allergy);
+        allergiesProductContains[allergy].forEach(allergyItContains => {
+          this.state.ingredientsToAvoid.push(allergyItContains);
+        });
+      }
+    });
+    
+    this.setState({
+      productImage: parsedData.imgURL
+    });
   }
 
   goToSummary(route, navigator) {
@@ -87,8 +112,9 @@ class bof extends Component {
   render() {
     return (
       <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
-      selected={this.state.selected} productDescription={this.state.productDescription} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} 
-      onSelectDiet={this.onSelectDiet} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
+      selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade} productIngredients={this.state.productIngredients} 
+      productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy} 
+      onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
 

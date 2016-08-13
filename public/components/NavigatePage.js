@@ -23,7 +23,12 @@ export default class NavigatePage extends Component {
             allergies={this.props.allergies}
             diets={this.props.diets}
             selected={this.props.selected}
-            productDescription={this.props.productDescription}
+            productImage={this.props.productImage}
+            grade={this.props.grade}
+            productIngredients={this.props.productIngredients}
+            productAllergies={this.props.productAllergies}
+            ingredientsToAvoid={this.props.ingredientsToAvoid}
+            onFilterProductData={this.props.onFilterProductData}
             goToSummary={this.props.goToSummary.bind(this, route, navigator)}
             onForward={this.props.onForward.bind(this, route, navigator)}
             onBack={this.props.onBack.bind(this, route, navigator)}
