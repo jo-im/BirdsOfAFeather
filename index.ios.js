@@ -11,7 +11,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  AsyncStorage
 } from 'react-native';
 import NavigatePage from './public/components/NavigatePage';
 const userInfo = require('./data/userInfo');
@@ -30,7 +31,10 @@ class bof extends Component {
     this.onBack = this.onBack.bind(this);
 
     this.state = {
-      username: userInfo.userInfo.name,
+      userId: null,
+      username: null,
+      email: null,
+      friends: [],
       concerns: [],
       allergies: [],
       diets: [],
@@ -44,22 +48,47 @@ class bof extends Component {
       isVegan: true,
       isVegetarian: true,
       isPescatarian: true,
-      user: null,
-      credential: {}
     };
   }
+
+  async saveUser(data) {
+    let multi_set_pairs = [['CONCERNS', JSON.stringify(data.id)], 
+                          ['USERNAME', JSON.stringify(data.name)],
+                          ['EMAIL', JSON.stringify(data.email)],
+                          ['FRIENDS', JSON.stringify(data.friends.data)]];
+    try {
+      await AsyncStorage.multiSet(multi_set_pairs, (err) => { console.log('here in saveUserData: ', err);});
+    } catch (error) {
+      console.log('Error saving data: ', error);
+    }
+  }
   
-  onSelectConcern(concern) {
+  async onSelectConcern(concern) {
     this.state.concerns.push(concern);
+    try {
+      await AsyncStorage.setItem('CONCERNS', JSON.stringify(this.state.concerns));
+    } catch (error) {
+      console.log('Error saving data: ', error);
+    }
   }
 
-  onSelectAllergy(allergy) {
+  async onSelectAllergy(allergy) {
     this.state.selected = true;
     this.state.allergies.push(allergy);
+    try {
+      await AsyncStorage.setItem('ALLERGIES', JSON.stringify(this.state.allergies));
+    } catch (error) {
+      console.log('Error saving data: ', error);
+    }
   }
 
-  onSelectDiet(diet) {
+  async onSelectDiet(diet) {
     this.state.diets.push(diet);
+    try {
+      await AsyncStorage.setItem('DIET', JSON.stringify(this.state.diets));
+    } catch (error) {
+      console.log('Error saving data: ', error);
+    }
   }
 
   onFilterProductData(data) {

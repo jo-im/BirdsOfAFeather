@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, TouchableHighlight, View, Image } from 'react-native';
+import { Text, TouchableHighlight, View, Image, AsyncStorage } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 
 
@@ -13,8 +13,13 @@ export default class Splash extends Component {
       let response = await fetch(url);
       let responseJson = await response.json();
       let _this = this;
-      this.props.rootParent.setState({username: responseJson.name});
+      this.props.rootParent.setState({
+        userId: responseJson.id,
+        username: responseJson.name,
+        friends: responseJson.friends.data
+      });
       this.postUserToServer(responseJson);
+      this.saveUserData(responseJson);
     } catch(error) {
       console.error(error);
     }
@@ -41,6 +46,33 @@ export default class Splash extends Component {
     .catch(err => console.log(err));
   }
 
+  async saveUserData(data) {
+    let multi_set_pairs = [['USERID', JSON.stringify(data.id)], 
+                          ['USERNAME', JSON.stringify(data.name)],
+                          ['EMAIL', JSON.stringify(data.email)],
+                          ['FRIENDS', JSON.stringify(data.friends.data)]];
+    try {
+      await AsyncStorage.multiSet(multi_set_pairs, (err) => { console.log('here in saveUserData: ', err);});
+    } catch (error) {
+      console.log('Error saving data: ', error);
+    }
+  }
+
+  async retrieveUserData (ID) {
+    let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS'];
+    try {
+      await AsyncStorage.multiGet(multi_get_keys, (err, stores) => {
+        this.props.rootParent.setState({
+          userId: stores[0][1],
+          username: stores[1][1],
+          email: stores[2][1],
+          friends: stores[3][1]
+        });
+      });
+    } catch (error) {
+      console.log('Error retrieving data: ', error);
+    }
+  }
 
   render() {
     var _this = this;
@@ -57,23 +89,44 @@ export default class Splash extends Component {
         permissions={["email","user_friends"]}
         loginBehavior={FBLoginManager.LoginBehaviors.Native}
         onLogin={function(data){
-          console.log("Logged in as: ", data);
           _this.getUserFromFB(data.credentials.userId, data.credentials.token);
           _this.props.onForward();
         }}
         onLogout={function(){
           console.log("Logged out.");
-          _this.props.rootParent.setState({ user : null });
+          _this.props.rootParent.setState({ 
+            userId: null,
+            username: null,
+            email: null,
+            friends: [],
+            concerns: [],
+            allergies: [],
+            diets: [],
+            selected: false,
+            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+            productDescription: {}
+          });
         }}
         onLoginFound={function(data){
           console.log("Existing login found.");
           console.log(data);
-          _this.setState({ userId : data.credentials.userId });
+          _this.retrieveUserData(data.credentials.userId);
           _this.props.onForward();
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");
-          _this.setState({ user : null });
+          _this.props.rootParent.setState({ 
+            userId: null,
+            username: null,
+            email: null,
+            friends: [],
+            concerns: [],
+            allergies: [],
+            diets: [],
+            selected: false,
+            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+            productDescription: {}
+          });
         }}
         onError={function(data){
           console.log("ERROR");
