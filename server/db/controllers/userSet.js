@@ -4,20 +4,29 @@ import {Concerns} from '../models/concernModel';
 import User_Concerns from '../models/userConcernsModel';
 import {Users} from '../models/userModel';
 
-export const setNewUser = (user) => {
+export const setNewUser = (user, response) => {
+  let selectedUser = JSON.parse(user.event.data);
+
+  console.log('Trying to set new user');
+
   Users.findOrCreate({
     where: {
-      name: user.name,
-      facebookId: user.facebookId,
-      facebookAccessToken: user.token
+      username: selectedUser.username,
+      email: selectedUser.email,
+      facebookId: selectedUser.id,
+      friends: selectedUser.friends
     }
   })
-  .then((user) => {
+  .then((selectedUser) => {
     console.log('Success in setting user');
-    return user;
+    if (response) {
+      response.send(JSON.stringify(selectedUser));
+    }
+
+    return selectedUser;
   })
   .catch((err) => {
     console.log('Error in setting user ===> ', err);
-    return undefined;
+    return err;
   });
 };

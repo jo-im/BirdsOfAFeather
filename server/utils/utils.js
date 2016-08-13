@@ -1,6 +1,7 @@
 const request = require('request');
 require('dotenv').config();
 const _ = require('lodash');
+import {setNewUser} from '../db/controllers/userSet';
 
 const foodFactsHandler = (req, res) => {
   console.log('inside foodfacts api');
@@ -46,7 +47,7 @@ const parseFoodFactsData = (data) => {
         var allergens = ingredient.allergens;
         allergens = allergens.replace(/\d+:/g, '').split('|');
         ingredientList.push(ingredient.name);
-        
+
         _.forEach(allergens, function(allergen) {
           if (allergies[allergen]) {
             allergies[allergen].push(ingredient.name);
@@ -71,7 +72,7 @@ const parseFoodFactsData = (data) => {
 };
 
 const facebookHandler = (req, res) => {
-  console.log('here in facebookHandler: ', req.body);
+  setNewUser(req.body, res);
 };
 
 exports.foodFactsHandler = foodFactsHandler;

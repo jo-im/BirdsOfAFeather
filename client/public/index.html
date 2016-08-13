@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>Birds of a Feather Test 2</h1>
-  <button onclick="getSampleData()">Get Sample Data</button> 
-
+  <button onclick="getSampleData()">Get Sample Data</button>
+  <button onclick="sendFacebookData()">Send facebook Data</button>
   <script>
     var getSampleData = function() {
       console.log('button clicked');
@@ -25,6 +25,31 @@
         }
       });
 
+    };
+
+    var fbSampleData = JSON.stringify({
+      id: '10153934567142545',
+      username: 'Hong Chao Yu',
+      email: 'yuhongchao@gmail.com',
+      friends:
+        [ { name: 'Joann Im', id: '10154469347579515' },
+        { name: 'Keith Wong', id: '282117362157093' } ] });
+
+    var sendFacebookData = function() {
+      console.log('send FB data');
+      $.ajax({
+        type: 'POST',
+        url: '/api/facebook',
+        data: {
+          event: {
+            data: fbSampleData
+          }
+        },
+        // dataType: 'application/json'
+        success: function(response) {
+          console.log(response);
+        }
+      });
     };
 
   </script>
