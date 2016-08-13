@@ -8,7 +8,7 @@ var request = require('request');
 describe('Server Integration', function() {
 
   it('should respond to GET request to localhost with a 200 status code', function(done) {
-    request('http://localhost:3000/', function(error, response, body) {
+    request('https://murmuring-dusk-10598.herokuapp.com/', function(error, response, body) {
       expect(response.statusCode).to.equal(200);
       done();
     });
@@ -21,7 +21,7 @@ describe('Food Facts API Integration', function() {
   beforeEach(function() {
     requestParams = {
       method: 'POST',
-      uri: 'http://localhost:3000/api/foodfacts/upc/',
+      uri: 'https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc/',
       form: {
         event: {
           data: '0014100085461'
