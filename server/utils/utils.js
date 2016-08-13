@@ -13,8 +13,8 @@ const foodFactsHandler = (req, res) => {
       form: {
         login: process.env.FOOD_FACTS_LOGIN,
         password: process.env.FOOD_FACTS_PASSWORD,
-        upc: '077900502125'
-        // upc: upc
+        // upc: '077900502125'
+        upc: upc
       }
     },
     function (error, response, body) {
