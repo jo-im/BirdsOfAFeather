@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, TouchableHighlight, View, ListView, Image } from 'react-native';
-const _ = require('underscore');
+import { Text, TouchableHighlight, ListView, Image } from 'react-native';
+import { View } from 'react-native';
+const _ = require('lodash');
 const Accordion = require('react-native-accordion');
 const style = require('./../style/styles');
 
