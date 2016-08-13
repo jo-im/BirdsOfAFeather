@@ -52,7 +52,7 @@ export default class Summary extends Component {
     if (this.props.ingredientsToAvoid.length > 0) {
       this.props.ingredientsToAvoid.map(ingredient => {
         count++;
-        if (count !== ingredientsToAvoidLength - 1) {
+        if (count !== ingredientsToAvoidLength) {
           ingredientsToAvoid += ingredient + ', ';
         } else {
           ingredientsToAvoid += ingredient;
