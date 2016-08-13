@@ -14,7 +14,7 @@ export default class Summary extends Component {
     };
   }
 
-  renderRow(productDescription) {
+  renderRow(productIngredients) {
     var header = (
       <View style={{backgroundColor: 'grey'}}>
         <Text style={{fontFamily: 'Didot-Italic', textAlign: 'center', color: 'white'}}>Click for all ingredients</Text>
@@ -22,7 +22,7 @@ export default class Summary extends Component {
     );
     var content = (
       <View>
-        <Text style={{fontFamily: 'Didot-Italic'}}>{this.props.productIngredients}</Text>
+        <Text style={{fontFamily: 'Didot-Italic', textAlign: 'center'}}>{productIngredients}</Text>
       </View>
     );
 
@@ -35,6 +35,20 @@ export default class Summary extends Component {
     );
   }
 
+  addComma(ingredients) {
+    let ingredientsWithComma = '';
+    const ingredientsLength = ingredients.length;
+
+    ingredients.map((ingredient, index) => {
+      if (index !== ingredientsLength - 1) {
+        ingredientsWithComma += ingredient + ',  ';
+      } else {
+        ingredientsWithComma += ingredient;
+      }
+    });
+    return ingredientsWithComma;
+  }
+
   render() {
     let dietIcon;
     if (!this.props.isVegan) {
@@ -43,24 +57,17 @@ export default class Summary extends Component {
       dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/non-veg-icon.png')}></Image>;
     } else if (!this.props.isPescatarian) {
       dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/not-pescatarian-icon.png')}></Image>;
-    }
-
-    let ingredientsToAvoid = '';
-    const ingredientsToAvoidLength = this.props.ingredientsToAvoid.length;
-    let count = 0;
-
-    if (this.props.ingredientsToAvoid.length > 0) {
-      this.props.ingredientsToAvoid.map(ingredient => {
-        count++;
-        if (count !== ingredientsToAvoidLength) {
-          ingredientsToAvoid += ingredient + ', ';
-        } else {
-          ingredientsToAvoid += ingredient;
-        }
-      });
     } else {
-      ingredientsToAvoid = 'No bad ingredients! :)';
+      dietIcon = <Text style={{fontFamily: 'Didot-Italic', marginLeft: 8}}>Does not conflict with your diet</Text>;
     }
+
+    let ingredientsToAvoid = 'No bad ingredients!';
+    if (this.props.ingredientsToAvoid.length > 1) {
+      ingredientsToAvoid = this.addComma(this.props.ingredientsToAvoid);
+    }
+
+    const allIngredients = this.addComma(this.props.productIngredients);
+    const productAllergies = this.addComma(this.props.productAllergies);
 
     return (
       <View>
@@ -72,7 +79,7 @@ export default class Summary extends Component {
         <Text>{'\n'}</Text>
         <Text>{'\n'}</Text>
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Allergies</Text>
-            <Text>{this.props.productAllergies}</Text>
+            <Text style={{color: 'red', fontFamily: 'Didot-Italic', marginLeft: 8}}>{productAllergies}</Text>
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Dietary Concerns</Text>
           <View style={{flex: 0.5, flexDirection: 'row'}}>
             {dietIcon}
@@ -87,7 +94,7 @@ export default class Summary extends Component {
         <Text>{'\n'}</Text>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderRow.bind(this, this.props.productIngredients)}
+          renderRow={this.renderRow.bind(this, allIngredients)}
         />
         <Text>{'\n'}</Text>
         <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
