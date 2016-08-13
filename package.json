@@ -20,7 +20,7 @@
     "dev:_populateconcerns": "node ./server-dist/db/initialization/initializeConcerns.js",
     "dev:HARDresetdb": "npm run dev:_buildserverNoWatch && npm run dev:_builddbtables && npm run dev:_populateconcerns",
     "postinstall": "npm run dev:_buildserverNoWatch",
-    "test": "mocha tests --recursive -R nyan",
+    "test": "./node_modules/mocha/bin/mocha tests --recursive -R nyan",
     "start": "node server-dist/server.js"
   },
   "dependencies": {
