@@ -13,9 +13,9 @@ const foodFactsHandler = (req, res) => {
       form: {
         login: process.env.FOOD_FACTS_LOGIN,
         password: process.env.FOOD_FACTS_PASSWORD,
-        upc: '07502125' // invalid UPC
-        // upc: '014100085461'
-        // upc: upc
+        upc: upc
+        // upc: '07502125' // test invalid UPC
+        // upc: '014100085461' // test valid UPC
       }
     },
     function (error, response, body) {
