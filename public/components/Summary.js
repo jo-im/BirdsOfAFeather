@@ -67,13 +67,22 @@ export default class Summary extends Component {
     }
 
     const allIngredients = this.addComma(this.props.productIngredients);
-    const productAllergies = this.addComma(this.props.productAllergies);
+
+    let productAllergies = 'No allergens found';
+    if (this.props.productAllergies.length > 0) {
+      productAllergies = this.addComma(this.props.productAllergies);
+    }
 
     return (
       <View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Image source={{uri: this.props.productImage }} style={{height: 150, width: 150}}></Image>
-          <Text style={{textAlign: 'center', fontSize: 40, fontFamily: 'Didot-Italic'}}>Grade: {this.props.grade}</Text>
+          <View style={{backgroundColor: '#00e6b8', height: 160, width: 160, borderRadius: 160 / 2, marginTop: 30, marginLeft: 80}}>
+            <View style={{width: 100, marginLeft: 30}}>
+              <Text style={{textAlign: 'center', fontSize: 30, fontFamily: 'Didot-Italic', color: 'white', marginTop: 40}}>Grade:</Text>
+              <Text style={{textAlign: 'center', fontSize: 30, fontFamily: 'Didot-Italic', color: 'white'}}>{this.props.grade}</Text>
+            </View>
+          </View>
         </View>
         <Text>{'\n'}</Text>
         <Text>{'\n'}</Text>

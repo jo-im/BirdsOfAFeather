@@ -111,51 +111,53 @@ class bof extends Component {
     this.state.isPescatarian = true;
 
     // validUPC if it's true, then it is found, else it is not found and send it to the not found page
-
-
-    if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
-      this.state.isVegan = false;
-    }
-
-    if (this.state.diets.indexOf('Vegetarian') !== -1) {
-      if (allergiesProductContains['Animal-Derived']) {
-        allergiesProductContains['Animal-Derived'].forEach(allergies => {
-          if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
-            this.state.isVegetarian = false;
-          }
-        });
+    if (parsedData.validUPC) {
+      if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
+        this.state.isVegan = false;
       }
-    }
 
-    if (this.state.diets.indexOf('Pescatarian') !== -1) {
-      if (allergiesProductContains['Animal-Derived']) {
-        allergiesProductContains['Animal-Derived'].forEach(allergies => {
-          if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1
-            && allergiesProductContains['Shellfish'].indexOf(allergies) === -1 && allergiesProductContains['Fish'].indexOf(allergies) === -1) {
-            this.state.isPescatarian = false;
-          }
-        });
+      if (this.state.diets.indexOf('Vegetarian') !== -1) {
+        if (allergiesProductContains['Animal-Derived']) {
+          allergiesProductContains['Animal-Derived'].forEach(allergies => {
+            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
+              this.state.isVegetarian = false;
+            }
+          });
+        }
       }
-    }
 
-    this.state.ingredientsToAvoid = [];
-    this.state.productAllergies = [];
-
-    this.state.allergies.forEach(allergy => {
-      if (allergiesProductContains[allergy]) {
-        this.state.productAllergies.push(allergy);
-        allergiesProductContains[allergy].forEach(allergyItContains => {
-          this.state.ingredientsToAvoid.push(allergyItContains);
-        });
+      if (this.state.diets.indexOf('Pescatarian') !== -1) {
+        if (allergiesProductContains['Animal-Derived']) {
+          allergiesProductContains['Animal-Derived'].forEach(allergies => {
+            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1
+              && allergiesProductContains['Shellfish'].indexOf(allergies) === -1 && allergiesProductContains['Fish'].indexOf(allergies) === -1) {
+              this.state.isPescatarian = false;
+            }
+          });
+        }
       }
-    });
 
-    this.setState({
-      productImage: parsedData.imgURL,
-      grade: parsedData.score,
-      productIngredients: parsedData.ingredientList,
-      ingredientsToAvoid: this.state.ingredientsToAvoid
-    });
+      this.state.ingredientsToAvoid = [];
+      this.state.productAllergies = [];
+
+      this.state.allergies.forEach(allergy => {
+        if (allergiesProductContains[allergy]) {
+          this.state.productAllergies.push(allergy);
+          allergiesProductContains[allergy].forEach(allergyItContains => {
+            this.state.ingredientsToAvoid.push(allergyItContains);
+          });
+        }
+      });
+      
+      this.setState({
+        productImage: parsedData.imgURL,
+        grade: parsedData.score,
+        productIngredients: parsedData.ingredientList,
+        ingredientsToAvoid: this.state.ingredientsToAvoid
+      });
+    } else {
+      console.log('Product is not found!');
+    }
   }
 
   goToSummary(route, navigator) {
