@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import _ from 'lodash';
-console.log('testing UPCReader asdfa');
+
 export default class UPCReader extends Component {
   render() {
     return (
@@ -37,7 +37,7 @@ export default class UPCReader extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(
-          { event: {data: '99077900502125'} }
+          { event: event }
         )
       })
     .then(data => {

@@ -127,6 +127,7 @@ export default class Splash extends Component {
               console.log('User data cleared');
             }
           });
+          // _this.props.onForward();
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");

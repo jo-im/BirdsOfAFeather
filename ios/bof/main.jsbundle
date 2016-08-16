@@ -1578,6 +1578,7 @@ console.log('Error saving data: ',_context4.t0);case 9:case'end':return _context
 
 data){var _this2=this;
 var parsedData=JSON.parse(data._bodyInit);
+console.log('here in onFilterProductData: ',parsedData);
 if(!parsedData.validUPC){
 Alert.alert(
 'Alert Title',
@@ -79415,6 +79416,7 @@ console.log('Error clearing user data: ',err);
 console.log('User data cleared');
 }
 });
+
 },
 onLoginNotFound:function onLoginNotFound(){
 console.log("No user logged in.");
@@ -79797,7 +79799,7 @@ onBarCodeRead:_lodash2.default.throttle(this.readBarCode.bind(this),5000,{'trail
 }},{key:'readBarCode',value:function readBarCode(
 
 event,test){var _this3=this;
-console.log('inside readBarCode');
+console.log('inside readBarCode 30',event);
 fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc',
 {
 method:'POST',
