@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import _ from 'lodash';
-
+console.log('testing UPCReader asdfa');
 export default class UPCReader extends Component {
   render() {
     return (
@@ -27,7 +27,7 @@ export default class UPCReader extends Component {
   }
 
   readBarCode(event, test) {
-    console.log('inside readBarCode');
+    console.log('inside readBarCode 30', event);
     fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
       {
         method: 'POST',
@@ -37,7 +37,7 @@ export default class UPCReader extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(
-          { event: event }
+          { event: {data: '99077900502125'} }
         )
       })
     .then(data => {

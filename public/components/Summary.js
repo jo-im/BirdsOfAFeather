@@ -40,9 +40,9 @@ export default class Summary extends Component {
     if (!this.props.isVegan) {
       dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: 'http://pythagoreancrank.com/wp-content/uploads/2013/09/OrganicNotVegan.png'}}></Image>;
     } else if (!this.props.isVegetarian) {
-      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: './../../images/non-veg-icon.png'}}></Image>;
+      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/non-veg-icon.png')}></Image>;
     } else if (!this.props.isPescatarian) {
-      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: './../../images/not-pescatarian-icon.png'}}></Image>;
+      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/not-pescatarian-icon.png')}></Image>;
     }
 
     let ingredientsToAvoid = '';

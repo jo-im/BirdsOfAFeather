@@ -92,6 +92,17 @@ class bof extends Component {
 
   onFilterProductData(data) {
     var parsedData = JSON.parse(data._bodyInit);
+    console.log('here in onFilterProductData: ', parsedData);
+    if (!parsedData.validUPC) {
+      Alert.alert(
+            'Alert Title',
+            'Product not found',
+            [
+              {text: 'Start over', onPress: () => navigator.popToTop()},
+              {text: 'Scan again', onPress: () => this.onBack()}
+            ]
+          )
+    }
     var allergiesProductContains = parsedData.allergies;
     this.state.grade = parsedData.score;
     this.state.productIngredients = parsedData.ingredientList;
