@@ -14,6 +14,7 @@
   "scripts": {
     "dev:runios": "react-native run-ios start",
     "dev:bundlemain": "curl http://localhost:8081/index.ios.bundle -o ./ios/bof/main.jsbundle",
+    "dev:bitriseBundle": "curl https://www.bitrise.io/app/e0598ea9f6e89e02/build/index.ios.bundle -o ./ios/bof/main.jsbundle",
     "dev:runfull": "npm run dev:runios && npm run start",
     "dev:buildserver": "babel ./server -d ./server-dist --watch --ignore ./server-dist --presets es2015,stage-1 --copy-files",
     "dev:_buildserverNoWatch": "babel ./server -d ./server-dist --presets es2015,stage-1 --copy-files",
