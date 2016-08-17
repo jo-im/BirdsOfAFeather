@@ -588,11 +588,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< 0506a8915b3ba05038a2689a25c0536ceb297d99
-				3553257E1D63D02B008CB552 /* main.jsbundle in Resources */,
-=======
 				942A84871D6389CC00CADF9B /* main.jsbundle in Resources */,
->>>>>>> Update various xcode files to fix fbbundle and non-nil url errors.
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
