@@ -13,6 +13,8 @@
   ],
   "scripts": {
     "dev:runios": "react-native run-ios start",
+    "dev:bundlemain": "curl http://localhost:8081/index.ios.bundle -o ./ios/bof/main.jsbundle",
+    "dev:bitriseBundle": "curl https://www.bitrise.io/app/e0598ea9f6e89e02/build/index.ios.bundle -o ./ios/bof/main.jsbundle",
     "dev:runfull": "npm run dev:runios && npm run start",
     "dev:buildserver": "babel ./server -d ./server-dist --watch --ignore ./server-dist --presets es2015,stage-1 --copy-files",
     "dev:_buildserverNoWatch": "babel ./server -d ./server-dist --presets es2015,stage-1 --copy-files",
@@ -34,18 +36,17 @@
     "mocha": "^3.0.2",
     "pg": "^6.0.3",
     "pg-hstore": "^2.3.2",
-    "react": "15.2.1",
-    "react-native": "0.31.0",
+    "react": "^15.2.0",
+    "react-native": "^0.30.0",
     "react-native-accordion": "^1.0.1",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-facebook-login": "^1.3.0",
     "request": "^2.74.0",
     "sequelize": "^3.23.6",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-
-    "react-native-facebook-login": "^1.3.0",
     "sinon": "^1.17.5"
   }
 }
