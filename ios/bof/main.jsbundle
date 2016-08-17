@@ -1500,9 +1500,8 @@ var _reactNative=require(43 /* react-native */);
 
 
 
-var _NavigatePage=require(628 /* ./public/components/NavigatePage */);var _NavigatePage2=babelHelpers.interopRequireDefault(_NavigatePage);
-var userInfo=require(651 /* ./data/userInfo */);
-var itemScanned=require(652 /* ./data/itemScanned */);var
+var _NavigatePage=require(628 /* ./public/components/NavigatePage */);var _NavigatePage2=babelHelpers.interopRequireDefault(_NavigatePage);var
+
 
 bof=function(_Component){babelHelpers.inherits(bof,_Component);
 function bof(props){babelHelpers.classCallCheck(this,bof);var _this=babelHelpers.possibleConstructorReturn(this,Object.getPrototypeOf(bof).call(this,
@@ -1579,6 +1578,17 @@ console.log('Error saving data: ',_context4.t0);case 9:case'end':return _context
 
 data){var _this2=this;
 var parsedData=JSON.parse(data._bodyInit);
+console.log('here in onFilterProductData: ',parsedData);
+if(!parsedData.validUPC){
+Alert.alert(
+'Alert Title',
+'Product not found',
+[
+{text:'Start over',onPress:function onPress(){return navigator.popToTop();}},
+{text:'Scan again',onPress:function onPress(){return _this2.onBack();}}]);
+
+
+}
 var allergiesProductContains=parsedData.allergies;
 this.state.grade=parsedData.score;
 this.state.productIngredients=parsedData.ingredientList;
@@ -1651,10 +1661,11 @@ index:nextIndex});
 
 route,navigator){
 
+if(route.index===5){
 
-
-
-if(route.index>0){
+navigator.pop();
+navigator.pop();
+}else if(route.index>0){
 navigator.pop();
 }
 }},{key:'render',value:function render()
@@ -78334,6 +78345,7 @@ ID){var _this3=this;var multi_get_keys;return regeneratorRuntime.async(function 
 multi_get_keys=['USERID','USERNAME','EMAIL','FRIENDS'];_context4.prev=1;_context4.next=4;return regeneratorRuntime.awrap(
 
 _reactNative.AsyncStorage.multiGet(multi_get_keys,function(err,stores){
+console.log('here in retrieveUserData -----  ',stores);
 _this3.props.rootParent.setState({
 userId:stores[0][1],
 username:stores[1][1],
@@ -78378,12 +78390,27 @@ selected:false,
 pages:['Splash','Welcome','Allergies/Diet','Scan','UPCReader','Summary'],
 productDescription:{}});
 
+_reactNative.AsyncStorage.clear(function(err){
+if(err){
+console.log('Error clearing user data: ',err);
+}else{
+console.log('User data cleared');
+}
+});
 },
 onLoginFound:function onLoginFound(data){
 console.log("Existing login found.");
 console.log(data);
 _this.retrieveUserData(data.credentials.userId);
-_this.props.onForward();
+
+_reactNative.AsyncStorage.clear(function(err){
+if(err){
+console.log('Error clearing user data: ',err);
+}else{
+console.log('User data cleared');
+}
+});
+
 },
 onLoginNotFound:function onLoginNotFound(){
 console.log("No user logged in.");
@@ -78726,11 +78753,9 @@ _react2.default.createElement(_reactNative.View,{style:style.styles.container},
 _react2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.props.onForward},
 _react2.default.createElement(_reactNative.Image,{style:{height:200,width:200},source:{uri:'https://cdn.vectorstock.com/i/thumb-large/10/55/8391055.jpg'}})),
 
-_react2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.props.goToSummary},
-_react2.default.createElement(_reactNative.Text,null,'Press me to go to the Summary Page')),
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.props.onBack},
-_react2.default.createElement(_reactNative.Text,null,'Go Back')))));
+_react2.default.createElement(_reactNative.Text,null,'\n'),
+_react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.back,onPress:this.props.onBack},
+_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Go Back')))));
 
 
 
@@ -78766,7 +78791,7 @@ onBarCodeRead:_lodash2.default.throttle(this.readBarCode.bind(this),5000,{'trail
 }},{key:'readBarCode',value:function readBarCode(
 
 event,test){var _this3=this;
-console.log('inside readBarCode');
+console.log('inside readBarCode 30',event);
 fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc',
 {
 method:'POST',
@@ -95668,7 +95693,7 @@ dataSource:ds.cloneWithRows(_.range(1))};return _this;
 
 }babelHelpers.createClass(Summary,[{key:'renderRow',value:function renderRow(
 
-productDescription){
+productIngredients){
 var header=
 _react2.default.createElement(_reactNative.View,{style:{backgroundColor:'grey'}},
 _react2.default.createElement(_reactNative.Text,{style:{fontFamily:'Didot-Italic',textAlign:'center',color:'white'}},'Click for all ingredients'));
@@ -95676,7 +95701,7 @@ _react2.default.createElement(_reactNative.Text,{style:{fontFamily:'Didot-Italic
 
 var content=
 _react2.default.createElement(_reactNative.View,null,
-_react2.default.createElement(_reactNative.Text,{style:{fontFamily:'Didot-Italic'}},this.props.productIngredients));
+_react2.default.createElement(_reactNative.Text,{style:{fontFamily:'Didot-Italic',textAlign:'center'}},productIngredients));
 
 
 
@@ -95687,6 +95712,20 @@ content:content,
 easing:'easeOutCubic'}));
 
 
+}},{key:'addComma',value:function addComma(
+
+ingredients){
+var ingredientsWithComma='';
+var ingredientsLength=ingredients.length;
+
+ingredients.map(function(ingredient,index){
+if(index!==ingredientsLength-1){
+ingredientsWithComma+=ingredient+',  ';
+}else{
+ingredientsWithComma+=ingredient;
+}
+});
+return ingredientsWithComma;
 }},{key:'render',value:function render()
 
 {
@@ -95697,36 +95736,38 @@ dietIcon=_react2.default.createElement(_reactNative.Image,{style:{height:30,widt
 dietIcon=_react2.default.createElement(_reactNative.Image,{style:{height:30,width:30,marginLeft:8},source:require(653 /* ./../../images/non-veg-icon.png */)});
 }else if(!this.props.isPescatarian){
 dietIcon=_react2.default.createElement(_reactNative.Image,{style:{height:30,width:30,marginLeft:8},source:require(654 /* ./../../images/not-pescatarian-icon.png */)});
+}else{
+dietIcon=_react2.default.createElement(_reactNative.Text,{style:{fontFamily:'Didot-Italic',marginLeft:8}},'Does not conflict with your diet');
 }
 
-var ingredientsToAvoid='';
-var ingredientsToAvoidLength=this.props.ingredientsToAvoid.length;
-var count=0;
-
-if(this.props.ingredientsToAvoid.length>0){
-this.props.ingredientsToAvoid.map(function(ingredient){
-count++;
-if(count!==ingredientsToAvoidLength-1){
-ingredientsToAvoid+=ingredient+', ';
-}else{
-ingredientsToAvoid+=ingredient;
+var ingredientsToAvoid='No bad ingredients!';
+if(this.props.ingredientsToAvoid.length>1){
+ingredientsToAvoid=this.addComma(this.props.ingredientsToAvoid);
 }
-});
-}else{
-ingredientsToAvoid='No bad ingredients! :)';
+
+var allIngredients=this.addComma(this.props.productIngredients);
+
+var productAllergies='No allergens found';
+if(this.props.productAllergies.length>0){
+productAllergies=this.addComma(this.props.productAllergies);
 }
 
 return(
 _react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.View,{style:{flex:1,flexDirection:'row'}},
 _react2.default.createElement(_reactNative.Image,{source:{uri:this.props.productImage},style:{height:150,width:150}}),
-_react2.default.createElement(_reactNative.Text,{style:{textAlign:'center',fontSize:40,fontFamily:'Didot-Italic'}},'Grade: ',this.props.grade)),
+_react2.default.createElement(_reactNative.View,{style:{backgroundColor:'#00e6b8',height:160,width:160,borderRadius:160/2,marginTop:30,marginLeft:80}},
+_react2.default.createElement(_reactNative.View,{style:{width:100,marginLeft:30}},
+_react2.default.createElement(_reactNative.Text,{style:{textAlign:'center',fontSize:30,fontFamily:'Didot-Italic',color:'white',marginTop:40}},'Grade:'),
+_react2.default.createElement(_reactNative.Text,{style:{textAlign:'center',fontSize:30,fontFamily:'Didot-Italic',color:'white'}},this.props.grade)))),
+
+
 
 _react2.default.createElement(_reactNative.Text,null,'\n'),
 _react2.default.createElement(_reactNative.Text,null,'\n'),
 _react2.default.createElement(_reactNative.Text,null,'\n'),
 _react2.default.createElement(_reactNative.Text,{style:{fontSize:20,fontFamily:'Didot-Italic',marginLeft:8}},'Allergies'),
-_react2.default.createElement(_reactNative.Text,null,this.props.productAllergies),
+_react2.default.createElement(_reactNative.Text,{style:{color:'red',fontFamily:'Didot-Italic',marginLeft:8}},productAllergies),
 _react2.default.createElement(_reactNative.Text,{style:{fontSize:20,fontFamily:'Didot-Italic',marginLeft:8}},'Dietary Concerns'),
 _react2.default.createElement(_reactNative.View,{style:{flex:0.5,flexDirection:'row'}},
 dietIcon),
@@ -95741,7 +95782,7 @@ _react2.default.createElement(_reactNative.Text,{style:{color:'red',fontFamily:'
 _react2.default.createElement(_reactNative.Text,null,'\n'),
 _react2.default.createElement(_reactNative.ListView,{
 dataSource:this.state.dataSource,
-renderRow:this.renderRow.bind(this,this.props.productIngredients)}),
+renderRow:this.renderRow.bind(this,allIngredients)}),
 
 _react2.default.createElement(_reactNative.Text,null,'\n'),
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.back,onPress:this.props.onBack},
@@ -96298,20 +96339,10 @@ return v*0.5+c*0.5+b;
 
 module.exports=tweenFunctions;
 }, "tween-functions/index.js");
-__d(653 /* birds_of_a_feather/images/non-veg-icon.png */, function(global, require, module, exports) {module.exports = require(162 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/joannim/HR44/thesis/BirdsOfAFeather/images","httpServerLocation":"/assets/images","width":123,"height":122,"scales":[1],"files":["/Users/joannim/HR44/thesis/BirdsOfAFeather/images/non-veg-icon.png"],"hash":"966811e708e1914753619364dd7173ef","name":"non-veg-icon","type":"png"});
+__d(653 /* birds_of_a_feather/images/non-veg-icon.png */, function(global, require, module, exports) {module.exports = require(162 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/joannim/HR44/thesis/BirdsOfAFeather/images","httpServerLocation":"/assets/images","width":123,"height":122,"scales":[1],"files":["/Users/joannim/HR44/thesis/BirdsOfAFeather/images/non-veg-icon.png"],"hash":"ca950ee8b018bcb0285a40e287e1d0c2","name":"non-veg-icon","type":"png"});
 }, "birds_of_a_feather/images/non-veg-icon.png");
-__d(654 /* birds_of_a_feather/images/not-pescatarian-icon.png */, function(global, require, module, exports) {module.exports = require(162 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/joannim/HR44/thesis/BirdsOfAFeather/images","httpServerLocation":"/assets/images","width":128,"height":128,"scales":[1],"files":["/Users/joannim/HR44/thesis/BirdsOfAFeather/images/not-pescatarian-icon.png"],"hash":"966811e708e1914753619364dd7173ef","name":"not-pescatarian-icon","type":"png"});
+__d(654 /* birds_of_a_feather/images/not-pescatarian-icon.png */, function(global, require, module, exports) {module.exports = require(162 /* react-native/Libraries/Image/AssetRegistry */).registerAsset({"__packager_asset":true,"fileSystemLocation":"/Users/joannim/HR44/thesis/BirdsOfAFeather/images","httpServerLocation":"/assets/images","width":128,"height":128,"scales":[1],"files":["/Users/joannim/HR44/thesis/BirdsOfAFeather/images/not-pescatarian-icon.png"],"hash":"ca950ee8b018bcb0285a40e287e1d0c2","name":"not-pescatarian-icon","type":"png"});
 }, "birds_of_a_feather/images/not-pescatarian-icon.png");
-__d(651 /* birds_of_a_feather/data/userInfo.js */, function(global, require, module, exports) {module.exports.userInfo={
-name:'Jo',
-friends:[]};
-}, "birds_of_a_feather/data/userInfo.js");
-__d(652 /* birds_of_a_feather/data/itemScanned.js */, function(global, require, module, exports) {module.exports.itemScanned={
-name:'Honey Nut Cheerios',
-image:'https://whatsyourmodotorg.files.wordpress.com/2013/01/honey-nut-cheerios.jpg',
-badIngredients:'Honey, Natural Almond Flavor',
-ingredients:'Whole Grain Oats (includes the oat bran), Modified Corn Starch, Honey, Brown Sugar Syrup, Salt, Tripotassium Phosphate, Canola and/or Rice Bran Oil, Natural Almond Flavor, Vitamin E (mixed tocopherols) Added to Preserve Freshness.'};
-}, "birds_of_a_feather/data/itemScanned.js");
 ;require(188);
 ;require(0);
 //# sourceMappingURL=/index.ios.map
