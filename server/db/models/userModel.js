@@ -6,5 +6,5 @@ export const Users = sequelize.define ('User', {
   username: Sequelize.STRING,
   email: Sequelize.STRING,
   facebookId: {type: Sequelize.BIGINT, unique: true},
-  // friends: Sequelize.ARRAY(Sequelize.JSON)
+  concerns: Sequelize.ARRAY(Sequelize.STRING)
 });
