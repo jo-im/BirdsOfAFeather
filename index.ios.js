@@ -110,7 +110,6 @@ class bof extends Component {
     this.state.isVegetarian = true;
     this.state.isPescatarian = true;
 
-    // validUPC if it's true, then it is found, else it is not found and send it to the not found page
       if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
         this.state.isVegan = false;
       }
