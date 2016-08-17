@@ -111,7 +111,6 @@ class bof extends Component {
     this.state.isPescatarian = true;
 
     // validUPC if it's true, then it is found, else it is not found and send it to the not found page
-    if (parsedData.validUPC) {
       if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
         this.state.isVegan = false;
       }
@@ -155,9 +154,6 @@ class bof extends Component {
         productIngredients: parsedData.ingredientList,
         ingredientsToAvoid: this.state.ingredientsToAvoid
       });
-    } else {
-      console.log('Product is not found!');
-    }
   }
 
   goToSummary(route, navigator) {
