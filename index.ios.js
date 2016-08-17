@@ -12,7 +12,8 @@ import {
   Text,
   View,
   Image,
-  AsyncStorage
+  AsyncStorage,
+  Alert
 } from 'react-native';
 import NavigatePage from './public/components/NavigatePage';
 
@@ -90,25 +91,29 @@ class bof extends Component {
     }
   }
 
-  onFilterProductData(data) {
+  onFilterProductData(navigator, data) {
+    console.log('here in onFilterProductData:');
     var parsedData = JSON.parse(data._bodyInit);
-    console.log('here in onFilterProductData: ', parsedData);
     if (!parsedData.validUPC) {
       Alert.alert(
             'Alert Title',
             'Product not found',
             [
-              {text: 'Start over', onPress: () => navigator.popToTop()},
-              {text: 'Scan again', onPress: () => this.onBack()}
+              {text: 'Start over', onPress: () => navigator.replace({
+                                                    page: 'Welcome',
+                                                    index: 1
+                                                  })
+              },
+              {text: 'Scan again', onPress: () => navigator.pop()}
             ]
           )
-    }
-    var allergiesProductContains = parsedData.allergies;
-    this.state.grade = parsedData.score;
-    this.state.productIngredients = parsedData.ingredientList;
-    this.state.isVegan = true;
-    this.state.isVegetarian = true;
-    this.state.isPescatarian = true;
+    } else {
+      var allergiesProductContains = parsedData.allergies;
+      this.state.grade = parsedData.score;
+      this.state.productIngredients = parsedData.ingredientList;
+      this.state.isVegan = true;
+      this.state.isVegetarian = true;
+      this.state.isPescatarian = true;
 
       if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
         this.state.isVegan = false;
@@ -146,13 +151,14 @@ class bof extends Component {
           });
         }
       });
-      
+
       this.setState({
         productImage: parsedData.imgURL,
         grade: parsedData.score,
         productIngredients: parsedData.ingredientList,
         ingredientsToAvoid: this.state.ingredientsToAvoid
       });
+    }
   }
 
   goToSummary(route, navigator) {
@@ -166,6 +172,7 @@ class bof extends Component {
 
   onForward(route, navigator) {
     let page;
+    console.log('in onForward: ', route);
     const nextIndex = route.index + 1;
     navigator.push({
       page: this.state.pages[nextIndex],

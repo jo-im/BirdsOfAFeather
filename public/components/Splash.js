@@ -83,7 +83,7 @@ export default class Splash extends Component {
           source={{uri: 'https://elixirgraphics.com/assets/img/theme_images/feather-icon-256x256-NEW.jpg'}}
           style={style.styles.icon}
         />
-        <Text style={{height: 50}}>It's easy to get started. Sign in with Facebook to get access to bof.</Text>
+        <Text style={{height: 50}}>It is easy to get started. Sign in with Facebook to get access to bof.</Text>
         
         <FBLogin style={{ marginBottom: 10, }}
         ref={(fbLogin) => { this.fbLogin = fbLogin }}
@@ -119,7 +119,7 @@ export default class Splash extends Component {
           console.log("Existing login found.");
           console.log(data);
           _this.retrieveUserData(data.credentials.userId);
-          // _this.props.onForward();
+          _this.props.onForward();
           AsyncStorage.clear((err) => {
             if (err) {
               console.log('Error clearing user data: ', err);
@@ -127,7 +127,7 @@ export default class Splash extends Component {
               console.log('User data cleared');
             }
           });
-          // _this.props.onForward();
+          _this.props.onForward();
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");
