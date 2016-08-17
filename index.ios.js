@@ -110,49 +110,49 @@ class bof extends Component {
     this.state.isVegetarian = true;
     this.state.isPescatarian = true;
 
-    if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
-      this.state.isVegan = false;
-    }
-
-    if (this.state.diets.indexOf('Vegetarian') !== -1) {
-      if (allergiesProductContains['Animal-Derived']) {
-        allergiesProductContains['Animal-Derived'].forEach(allergies => {
-          if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
-            this.state.isVegetarian = false;
-          }
-        });
+      if (parsedData.diet['Animal-Derived'] && this.state.diets.indexOf('Vegan') !== -1) {
+        this.state.isVegan = false;
       }
-    }
 
-    if (this.state.diets.indexOf('Pescatarian') !== -1) {
-      if (allergiesProductContains['Animal-Derived']) {
-        allergiesProductContains['Animal-Derived'].forEach(allergies => {
-          if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1
-            && allergiesProductContains['Shellfish'].indexOf(allergies) === -1 && allergiesProductContains['Fish'].indexOf(allergies) === -1) {
-            this.state.isPescatarian = false;
-          }
-        });
+      if (this.state.diets.indexOf('Vegetarian') !== -1) {
+        if (allergiesProductContains['Animal-Derived']) {
+          allergiesProductContains['Animal-Derived'].forEach(allergies => {
+            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
+              this.state.isVegetarian = false;
+            }
+          });
+        }
       }
-    }
 
-    this.state.ingredientsToAvoid = [];
-    this.state.productAllergies = [];
-
-    this.state.allergies.forEach(allergy => {
-      if (allergiesProductContains[allergy]) {
-        this.state.productAllergies.push(allergy);
-        allergiesProductContains[allergy].forEach(allergyItContains => {
-          this.state.ingredientsToAvoid.push(allergyItContains);
-        });
+      if (this.state.diets.indexOf('Pescatarian') !== -1) {
+        if (allergiesProductContains['Animal-Derived']) {
+          allergiesProductContains['Animal-Derived'].forEach(allergies => {
+            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1
+              && allergiesProductContains['Shellfish'].indexOf(allergies) === -1 && allergiesProductContains['Fish'].indexOf(allergies) === -1) {
+              this.state.isPescatarian = false;
+            }
+          });
+        }
       }
-    });
 
-    this.setState({
-      productImage: parsedData.imgURL,
-      grade: parsedData.score,
-      productIngredients: parsedData.ingredientList,
-      ingredientsToAvoid: this.state.ingredientsToAvoid
-    });
+      this.state.ingredientsToAvoid = [];
+      this.state.productAllergies = [];
+
+      this.state.allergies.forEach(allergy => {
+        if (allergiesProductContains[allergy]) {
+          this.state.productAllergies.push(allergy);
+          allergiesProductContains[allergy].forEach(allergyItContains => {
+            this.state.ingredientsToAvoid.push(allergyItContains);
+          });
+        }
+      });
+      
+      this.setState({
+        productImage: parsedData.imgURL,
+        grade: parsedData.score,
+        productIngredients: parsedData.ingredientList,
+        ingredientsToAvoid: this.state.ingredientsToAvoid
+      });
   }
 
   goToSummary(route, navigator) {
@@ -175,10 +175,11 @@ class bof extends Component {
   
   onBack(route, navigator) {
     //if we are in the summary page and the user presses back
+    if (route.index === 5) {
       //go back to the scan page
-    //when the scan button is clicked
-      //clear all the product's information
-    if (route.index > 0) {
+      navigator.pop();
+      navigator.pop();
+    } else if (route.index > 0) {
       navigator.pop();
     }
   }
