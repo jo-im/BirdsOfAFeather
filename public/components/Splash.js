@@ -118,6 +118,25 @@ export default class Splash extends Component {
         }}
         onLogout={function(){
           console.log("Logged out.");
+          _this.props.rootParent.setState({ 
+            userId: null,
+            username: null,
+            email: null,
+            friends: [],
+            concerns: [],
+            allergies: [],
+            diets: [],
+            selected: false,
+            pages: ['Splash', 'Welcome', 'Profile', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+            productDescription: {}
+          });
+          AsyncStorage.clear((err) => {
+            if (err) {
+              console.log('Error clearing user data: ', err);
+            } else {
+              console.log('User data cleared');
+            }
+          });
         }}
         onLoginFound={function(data){
           console.log("Existing login found.");

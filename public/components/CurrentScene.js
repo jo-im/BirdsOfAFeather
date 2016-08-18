@@ -13,6 +13,7 @@ export default class CurrentScene extends Component {
   }
 
   render() {
+    console.log('this.props.page inside render of CurrentScene is', this.props.page);
     if (this.props.page === 'Splash') {
       return (
         <Splash onForward={this.props.onForward} rootParent={this.props.rootParent} />

@@ -51,6 +51,7 @@ class bof extends Component {
       isVegetarian: true,
       isPescatarian: true,
     };
+    console.log('INSIDE CONSTRUCTOR AND THIS.STATE.PAGES IS', this.state.pages);
   }
 
   componentWillMount() {
@@ -203,6 +204,10 @@ class bof extends Component {
     let page;
     console.log('in onForward: ', route);
     const nextIndex = route.index + 1;
+    console.log('nextIndex is', nextIndex);
+    console.log('this.state.pages is', this.state.pages);
+    console.log('THIS SHOULD BE PROFILE', this.state.pages[2]);
+    console.log('Inside onForward and the page that we are going to go next is', this.state.pages[nextIndex]);
     navigator.push({
       page: this.state.pages[nextIndex],
       index: nextIndex
