@@ -7,7 +7,7 @@ export default class Profile extends Component {
     return (
       <View>
         <Image style={{height: 50, width: 50}} source={{uri: this.props.userPic }}></Image>
-        <Text>This is the Profile Page</Text>
+        <Text>{this.props.username}</Text>
       </View>
     );
   }
