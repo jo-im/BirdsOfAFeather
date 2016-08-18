@@ -28,6 +28,7 @@ class bof extends Component {
     this.onSelectDiet = this.onSelectDiet.bind(this);
     this.onFilterProductData = this.onFilterProductData.bind(this);
     this.goToSummary = this.goToSummary.bind(this);
+    this.renderComments = this.renderComments.bind(this);
     this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
@@ -203,6 +204,13 @@ class bof extends Component {
     });
   }
 
+  renderComments() {
+    this.state.profilePage = 'Comments';
+    this.setState({
+      profilePage: this.state.profilePage
+    })
+  }
+
   renderFavoriteProducts() {
     this.state.profilePage = 'Favorite Products';
     this.setState({
@@ -233,7 +241,8 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} userPic={this.state.userPic} followers={this.state.followers} renderFavoriteProducts={this.renderFavoriteProducts}
+      <NavigatePage username={this.state.username} userPic={this.state.userPic} followers={this.state.followers}
+      renderComments={this.renderComments} renderFavoriteProducts={this.renderFavoriteProducts}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}

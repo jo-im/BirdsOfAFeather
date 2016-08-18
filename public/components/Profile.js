@@ -16,7 +16,7 @@ export default class Profile extends Component {
         <Text>{this.props.username}</Text>
         <Text>Followers: {Object.keys(this.props.followers).length}</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={this.props.renderComments}>
             <Text>
               Comments
             </Text>
