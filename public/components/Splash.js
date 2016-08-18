@@ -124,6 +124,7 @@ export default class Splash extends Component {
             username: null,
             userPic: userInfo.userInfo.profilePic,
             email: null,
+            followers: [],
             friends: [],
             concerns: [],
             allergies: [],

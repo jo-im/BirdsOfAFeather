@@ -36,6 +36,7 @@ class bof extends Component {
       username: null,
       userPic: userInfo.userInfo.profilePic,
       email: null,
+      followers: [],
       friends: [],
       picture: null,
       concerns: [],
@@ -223,7 +224,7 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} userPic={this.state.userPic} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
+      <NavigatePage username={this.state.username} userPic={this.state.userPic} followers={this.state.followers} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
