@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Splash from './Splash';
 import Welcome from './Welcome';
+import Profile from './Profile';
 import AllergiesAndDiet from './Allergies-Diet';
 import Scan from './Scan';
 import UPCReader from './UPCReader';
@@ -18,11 +19,18 @@ export default class CurrentScene extends Component {
       );
     } 
 
+
     if (this.props.page === 'Welcome') {
       return (
         <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} 
         onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
         rootParent={this.props.rootParent} />
+      );
+    }
+
+    if (this.props.page === 'Profile') {
+      return (
+        <Profile onBack={this.props.onBack} rootParent={this.props.rootParent} />
       );
     }
 

@@ -41,7 +41,7 @@ class bof extends Component {
       allergies: [],
       diets: [],
       selected: false,
-      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+      pages: ['Splash', 'Welcome', 'Profile', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
