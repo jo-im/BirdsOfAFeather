@@ -339,19 +339,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< e6a328ae03deb094951adbade63ce370681437db
-<<<<<<< 2d02d96e0cd04ae48f38190c0d00e59595f8e044
-				942A84861D6389CC00CADF9B /* main.jsbundle */,
-=======
-<<<<<<< 89ef01af333564f077c64b302d829fb81916085d
-				3553257D1D63D02B008CB552 /* main.jsbundle */,
-=======
 				8DA1904D1D63DE430090D7EE /* main.jsbundle */,
->>>>>>> fix xcode issue
->>>>>>> fix xcode issue
-=======
-				8DA1904D1D63DE430090D7EE /* main.jsbundle */,
->>>>>>> Fix merge conflict
 				35C4A97C1D5AE35200B190C1 /* FBSDKCoreKit.framework */,
 				35C4A97D1D5AE35200B190C1 /* FBSDKLoginKit.framework */,
 				35C4A97E1D5AE35200B190C1 /* FBSDKShareKit.framework */,
@@ -426,11 +414,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-<<<<<<< e6a328ae03deb094951adbade63ce370681437db
-						DevelopmentTeam = CVED3M295T;
-=======
 						DevelopmentTeam = VBLZZ294T3;
->>>>>>> Fix merge conflict
 					};
 				};
 			};
@@ -602,11 +586,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< 2d02d96e0cd04ae48f38190c0d00e59595f8e044
-				942A84871D6389CC00CADF9B /* main.jsbundle in Resources */,
-=======
 				8DA1904E1D63DE430090D7EE /* main.jsbundle in Resources */,
->>>>>>> fix xcode issue
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);

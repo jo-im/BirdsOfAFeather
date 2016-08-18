@@ -76,12 +76,14 @@ export default class AllergiesAndDiet extends Component {
             <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn0.iconfinder.com/data/icons/kitchen-colored-1/60/fish-dish-plate-chopstick-asian-512.png'}}></Image>
           </TouchableHighlight>
         </View>
-        <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
-          <Text style={style.styles.text}>Continue</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
-          <Text style={style.styles.text}>Go Back</Text>
-        </TouchableHighlight>
+        <View style={style.styles.container}>
+          <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
+            <Text style={style.styles.text}>Continue</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
+            <Text style={style.styles.text}>Go Back</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }

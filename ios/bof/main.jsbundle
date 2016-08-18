@@ -78562,21 +78562,30 @@ alignItems:'center'},
 text:{
 color:'white',
 fontFamily:'Didot-Italic',
-textAlign:'center'},
+textAlign:'center',
+fontSize:30},
 
 next:{
+flex:4,
+flexDirection:'row',
 backgroundColor:'#5c5c8a',
-marginTop:30},
+marginTop:30,
+height:50,
+width:250},
 
 back:{
-backgroundColor:'#ffcc80'},
+flex:4,
+flexDirection:'row',
+backgroundColor:'#ffcc80',
+height:50,
+width:250},
 
 icon:{
 height:100,
 width:100},
 
 login:{
-height:50,
+height:60,
 width:400,
 backgroundColor:'#3b5998'},
 
@@ -78597,13 +78606,19 @@ fontFamily:'Didot-Italic',
 fontSize:50},
 
 health:{
-backgroundColor:'#ff6666'},
+backgroundColor:'#ff6666',
+height:200,
+width:150},
 
 environment:{
-backgroundColor:'green'},
+backgroundColor:'green',
+height:200,
+width:150},
 
 society:{
-backgroundColor:'#3333ff'},
+backgroundColor:'#3333ff',
+height:200,
+width:150},
 
 allergyAndDietIcon:{
 height:50,
@@ -78621,6 +78636,7 @@ _react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.Text,null,"\n"),
 _react2.default.createElement(_reactNative.Text,{style:style.styles.welcome},'Welcome ',this.props.username),
 _react2.default.createElement(_reactNative.Text,{style:style.styles.concernQuestion},'What are your concerns?'),
+_react2.default.createElement(_reactNative.View,{style:{flex:2,flexDirection:'row',justifyContent:'center',alignItems:'center'}},
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.health,onPress:this.props.onSelectConcern.bind(this,'Health')},
 _react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Health')),
 
@@ -78628,13 +78644,16 @@ _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.style
 _react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Environment')),
 
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.society,onPress:this.props.onSelectConcern.bind(this,'Society')},
-_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Society')),
+_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Society'))),
 
+
+_react2.default.createElement(_reactNative.View,{style:style.styles.container},
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.next,onPress:this.props.onForward},
 _react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Finish selecting concerns')),
 
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.back,onPress:this.props.onBack},
-_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Go Back'))));
+_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Go Back')))));
+
 
 
 
@@ -78718,11 +78737,13 @@ _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.style
 _react2.default.createElement(_reactNative.Image,{style:style.styles.allergyAndDietIcon,source:{uri:'https://cdn0.iconfinder.com/data/icons/kitchen-colored-1/60/fish-dish-plate-chopstick-asian-512.png'}}))),
 
 
+_react2.default.createElement(_reactNative.View,{style:style.styles.container},
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.next,onPress:this.props.onForward},
 _react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Continue')),
 
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.back,onPress:this.props.onBack},
-_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Go Back'))));
+_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Go Back')))));
+
 
 
 
@@ -95696,7 +95717,7 @@ dataSource:ds.cloneWithRows(_.range(1))};return _this;
 productIngredients){
 var header=
 _react2.default.createElement(_reactNative.View,{style:{backgroundColor:'grey'}},
-_react2.default.createElement(_reactNative.Text,{style:{fontFamily:'Didot-Italic',textAlign:'center',color:'white'}},'Click for all ingredients'));
+_react2.default.createElement(_reactNative.Text,{style:{fontFamily:'Didot-Italic',textAlign:'center',color:'white',height:40,fontSize:20}},'Click for all ingredients'));
 
 
 var content=
@@ -95785,8 +95806,10 @@ dataSource:this.state.dataSource,
 renderRow:this.renderRow.bind(this,allIngredients)}),
 
 _react2.default.createElement(_reactNative.Text,null,'\n'),
+_react2.default.createElement(_reactNative.View,{style:style.styles.container},
 _react2.default.createElement(_reactNative.TouchableHighlight,{style:style.styles.back,onPress:this.props.onBack},
-_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Go Back'))));
+_react2.default.createElement(_reactNative.Text,{style:style.styles.text},'Go Back')))));
+
 
 
 
