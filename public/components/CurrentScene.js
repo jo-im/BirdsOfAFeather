@@ -20,7 +20,6 @@ export default class CurrentScene extends Component {
       );
     } 
 
-
     if (this.props.page === 'Welcome') {
       return (
         <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} 
@@ -31,7 +30,7 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Profile') {
       return (
-        <Profile onBack={this.props.onBack} rootParent={this.props.rootParent} />
+        <Profile userPic={this.props.userPic} onBack={this.props.onBack} rootParent={this.props.rootParent} />
       );
     }
 

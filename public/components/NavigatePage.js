@@ -15,6 +15,7 @@ export default class NavigatePage extends Component {
         <CurrentScene
             page={route.page}
             username={this.props.username}
+            userPic={this.props.userPic}
             concerns={this.props.concerns}
             allergies={this.props.allergies}
             diets={this.props.diets}

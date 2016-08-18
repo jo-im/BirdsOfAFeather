@@ -16,7 +16,7 @@ import {
   Alert
 } from 'react-native';
 import NavigatePage from './public/components/NavigatePage';
-
+const userInfo = require('./data/userInfo');
 
 
 class bof extends Component {
@@ -34,6 +34,7 @@ class bof extends Component {
     this.state = {
       userId: null,
       username: null,
+      userPic: userInfo.userInfo.profilePic,
       email: null,
       friends: [],
       picture: null,
@@ -51,7 +52,6 @@ class bof extends Component {
       isVegetarian: true,
       isPescatarian: true,
     };
-    console.log('INSIDE CONSTRUCTOR AND THIS.STATE.PAGES IS', this.state.pages);
   }
 
   componentWillMount() {
@@ -204,10 +204,6 @@ class bof extends Component {
     let page;
     console.log('in onForward: ', route);
     const nextIndex = route.index + 1;
-    console.log('nextIndex is', nextIndex);
-    console.log('this.state.pages is', this.state.pages);
-    console.log('THIS SHOULD BE PROFILE', this.state.pages[2]);
-    console.log('Inside onForward and the page that we are going to go next is', this.state.pages[nextIndex]);
     navigator.push({
       page: this.state.pages[nextIndex],
       index: nextIndex
@@ -227,7 +223,7 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
+      <NavigatePage username={this.state.username} userPic={this.state.userPic} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
       selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}

@@ -6,6 +6,7 @@ const _ = require('lodash');
 
 
 const style = require('./../style/styles');
+const userInfo = require('./../../data/userInfo');
 
 export default class Splash extends Component {
   async getUserFromFB(userId, token) {
@@ -121,6 +122,7 @@ export default class Splash extends Component {
           _this.props.rootParent.setState({ 
             userId: null,
             username: null,
+            userPic: userInfo.userInfo.profilePic,
             email: null,
             friends: [],
             concerns: [],
