@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TouchableHighlight, View, Image } from 'react-native';
 import Comments from './Comments';
 import FavoriteProducts from './FavoriteProducts';
+import Followers from './Followers';
 const style = require('./../style/styles');
 
 export default class Profile extends Component {
@@ -9,6 +10,8 @@ export default class Profile extends Component {
     let profilePage = <Comments />;
     if (this.props.profilePage === 'Favorite Products') {
       profilePage = <FavoriteProducts />;
+    } else if (this.props.profilePage === 'Followers') {
+      profilePage = <Followers />;
     }
     return (
       <View>
@@ -26,7 +29,7 @@ export default class Profile extends Component {
               Favorite Products
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={this.props.renderFollowers}>
             <Text>
               Followers
             </Text>
