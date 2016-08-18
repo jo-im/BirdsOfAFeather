@@ -28,6 +28,7 @@ class bof extends Component {
     this.onSelectDiet = this.onSelectDiet.bind(this);
     this.onFilterProductData = this.onFilterProductData.bind(this);
     this.goToSummary = this.goToSummary.bind(this);
+    this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
 
@@ -35,9 +36,10 @@ class bof extends Component {
       userId: null,
       username: null,
       userPic: userInfo.userInfo.profilePic,
+      profilePage: 'Comments',
       email: null,
-      followers: [],
-      friends: [],
+      followers: {},
+      friends: {},
       picture: null,
       concerns: [],
       allergies: [],
@@ -201,6 +203,13 @@ class bof extends Component {
     });
   }
 
+  renderFavoriteProducts() {
+    this.state.profilePage = 'Favorite Products';
+    this.setState({
+      profilePage: this.state.profilePage
+    })
+  }
+
   onForward(route, navigator) {
     let page;
     console.log('in onForward: ', route);
@@ -224,7 +233,8 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} userPic={this.state.userPic} followers={this.state.followers} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
+      <NavigatePage username={this.state.username} userPic={this.state.userPic} followers={this.state.followers} renderFavoriteProducts={this.renderFavoriteProducts}
+      profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}

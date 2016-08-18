@@ -30,7 +30,9 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Profile') {
       return (
-        <Profile username={this.props.username} followers={this.props.followers} userPic={this.props.userPic} onBack={this.props.onBack} rootParent={this.props.rootParent} />
+        <Profile username={this.props.username} followers={this.props.followers} userPic={this.props.userPic} 
+        profilePage={this.props.profilePage} renderFavoriteProducts={this.props.renderFavoriteProducts}
+        onBack={this.props.onBack} rootParent={this.props.rootParent} />
       );
     }
 

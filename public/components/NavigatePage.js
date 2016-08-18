@@ -16,6 +16,8 @@ export default class NavigatePage extends Component {
             page={route.page}
             username={this.props.username}
             userPic={this.props.userPic}
+            profilePage={this.props.profilePage}
+            renderFavoriteProducts={this.props.renderFavoriteProducts}
             followers={this.props.followers}
             concerns={this.props.concerns}
             allergies={this.props.allergies}
