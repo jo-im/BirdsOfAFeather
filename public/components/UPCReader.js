@@ -3,7 +3,8 @@ import {
   AppRegistry,
   Dimensions,
   StyleSheet,
-  View
+  View,
+  Vibration
 } from 'react-native';
 import Camera from 'react-native-camera';
 import _ from 'lodash';
@@ -19,15 +20,15 @@ export default class UPCReader extends Component {
           }}
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
-          onBarCodeRead= { _.throttle(this.readBarCode.bind(this), 5000, { 'trailing': false } ) }>
+          onBarCodeRead= { _.throttle(this.readBarCode.bind(this), 8000, { 'trailing': false } ) }>
         </Camera>
 
       </View>
     );
   }
 
-  readBarCode(event, test) {
-    console.log('inside readBarCode 30', event);
+  readBarCode(event) {
+    Vibration.vibrate();
     fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
       {
         method: 'POST',
@@ -41,11 +42,11 @@ export default class UPCReader extends Component {
         )
       })
     .then(data => {
-      console.log(data);
+      console.log('data in readBarCode: ', data);
       this.props.onFilterProductData(data);
       this.props.onForward();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('err in readBarCode: ', err));
   }
 
 }

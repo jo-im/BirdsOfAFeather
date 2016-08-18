@@ -24,7 +24,7 @@ DerivedData
 project.xcworkspace
 ios/codesigndoc_exports
 ios/bof/main.jsbundle
-
+main.jsbundle
 # Android/IJ
 #
 *.iml
