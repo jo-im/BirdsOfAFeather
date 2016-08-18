@@ -19,6 +19,7 @@ export default class Splash extends Component {
         friends: responseJson.friends.data
       });
       this.postUserToServer(responseJson);
+      // need to change server response to include concerns, allergies, diets, comments, friends
       this.saveUserData(responseJson);
     } catch(error) {
       console.error(error);
@@ -26,7 +27,11 @@ export default class Splash extends Component {
   }
 
   async postUserToServer(data) {
-    fetch('http://10.6.24.31:3000/api/facebook', 
+    var _this = this;
+    console.log('POST request to murmuring-dusk-10598');
+    console.log('the data being posted to server is', data);
+    // fetch('https://murmuring-dusk-10598/api/facbook',
+    fetch('http://10.6.24.1:3000/api/facebook', // local server for testing purposes
     {
       method: 'POST',
       headers: {
@@ -41,7 +46,8 @@ export default class Splash extends Component {
       })
     })
     .then(data => {
-      console.log(data);
+      console.log('data received back from server posting is', data);
+      _this.saveUserData(data);
     })
     .catch(err => console.log(err));
   }
@@ -50,16 +56,20 @@ export default class Splash extends Component {
     let multi_set_pairs = [['USERID', JSON.stringify(data.id)], 
                           ['USERNAME', JSON.stringify(data.name)],
                           ['EMAIL', JSON.stringify(data.email)],
-                          ['FRIENDS', JSON.stringify(data.friends.data)]];
+                          ['FRIENDS', JSON.stringify(data.friends.data)]
+                          // ['CONCERNS', JSON.stringify('placeholder')],
+                          // ['ALLERGIES', JSON.stringify('placeholder')],
+                          // ['DIETS', JSON.stringify('placeholder')]
+                          ];
     try {
-      await AsyncStorage.multiSet(multi_set_pairs, (err) => { console.log('here in saveUserData: ', err);});
+      await AsyncStorage.multiSet(multi_set_pairs, (err) => { console.log('inside saveUserData and saved with no error');})
     } catch (error) {
       console.log('Error saving data: ', error);
     }
   }
 
   async retrieveUserData (ID) {
-    let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS'];
+    let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS', 'CONCERNS', 'ALLERGIES', 'DIETS'];
     try {
       await AsyncStorage.multiGet(multi_get_keys, (err, stores) => {
         console.log('here in retrieveUserData -----  ', stores);
@@ -107,13 +117,15 @@ export default class Splash extends Component {
             pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
             productDescription: {}
           });
-          AsyncStorage.clear((err) => {
-            if (err) {
-              console.log('Error clearing user data: ', err);
-            } else {
-              console.log('User data cleared');
-            }
-          });
+          // Should we clear data when user logs out?
+
+          // AsyncStorage.clear((err) => {
+          //   if (err) {
+          //     console.log('Error clearing user data: ', err);
+          //   } else {
+          //     console.log('User data cleared');
+          //   }
+          // });
         }}
         onLoginFound={function(data){
           console.log("Existing login found.");
