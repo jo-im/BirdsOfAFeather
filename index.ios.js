@@ -18,6 +18,7 @@ import {
 import NavigatePage from './public/components/NavigatePage';
 
 
+
 class bof extends Component {
   constructor(props) {
     super(props);
@@ -51,15 +52,29 @@ class bof extends Component {
     };
   }
 
-  async saveUser(data) {
-    let multi_set_pairs = [['CONCERNS', JSON.stringify(data.id)], 
-                          ['USERNAME', JSON.stringify(data.name)],
-                          ['EMAIL', JSON.stringify(data.email)],
-                          ['FRIENDS', JSON.stringify(data.friends.data)]];
+  componentDidMount() {
+    this._loadInitialState().done();
+  }
+
+  async _loadInitialState() {
     try {
-      await AsyncStorage.multiSet(multi_set_pairs, (err) => { console.log('here in saveUserData: ', err);});
+      let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS', 'CONCERNS', 'ALLERGIES', 'DIETS'];
+      await AsyncStorage.multiGet(multi_get_keys, (err, store) => {
+        if (store[0][1] !== null){
+          console.log('This is the locally stored data:')
+          console.log('USERID: ', store[0][1])
+          console.log('USERNAME: ', store[1][1])
+          console.log('EMAIL: ', store[2][1])
+          console.log('FRIENDS: ', store[3][1])
+          console.log('CONCERNS: ', store[4][1])
+          console.log('ALLERGIES: ', store[5][1])
+          console.log('DIETS: ', store[6][1])
+        } else {
+          console.log('Initialized with no selection on disk.');
+        }
+      })
     } catch (error) {
-      console.log('Error saving data: ', error);
+      console.log('AsyncStorage error: ' + error.message);
     }
   }
   
@@ -85,7 +100,7 @@ class bof extends Component {
   async onSelectDiet(diet) {
     this.state.diets.push(diet);
     try {
-      await AsyncStorage.setItem('DIET', JSON.stringify(this.state.diets));
+      await AsyncStorage.setItem('DIETS', JSON.stringify(this.state.diets));
     } catch (error) {
       console.log('Error saving data: ', error);
     }
