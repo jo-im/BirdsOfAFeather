@@ -17,7 +17,7 @@ export default class Summary extends Component {
   renderRow(productIngredients) {
     var header = (
       <View style={{backgroundColor: 'grey'}}>
-        <Text style={{fontFamily: 'Didot-Italic', textAlign: 'center', color: 'white'}}>Click for all ingredients</Text>
+        <Text style={{fontFamily: 'Didot-Italic', textAlign: 'center', color: 'white', height: 40, fontSize: 20}}>Click for all ingredients</Text>
       </View>
     );
     var content = (
@@ -106,9 +106,11 @@ export default class Summary extends Component {
           renderRow={this.renderRow.bind(this, allIngredients)}
         />
         <Text>{'\n'}</Text>
-        <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
-          <Text style={style.styles.text}>Go Back</Text>
-        </TouchableHighlight>
+        <View style={style.styles.container}>
+          <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
+            <Text style={style.styles.text}>Go Back</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }

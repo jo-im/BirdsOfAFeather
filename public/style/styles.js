@@ -2,36 +2,45 @@ import { StyleSheet } from 'react-native';
 
 module.exports.styles = StyleSheet.create({
   container: {
-  	flex: 1,
-  	flexDirection: 'column',
-  	justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
     color: 'white',
     fontFamily: 'Didot-Italic',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 30
   },
   next: {
-  	backgroundColor: '#5c5c8a',
-  	marginTop: 30
+    flex: 4,
+    flexDirection: 'row',
+    backgroundColor: '#5c5c8a',
+    marginTop: 30,
+    height: 50,
+    width: 250
   },
   back: {
-    backgroundColor: '#ffcc80'
+    flex: 4,
+    flexDirection: 'row',
+    backgroundColor: '#ffcc80',
+    height: 50,
+    width: 250
   },
   icon: {
-  	height: 100,
-  	width: 100,
+    height: 100,
+    width: 100,
   },
   login: {
-  	height:50,
-  	width: 400,
+    height: 60,
+    width: 400,
     backgroundColor: '#3b5998'
   },
   loginText: {
-  	textAlign: 'center', 
-  	color: 'white', 
-  	marginTop: 17
+    textAlign: 'center',
+    color: 'white',
+    marginTop: 17
   },
   concernQuestion: {
     fontFamily: 'Didot-Italic', 
@@ -40,18 +49,24 @@ module.exports.styles = StyleSheet.create({
     height: 40
   },
   welcome: {
-  	textAlign: 'center', 
-  	fontFamily: 'Didot-Italic', 
-  	fontSize: 50
+    textAlign: 'center',
+    fontFamily: 'Didot-Italic',
+    fontSize: 50
   },
   health: {
     backgroundColor: '#ff6666',
+    height: 200,
+    width: 150
   },
   environment: {
-    backgroundColor: 'green'
+    backgroundColor: 'green',
+    height: 200,
+    width: 150
   },
   society: {
-    backgroundColor: '#3333ff'
+    backgroundColor: '#3333ff',
+    height: 200,
+    width: 150
   },
   allergyAndDietIcon: {
     height: 50,
