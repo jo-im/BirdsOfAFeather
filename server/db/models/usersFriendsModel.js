@@ -7,7 +7,6 @@ const Users_Friends = sequelize.define ('Users_Friends', {
 
 });
 
-Users.hasMany(Users);
 Users.belongsToMany(Users, {
   as: 'friends',
   through: 'Users_Friends',

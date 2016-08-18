@@ -13,7 +13,6 @@ const Users_Products = sequelize.define ('Users_Products', {
 });
 
 // Create foreign key constraings within join table
-Users.hasMany(Products);
 Users.belongsToMany(Products, { through: Users_Products });
 Products.belongsToMany(Users, { through: Users_Products });
 
