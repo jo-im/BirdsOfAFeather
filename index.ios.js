@@ -52,23 +52,33 @@ class bof extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this._loadInitialState().done();
   }
 
   async _loadInitialState() {
+    _this = this;
     try {
       let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS', 'CONCERNS', 'ALLERGIES', 'DIETS'];
       await AsyncStorage.multiGet(multi_get_keys, (err, store) => {
         if (store[0][1] !== null){
+          _this.setState({
+            userId: store[0][1],  
+            username: store[1][1],
+            email: store[2][1],
+            friends: store[3][1],
+            concerns: store[4][1],
+            allergies: store[5][1],
+            diets: store[6][1]
+          })
           console.log('This is the locally stored data:')
-          console.log('USERID: ', store[0][1])
-          console.log('USERNAME: ', store[1][1])
-          console.log('EMAIL: ', store[2][1])
-          console.log('FRIENDS: ', store[3][1])
-          console.log('CONCERNS: ', store[4][1])
-          console.log('ALLERGIES: ', store[5][1])
-          console.log('DIETS: ', store[6][1])
+          console.log('USERID: ', store[0][1]);
+          console.log('USERNAME: ', store[1][1]);
+          console.log('EMAIL: ', store[2][1]);
+          console.log('FRIENDS: ', store[3][1]);
+          console.log('CONCERNS: ', store[4][1]);
+          console.log('ALLERGIES: ', store[5][1]);
+          console.log('DIETS: ', store[6][1]);
         } else {
           console.log('Initialized with no selection on disk.');
         }
