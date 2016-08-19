@@ -1,7 +1,5 @@
 import {sequelize} from '../dbConnection';
 import Sequelize from 'sequelize';
-import {Concerns} from '../models/concernModel';
-import User_Concerns from '../models/userConcernsModel';
 import {Users} from '../models/userModel';
 
 export const setNewUser = (user, response) => {
@@ -18,13 +16,9 @@ export const setNewUser = (user, response) => {
       concerns: selectedUser.concerns
     }
   })
-  .then((selectedUser) => {
+  .then((newUser) => {
     console.log('Success in setting user');
-    if (response) {
-      response.send(JSON.stringify(selectedUser));
-    }
-
-    return selectedUser;
+    return newUser;
   })
   .catch((err) => {
     console.log('Error in setting user ===> ', err);
