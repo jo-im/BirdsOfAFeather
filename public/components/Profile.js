@@ -3,16 +3,22 @@ import { Text, TouchableHighlight, View, Image } from 'react-native';
 import Comments from './Comments';
 import FavoriteProducts from './FavoriteProducts';
 import Followers from './Followers';
+import Following from './Following';
 const style = require('./../style/styles');
 
 export default class Profile extends Component {
   render() {
-    let profilePage = <Comments />;
-    if (this.props.profilePage === 'Favorite Products') {
+    var profilePage = <Comments />;
+    if (this.props.profilePage === 'Comments') {
+      profilePage = <Comments />;
+    } else if (this.props.profilePage === 'Favorite Products') {
       profilePage = <FavoriteProducts />;
     } else if (this.props.profilePage === 'Followers') {
       profilePage = <Followers />;
+    } else if (this.props.profilePage = 'Following') {
+      profilePage = <Following />;
     }
+
     return (
       <View>
         <Image style={{height: 50, width: 50}} source={{ uri: this.props.userPic }}></Image>
@@ -34,7 +40,7 @@ export default class Profile extends Component {
               Followers
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={this.props.renderFollowing}>
             <Text>
               Following
             </Text>

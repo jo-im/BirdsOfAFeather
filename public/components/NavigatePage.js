@@ -20,6 +20,7 @@ export default class NavigatePage extends Component {
             renderComments={this.props.renderComments}
             renderFavoriteProducts={this.props.renderFavoriteProducts}
             renderFollowers={this.props.renderFollowers}
+            renderFollowing={this.props.renderFollowing}
             followers={this.props.followers}
             concerns={this.props.concerns}
             allergies={this.props.allergies}
