@@ -67,10 +67,10 @@ class bof extends Component {
             userId: JSON.parse(store[0][1]),  
             username: JSON.parse(store[1][1]),
             email: JSON.parse(store[2][1]),
-            friends: JSON.parse(store[3][1]),
+            friends: JSON.parse(store[3][1]) || [],
             picture: JSON.parse(store[4][1]),
-            allergies: JSON.parse(store[5][1]),
-            diets: JSON.parse(store[6][1])
+            allergies: JSON.parse(store[5][1]) || [],
+            diets: JSON.parse(store[6][1]) || [],
           })
           console.log('This is the locally stored data:')
           console.log('USERID: ', store[0][1]);
@@ -90,6 +90,7 @@ class bof extends Component {
   }
   
   async onSelectConcern(concern) {
+
     this.state.concerns.push(concern);
     try {
       await AsyncStorage.setItem('CONCERNS', JSON.stringify(this.state.concerns));
@@ -100,7 +101,9 @@ class bof extends Component {
 
   async onSelectAllergy(allergy) {
     this.state.selected = true;
+    console.log('=========================before push=============', this.state.allergies)
     this.state.allergies.push(allergy);
+    console.log('=========================after push==============', this.state.allergies);
     try {
       await AsyncStorage.setItem('ALLERGIES', JSON.stringify(this.state.allergies));
     } catch (error) {
