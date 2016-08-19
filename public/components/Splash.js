@@ -122,7 +122,7 @@ export default class Splash extends Component {
           _this.props.rootParent.setState({ 
             userId: null,
             username: null,
-            userPic: userInfo.userInfo.profilePic,
+            picture: null,
             profilePage: 'Comments',
             email: null,
             followers: {},

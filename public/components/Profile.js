@@ -21,7 +21,7 @@ export default class Profile extends Component {
 
     return (
       <View>
-        <Image style={{height: 50, width: 50}} source={{ uri: this.props.userPic }}></Image>
+        <Image style={{height: 50, width: 50}} source={{ uri: this.props.picture }}></Image>
         <Text>{this.props.username}</Text>
         <Text>Followers: {Object.keys(this.props.followers).length}</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>

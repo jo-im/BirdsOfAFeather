@@ -39,12 +39,11 @@ class bof extends Component {
     this.state = {
       userId: null,
       username: null,
-      userPic: userInfo.userInfo.profilePic,
+      picture: null,
       profilePage: 'Comments',
       email: null,
       followers: {},
       friends: {},
-      picture: null,
       concerns: [],
       allergies: [],
       diets: [],
@@ -267,7 +266,7 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} userPic={this.state.userPic} followers={this.state.followers}
+      <NavigatePage username={this.state.username} picture={this.state.picture} followers={this.state.followers}
       renderComments={this.renderComments} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowers={this.renderFollowers} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}

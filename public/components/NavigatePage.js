@@ -15,7 +15,7 @@ export default class NavigatePage extends Component {
         <CurrentScene
             page={route.title}
             username={this.props.username}
-            userPic={this.props.userPic}
+            picture={this.props.picture}
             profilePage={this.props.profilePage}
             goToProfile={this.props.goToProfile.bind(this, route, navigator)}
             renderComments={this.props.renderComments}
