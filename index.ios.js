@@ -36,7 +36,7 @@ class bof extends Component {
       username: null,
       email: null,
       friends: [],
-      picture: [],
+      picture: null,
       concerns: [],
       allergies: [],
       diets: [],

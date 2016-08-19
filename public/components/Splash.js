@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Text, TouchableHighlight, View, Image, AsyncStorage } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+const _ = require('lodash');
 
 
 
@@ -14,15 +15,20 @@ export default class Splash extends Component {
       let responseJson = await response.json();
       console.log('================================================', responseJson.picture.data.url)
       let _this = this;
-      this.props.rootParent.setState({
-        userId: responseJson.id,
-        username: responseJson.name,
-        friends: responseJson.friends.data,
-        picture: responseJson.picture.url
-      });
-      this.postUserToServer(responseJson);
-      // need to change server response to include concerns, allergies, diets, comments, friends
-      this.saveUserData(responseJson);
+      console.log('the value in friends state is: ', this.props.rootParent.state.friends)
+      // check if friends list has changed if changed save to server
+      if (!_.isEqual(responseJson.friends.data, this.props.rootParent.state.friends)) {
+        console.log('the value from facebook and state are different')
+        this.props.rootParent.setState({
+          userId: responseJson.id,
+          username: responseJson.name,
+          friends: responseJson.friends.data
+        });
+        // save new FB information to DB
+        this.postUserToServer(responseJson);
+        // save new FB information to local storage
+        this.saveUserData(responseJson);
+      }
     } catch(error) {
       console.error(error);
     }
@@ -109,32 +115,13 @@ export default class Splash extends Component {
         }}
         onLogout={function(){
           console.log("Logged out.");
-          _this.props.rootParent.setState({ 
-            userId: null,
-            username: null,
-            email: null,
-            friends: [],
-            concerns: [],
-            allergies: [],
-            diets: [],
-            selected: false,
-            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
-            productDescription: {}
-          });
-          // Should we clear data when user logs out?
-
-          // AsyncStorage.clear((err) => {
-          //   if (err) {
-          //     console.log('Error clearing user data: ', err);
-          //   } else {
-          //     console.log('User data cleared');
-          //   }
-          // });
         }}
         onLoginFound={function(data){
           console.log("Existing login found.");
           console.log(data);
-          _this.retrieveUserData(data.credentials.userId);
+          _this.getUserFromFB(data.credentials.userId, data.credentials.token);
+          
+          // _this.retrieveUserData(data.credentials.userId);
           _this.props.onForward();
           AsyncStorage.clear((err) => {
             if (err) {
@@ -147,18 +134,6 @@ export default class Splash extends Component {
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");
-          _this.props.rootParent.setState({ 
-            userId: null,
-            username: null,
-            email: null,
-            friends: [],
-            concerns: [],
-            allergies: [],
-            diets: [],
-            selected: false,
-            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
-            productDescription: {}
-          });
         }}
         onError={function(data){
           console.log("ERROR");
