@@ -59,7 +59,8 @@ export default class Splash extends Component {
     let multi_set_pairs = [['USERID', JSON.stringify(data.id)], 
                           ['USERNAME', JSON.stringify(data.name)],
                           ['EMAIL', JSON.stringify(data.email)],
-                          ['FRIENDS', JSON.stringify(data.friends.data)]
+                          ['FRIENDS', JSON.stringify(data.friends.data)],
+                          ['PICTURE', JSON.stringify(data.picture.url)]
                           // ['CONCERNS', JSON.stringify('placeholder')],
                           // ['ALLERGIES', JSON.stringify('placeholder')],
                           // ['DIETS', JSON.stringify('placeholder')]
