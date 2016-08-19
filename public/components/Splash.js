@@ -15,14 +15,17 @@ export default class Splash extends Component {
       let responseJson = await response.json();
       console.log('================================================', responseJson.picture.data.url)
       let _this = this;
-      console.log('the value in friends state is: ', this.props.rootParent.state.friends)
+      console.log('the value in friends state is: ', this.props.rootParent.state.friends);
+      console.log('the value in picture state is: ', this.props.rootParent.state.picture);
+      // console.log('the value in the picture state is', this.props.rootParent.state.picture);
       // check if friends list has changed if changed save to server
       if (!_.isEqual(responseJson.friends.data, this.props.rootParent.state.friends)) {
         console.log('the value from facebook and state are different')
         this.props.rootParent.setState({
           userId: responseJson.id,
           username: responseJson.name,
-          friends: responseJson.friends.data
+          friends: responseJson.friends.data,
+          picutre: responseJson.picture.data.url
         });
         // save new FB information to DB
         this.postUserToServer(responseJson);
@@ -51,7 +54,7 @@ export default class Splash extends Component {
         username: data.name,
         email: data.email,
         friends: data.friends.data,
-        picture: data.picture.url
+        picture: data.picture.data.url
       }
     })
     .then(data => {
@@ -66,7 +69,7 @@ export default class Splash extends Component {
                           ['USERNAME', JSON.stringify(data.name)],
                           ['EMAIL', JSON.stringify(data.email)],
                           ['FRIENDS', JSON.stringify(data.friends.data)],
-                          ['PICTURE', JSON.stringify(data.picture.url)]
+                          ['PICTURE', JSON.stringify(data.picture.data.url)]
                           // ['CONCERNS', JSON.stringify('placeholder')],
                           // ['ALLERGIES', JSON.stringify('placeholder')],
                           // ['DIETS', JSON.stringify('placeholder')]
@@ -123,13 +126,6 @@ export default class Splash extends Component {
           
           // _this.retrieveUserData(data.credentials.userId);
           _this.props.onForward();
-          AsyncStorage.clear((err) => {
-            if (err) {
-              console.log('Error clearing user data: ', err);
-            } else {
-              console.log('User data cleared');
-            }
-          });
           _this.props.onForward();
         }}
         onLoginNotFound={function(){
