@@ -36,6 +36,7 @@ class bof extends Component {
       username: null,
       email: null,
       friends: [],
+      picture: [],
       concerns: [],
       allergies: [],
       diets: [],
@@ -59,7 +60,7 @@ class bof extends Component {
   async _loadInitialState() {
     _this = this;
     try {
-      let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS', 'CONCERNS', 'ALLERGIES', 'DIETS'];
+      let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS', 'PICTURE', 'ALLERGIES', 'DIETS'];
       await AsyncStorage.multiGet(multi_get_keys, (err, store) => {
         if (store[0][1] !== null){
           _this.setState({
@@ -67,7 +68,7 @@ class bof extends Component {
             username: JSON.parse(store[1][1]),
             email: JSON.parse(store[2][1]),
             friends: JSON.parse(store[3][1]),
-            concerns: JSON.parse(store[4][1]),
+            picture: JSON.parse(store[4][1]),
             allergies: JSON.parse(store[5][1]),
             diets: JSON.parse(store[6][1])
           })
@@ -76,7 +77,7 @@ class bof extends Component {
           console.log('USERNAME: ', store[1][1]);
           console.log('EMAIL: ', store[2][1]);
           console.log('FRIENDS: ', store[3][1]);
-          console.log('CONCERNS: ', store[4][1]);
+          console.log('PICTURE: ', store[4][1]);
           console.log('ALLERGIES: ', store[5][1]);
           console.log('DIETS: ', store[6][1]);
         } else {
