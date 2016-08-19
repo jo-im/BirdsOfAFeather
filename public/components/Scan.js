@@ -50,9 +50,9 @@ export default class Scan extends Component {
       })
     .then(data => {
       console.log('returned search item');
-      console.log(data);
       // console.log(data);
-      // this.props.onFilterProductData(data);
+      this.props.goToSearchResult(data);
+
       // this.props.onForward();
     })
     .catch(err => console.log(err));
