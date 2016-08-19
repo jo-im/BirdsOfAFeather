@@ -5,15 +5,17 @@ import User_Concerns from '../models/userConcernsModel';
 import {Users} from '../models/userModel';
 
 export const setNewUser = (user, response) => {
-  console.log('Trying to set new user', user);
-  let selectedUser = user; 
+  let selectedUser = JSON.parse(user.data);
+
+  console.log('Trying to set new user');
 
   Users.findOrCreate({
     where: {
       username: selectedUser.username,
       email: selectedUser.email,
       facebookId: selectedUser.id,
-      // friends: selectedUser.friends
+      profilePictUrl: selectedUser.url,
+      concerns: selectedUser.concerns
     }
   })
   .then((selectedUser) => {
