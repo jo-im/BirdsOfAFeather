@@ -25,28 +25,28 @@ export default class Profile extends Component {
         <Text>{this.props.username}</Text>
         <Text>Followers: {Object.keys(this.props.followers).length}</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableHighlight onPress={this.props.renderComments}>
+          <TouchableHighlight style={{margin: 10}} onPress={this.props.renderComments}>
             <Text>
               Comments
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={this.props.renderFavoriteProducts}>
+          <TouchableHighlight style={{margin: 10}} onPress={this.props.renderFavoriteProducts}>
             <Text>
               Favorite Products
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={this.props.renderFollowers}>
+          <TouchableHighlight style={{margin: 10}} onPress={this.props.renderFollowers}>
             <Text>
               Followers
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={this.props.renderFollowing}>
+          <TouchableHighlight style={{margin: 10}} onPress={this.props.renderFollowing}>
             <Text>
               Following
             </Text>
           </TouchableHighlight>
         </View>
-        <View>
+        <View style={{marginTop: 50}}>
         {profilePage}
         </View>
         <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
