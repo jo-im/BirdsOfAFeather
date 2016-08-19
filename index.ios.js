@@ -47,7 +47,7 @@ class bof extends Component {
       allergies: [],
       diets: [],
       selected: false,
-      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile'],
+      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile', 'SearchResult'],
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -56,6 +56,7 @@ class bof extends Component {
       isVegan: true,
       isVegetarian: true,
       isPescatarian: true,
+      searchResult: [],
     };
   }
 
@@ -205,6 +206,7 @@ class bof extends Component {
     });
   }
 
+<<<<<<< 6ef634c8c69aead12bab130999ce02ffacdb916f
   goToProfile(route, navigator) {
     console.log('Inside goToProfile');
     navigator.push({
@@ -242,6 +244,18 @@ class bof extends Component {
       profilePage: this.state.profilePage
     });
   }
+=======
+  goToSearchResult(route, navigator, data) {
+    console.log('=====================inside goToSearch function=================')
+    console.log(data);
+    this.setState({ searchResult: data })
+    navigator.push({
+      page: 'SearchResult',
+      index: 7
+    });
+  }
+
+>>>>>>> Add route to allow page transition to display search result page
 
   onForward(route, navigator) {
     let page;
@@ -273,7 +287,9 @@ class bof extends Component {
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
-      onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
+      onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} 
+      goToSearchResult={this.goToSearchResult} searchResult={this.state.searchResult}
+      onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
 
