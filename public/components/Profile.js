@@ -49,6 +49,9 @@ export default class Profile extends Component {
         <View>
         {profilePage}
         </View>
+        <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
+          <Text style={style.styles.text}>Go Back</Text>
+        </TouchableHighlight>
       </View>
     );
   }

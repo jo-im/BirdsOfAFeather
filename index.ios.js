@@ -28,6 +28,7 @@ class bof extends Component {
     this.onSelectDiet = this.onSelectDiet.bind(this);
     this.onFilterProductData = this.onFilterProductData.bind(this);
     this.goToSummary = this.goToSummary.bind(this);
+    this.goToProfile = this.goToProfile.bind(this);
     this.renderComments = this.renderComments.bind(this);
     this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
     this.renderFollowers = this.renderFollowers.bind(this);
@@ -48,7 +49,7 @@ class bof extends Component {
       allergies: [],
       diets: [],
       selected: false,
-      pages: ['Splash', 'Welcome', 'Profile', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile'],
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -206,6 +207,15 @@ class bof extends Component {
     });
   }
 
+  goToProfile(route, navigator) {
+    console.log('Inside goToProfile');
+    console.log(navigator.getCurrentRoutes());
+    navigator.push({
+      title: this.state.pages[6],
+      index: 6
+    })
+  }
+
   renderComments() {
     this.state.profilePage = 'Comments';
     this.setState({
@@ -239,7 +249,7 @@ class bof extends Component {
     console.log('in onForward: ', route);
     const nextIndex = route.index + 1;
     navigator.push({
-      page: this.state.pages[nextIndex],
+      title: this.state.pages[nextIndex],
       index: nextIndex
     });
   }
@@ -260,7 +270,7 @@ class bof extends Component {
       <NavigatePage username={this.state.username} userPic={this.state.userPic} followers={this.state.followers}
       renderComments={this.renderComments} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowers={this.renderFollowers} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
-      selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
+      goToProfile={this.goToProfile} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}

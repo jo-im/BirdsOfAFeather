@@ -23,7 +23,7 @@ export default class CurrentScene extends Component {
     if (this.props.page === 'Welcome') {
       return (
         <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} 
-        onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
+        goToProfile={this.props.goToProfile} onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
         rootParent={this.props.rootParent} />
       );
     }

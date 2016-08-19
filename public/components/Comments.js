@@ -5,10 +5,7 @@ export default class Comments extends Component {
   render() {
     return (
       <View>
-        <Text>Keith: This is a first fake comment</Text>
-        <Text>Hong: Second comment</Text>
-        <Text>Ryan: Third comment</Text>
-        <Text>Joann: Last comment!</Text>
+        <Text>This is the comment page</Text>
       </View>
     );
   }

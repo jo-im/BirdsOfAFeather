@@ -131,7 +131,7 @@ export default class Splash extends Component {
             allergies: [],
             diets: [],
             selected: false,
-            pages: ['Splash', 'Welcome', 'Profile', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile'],
             productDescription: {}
           });
           AsyncStorage.clear((err) => {
