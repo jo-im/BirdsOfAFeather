@@ -26,7 +26,8 @@ export default class Splash extends Component {
           userId: responseJson.id,
           username: responseJson.name,
           friends: responseJson.friends.data,
-          picutre: responseJson.picture.data.url
+          picture: responseJson.picture.data.url,
+          friends: responseJson.friends.data
         });
         // save new FB information to DB
         this.postUserToServer(responseJson);

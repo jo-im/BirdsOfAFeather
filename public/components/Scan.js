@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, TouchableHighlight, View, Image } from 'react-native';
+import { Text, TouchableHighlight, View, Image, TextInput } from 'react-native';
 const style = require('./../style/styles');
 
 export default class Scan extends Component {
@@ -17,11 +17,44 @@ export default class Scan extends Component {
            <Image style={{height: 200, width: 200}} source={{uri: 'https://cdn.vectorstock.com/i/thumb-large/10/55/8391055.jpg'}}></Image>
          </TouchableHighlight>
          <Text>{'\n'}</Text>
+
+          <TextInput style={{height: 40}} placeholder="Search for Product" onChangeText={(searchTerm) => this.setState({searchTerm})} />
+          <TouchableHighlight onPress={this.searchProduct.bind(this)}>
+            <Text>Search</Text>
+          </TouchableHighlight>
+
          <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
            <Text style={style.styles.text}>Go Back</Text>
          </TouchableHighlight>
        </View>
      </View>
     );
+  }
+
+  searchProduct () {
+    console.log('inside searchProduct');
+    console.log(this.state.searchTerm);
+
+    // fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
+    fetch('http://10.6.24.1:3000/api/foodfacts/search',
+      {
+        method: 'POST',
+        headers:
+        {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          { searchTerm: this.state.searchTerm }
+        )
+      })
+    .then(data => {
+      console.log('returned search item');
+      console.log(data);
+      // console.log(data);
+      // this.props.onFilterProductData(data);
+      // this.props.onForward();
+    })
+    .catch(err => console.log(err));
   }
 }
