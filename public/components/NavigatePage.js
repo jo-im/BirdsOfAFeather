@@ -5,10 +5,6 @@ import CurrentScene from './CurrentScene';
 export default class NavigatePage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      username: 'hong'
-    }
   }
 
   render() {
