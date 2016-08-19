@@ -44,6 +44,8 @@ export default class NavigatePage extends Component {
             onSelectDiet={this.props.onSelectDiet}
             onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
             rootParent={this.props.rootParent}
+            goToSearchResult={this.props.goToSearchResult.bind(this, route, navigator)}
+            searchResult={this.props.searchResult}
           />
         } 
       />
