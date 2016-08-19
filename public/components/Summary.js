@@ -75,6 +75,11 @@ export default class Summary extends Component {
 
     return (
       <View>
+         <View style={{marginTop: 10, marginLeft: 350}}>
+          <TouchableHighlight>
+            <Image style={{height: 50, width: 50}} source={{uri: 'http://www.fastbridge.org/wp-content/uploads/2015/07/person-icon.png'}}></Image>
+          </TouchableHighlight>
+        </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Image source={{uri: this.props.productImage }} style={{height: 150, width: 150}}></Image>
           <View style={{backgroundColor: '#00e6b8', height: 160, width: 160, borderRadius: 160 / 2, marginTop: 30, marginLeft: 80}}>

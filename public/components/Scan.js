@@ -6,6 +6,11 @@ export default class Scan extends Component {
   render() {
     return (
      <View>
+       <View style={{marginTop: 10, marginLeft: 350}}>
+         <TouchableHighlight>
+           <Image style={{height: 50, width: 50}} source={{uri: 'http://www.fastbridge.org/wp-content/uploads/2015/07/person-icon.png'}}></Image>
+         </TouchableHighlight>
+       </View>
      <Text style={{height: 40, fontSize: 20, fontFamily: 'Didot-Italic', textAlign: 'center', marginTop: 200}}>Click To Scan</Text>
        <View style={style.styles.container}>
          <TouchableHighlight onPress={this.props.onForward}>
