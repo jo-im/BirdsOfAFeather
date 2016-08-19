@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Text, TouchableHighlight, View, Image, AsyncStorage } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+const _ = require('lodash');
 
 
 
@@ -9,39 +10,56 @@ const style = require('./../style/styles');
 export default class Splash extends Component {
   async getUserFromFB(userId, token) {
     try {
-      let url = `https://graph.facebook.com/v2.4/${userId}?fields=id,name,email,friends&access_token=${token}`;
+      let url = `https://graph.facebook.com/v2.4/${userId}?fields=id,name,email,friends,picture&access_token=${token}`;
       let response = await fetch(url);
       let responseJson = await response.json();
+      console.log('================================================', responseJson.picture.data.url)
       let _this = this;
-      this.props.rootParent.setState({
-        userId: responseJson.id,
-        username: responseJson.name,
-        friends: responseJson.friends.data
-      });
-      this.postUserToServer(responseJson);
-      this.saveUserData(responseJson);
+      console.log('the value in friends state is: ', this.props.rootParent.state.friends);
+      console.log('the value in picture state is: ', this.props.rootParent.state.picture);
+      // console.log('the value in the picture state is', this.props.rootParent.state.picture);
+      // check if friends list has changed if changed save to server
+      if (!_.isEqual(responseJson.friends.data, this.props.rootParent.state.friends)) {
+        console.log('the value from facebook and state are different')
+        this.props.rootParent.setState({
+          userId: responseJson.id,
+          username: responseJson.name,
+          friends: responseJson.friends.data,
+          picutre: responseJson.picture.data.url
+        });
+        // save new FB information to DB
+        this.postUserToServer(responseJson);
+        // save new FB information to local storage
+        this.saveUserData(responseJson);
+      }
     } catch(error) {
       console.error(error);
     }
   }
 
   async postUserToServer(data) {
-    fetch('http://10.6.24.31:3000/api/facebook', 
+    var _this = this;
+    console.log('POST request to murmuring-dusk-10598');
+    console.log('the data being posted to server is', data);
+    // fetch('https://murmuring-dusk-10598.herokuapp.com/api/facbook',
+    fetch('http://10.6.24.1:3000/api/facebook', // local server for testing purposes
     {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
+      body: {
         id: data.id,
         username: data.name,
         email: data.email,
-        friends: data.friends.data
-      })
+        friends: data.friends.data,
+        picture: data.picture.data.url
+      }
     })
     .then(data => {
-      console.log(data);
+      console.log('data received back from server posting is', data);
+      _this.saveUserData(data);
     })
     .catch(err => console.log(err));
   }
@@ -50,16 +68,21 @@ export default class Splash extends Component {
     let multi_set_pairs = [['USERID', JSON.stringify(data.id)], 
                           ['USERNAME', JSON.stringify(data.name)],
                           ['EMAIL', JSON.stringify(data.email)],
-                          ['FRIENDS', JSON.stringify(data.friends.data)]];
+                          ['FRIENDS', JSON.stringify(data.friends.data)],
+                          ['PICTURE', JSON.stringify(data.picture.data.url)]
+                          // ['CONCERNS', JSON.stringify('placeholder')],
+                          // ['ALLERGIES', JSON.stringify('placeholder')],
+                          // ['DIETS', JSON.stringify('placeholder')]
+                          ];
     try {
-      await AsyncStorage.multiSet(multi_set_pairs, (err) => { console.log('here in saveUserData: ', err);});
+      await AsyncStorage.multiSet(multi_set_pairs, (err) => { console.log('inside saveUserData and saved with no error');})
     } catch (error) {
       console.log('Error saving data: ', error);
     }
   }
 
   async retrieveUserData (ID) {
-    let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS'];
+    let multi_get_keys = ['USERID','USERNAME', 'EMAIL', 'FRIENDS', 'CONCERNS', 'ALLERGIES', 'DIETS'];
     try {
       await AsyncStorage.multiGet(multi_get_keys, (err, stores) => {
         console.log('here in retrieveUserData -----  ', stores);
@@ -95,54 +118,18 @@ export default class Splash extends Component {
         }}
         onLogout={function(){
           console.log("Logged out.");
-          _this.props.rootParent.setState({ 
-            userId: null,
-            username: null,
-            email: null,
-            friends: [],
-            concerns: [],
-            allergies: [],
-            diets: [],
-            selected: false,
-            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
-            productDescription: {}
-          });
-          AsyncStorage.clear((err) => {
-            if (err) {
-              console.log('Error clearing user data: ', err);
-            } else {
-              console.log('User data cleared');
-            }
-          });
         }}
         onLoginFound={function(data){
           console.log("Existing login found.");
           console.log(data);
-          _this.retrieveUserData(data.credentials.userId);
+          _this.getUserFromFB(data.credentials.userId, data.credentials.token);
+          
+          // _this.retrieveUserData(data.credentials.userId);
           _this.props.onForward();
-          AsyncStorage.clear((err) => {
-            if (err) {
-              console.log('Error clearing user data: ', err);
-            } else {
-              console.log('User data cleared');
-            }
-          });
           _this.props.onForward();
         }}
         onLoginNotFound={function(){
           console.log("No user logged in.");
-          _this.props.rootParent.setState({ 
-            userId: null,
-            username: null,
-            email: null,
-            friends: [],
-            concerns: [],
-            allergies: [],
-            diets: [],
-            selected: false,
-            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
-            productDescription: {}
-          });
         }}
         onError={function(data){
           console.log("ERROR");
