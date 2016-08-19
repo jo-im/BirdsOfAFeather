@@ -35,6 +35,7 @@ class bof extends Component {
     this.renderFollowing = this.renderFollowing.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
+    this.goToSearchResult = this.goToSearchResult.bind(this);
 
     this.state = {
       userId: null,
@@ -87,6 +88,8 @@ class bof extends Component {
           console.log('PICTURE: ', store[4][1]);
           console.log('ALLERGIES: ', store[5][1]);
           console.log('DIETS: ', store[6][1]);
+          console.log('allergies state: ', _this.state.allergies)
+          console.log('diet state: ', _this.state.diets)
         } else {
           console.log('Initialized with no selection on disk.');
         }
@@ -247,8 +250,11 @@ class bof extends Component {
 =======
   goToSearchResult(route, navigator, data) {
     console.log('=====================inside goToSearch function=================')
-    console.log(data);
+    console.log(this.state.allergies)
+    // console.log(data);
+    data = JSON.parse(data._bodyInit)
     this.setState({ searchResult: data })
+    console.log('=======================goToSearchResult state===================', this.state.searchResult)
     navigator.push({
       page: 'SearchResult',
       index: 7
