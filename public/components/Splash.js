@@ -9,14 +9,16 @@ const style = require('./../style/styles');
 export default class Splash extends Component {
   async getUserFromFB(userId, token) {
     try {
-      let url = `https://graph.facebook.com/v2.4/${userId}?fields=id,name,email,friends&access_token=${token}`;
+      let url = `https://graph.facebook.com/v2.4/${userId}?fields=id,name,email,friends,picture&access_token=${token}`;
       let response = await fetch(url);
       let responseJson = await response.json();
+      console.log('================================================', responseJson.picture.data.url)
       let _this = this;
       this.props.rootParent.setState({
         userId: responseJson.id,
         username: responseJson.name,
-        friends: responseJson.friends.data
+        friends: responseJson.friends.data,
+        picture: responseJson.picture.url
       });
       this.postUserToServer(responseJson);
       // need to change server response to include concerns, allergies, diets, comments, friends
@@ -38,12 +40,13 @@ export default class Splash extends Component {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
+      body: {
         id: data.id,
         username: data.name,
         email: data.email,
-        friends: data.friends.data
-      })
+        friends: data.friends.data,
+        picture: data.picture.url
+      }
     })
     .then(data => {
       console.log('data received back from server posting is', data);
