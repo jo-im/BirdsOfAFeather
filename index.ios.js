@@ -63,13 +63,13 @@ class bof extends Component {
       await AsyncStorage.multiGet(multi_get_keys, (err, store) => {
         if (store[0][1] !== null){
           _this.setState({
-            userId: store[0][1],  
-            username: store[1][1],
-            email: store[2][1],
-            friends: store[3][1],
-            concerns: store[4][1],
-            allergies: store[5][1],
-            diets: store[6][1]
+            userId: JSON.parse(store[0][1]),  
+            username: JSON.parse(store[1][1]),
+            email: JSON.parse(store[2][1]),
+            friends: JSON.parse(store[3][1]),
+            concerns: JSON.parse(store[4][1]),
+            allergies: JSON.parse(store[5][1]),
+            diets: JSON.parse(store[6][1])
           })
           console.log('This is the locally stored data:')
           console.log('USERID: ', store[0][1]);
