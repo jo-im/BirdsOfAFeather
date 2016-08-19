@@ -29,9 +29,8 @@ class bof extends Component {
     this.onFilterProductData = this.onFilterProductData.bind(this);
     this.goToSummary = this.goToSummary.bind(this);
     this.goToProfile = this.goToProfile.bind(this);
-    this.renderComments = this.renderComments.bind(this);
+    this.renderActivity = this.renderActivity.bind(this);
     this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
-    this.renderFollowers = this.renderFollowers.bind(this);
     this.renderFollowing = this.renderFollowing.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
@@ -40,10 +39,9 @@ class bof extends Component {
       userId: null,
       username: null,
       picture: null,
-      profilePage: 'Comments',
+      profilePage: 'Activity',
+      following: {},
       email: null,
-      followers: {},
-      friends: {},
       concerns: [],
       allergies: [],
       diets: [],
@@ -215,8 +213,8 @@ class bof extends Component {
     })
   }
 
-  renderComments() {
-    this.state.profilePage = 'Comments';
+  renderActivity() {
+    this.state.profilePage = 'Activity';
     this.setState({
       profilePage: this.state.profilePage
     });
@@ -224,13 +222,6 @@ class bof extends Component {
 
   renderFavoriteProducts() {
     this.state.profilePage = 'Favorite Products';
-    this.setState({
-      profilePage: this.state.profilePage
-    });
-  }
-
-  renderFollowers() {
-    this.state.profilePage = 'Followers';
     this.setState({
       profilePage: this.state.profilePage
     });
@@ -266,8 +257,8 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} picture={this.state.picture} followers={this.state.followers}
-      renderComments={this.renderComments} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowers={this.renderFollowers} renderFollowing={this.renderFollowing}
+      <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following}
+      renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}

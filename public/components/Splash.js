@@ -125,7 +125,7 @@ export default class Splash extends Component {
             picture: null,
             profilePage: 'Comments',
             email: null,
-            followers: {},
+            following: {},
             friends: {},
             concerns: [],
             allergies: [],

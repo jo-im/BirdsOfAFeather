@@ -6,6 +6,7 @@ export default class Following extends Component {
     return (
       <View>
         <Text>Here is the Following page</Text>
+        <Text>Following: {Object.keys(this.props.following).length}</Text>
       </View>
     );
   }

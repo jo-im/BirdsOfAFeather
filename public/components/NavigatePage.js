@@ -16,13 +16,12 @@ export default class NavigatePage extends Component {
             page={route.title}
             username={this.props.username}
             picture={this.props.picture}
+            following={this.props.following}
             profilePage={this.props.profilePage}
             goToProfile={this.props.goToProfile.bind(this, route, navigator)}
-            renderComments={this.props.renderComments}
+            renderActivity={this.props.renderActivity}
             renderFavoriteProducts={this.props.renderFavoriteProducts}
-            renderFollowers={this.props.renderFollowers}
             renderFollowing={this.props.renderFollowing}
-            followers={this.props.followers}
             concerns={this.props.concerns}
             allergies={this.props.allergies}
             diets={this.props.diets}

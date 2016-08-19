@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-export default class Comments extends Component {
+export default class Activity extends Component {
   render() {
     return (
       <View>
-        <Text>This is the comment page</Text>
+        <Text>This is the activity page</Text>
       </View>
     );
   }
