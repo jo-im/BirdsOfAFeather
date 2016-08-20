@@ -228,10 +228,6 @@ class bof extends Component {
     })
   }
 
-  goToAllergiesAndDiet(route, navigator) {
-    console.log('Inside allergiesanddiet');
-  }
-
   renderActivity() {
     this.state.profilePage = 'Activity';
     this.setState({
