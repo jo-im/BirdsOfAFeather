@@ -54,7 +54,7 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'SearchResult') {
       return (
-        <SearchResult searchResult={this.props.searchResult} onForward={this.props.onForward} onBack={this.props.onBack} />
+        <SearchResult searchResult={this.props.searchResult} fetchItemUPC={this.props.fetchItemUPC} onForward={this.props.onForward} onBack={this.props.onBack} />
       );
     }
 
