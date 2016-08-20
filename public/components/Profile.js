@@ -18,6 +18,11 @@ export default class Profile extends Component {
 
     return (
       <View>
+         <View style={{marginTop: 20, marginLeft: 350}}>
+          <TouchableHighlight onPress={this.props.goToAllergiesAndDiet}>
+            <Image style={{height: 50, width: 50}} source={{uri: 'http://graphiccave.com/wp-content/uploads/2015/04/Settings-Icon-PNG-Graphic-Cave.png'}}></Image>
+          </TouchableHighlight>
+        </View>
         <Image style={{height: 50, width: 50}} source={{ uri: this.props.picture }}></Image>
         <Text>{this.props.username}</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
