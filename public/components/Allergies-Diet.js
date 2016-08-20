@@ -11,9 +11,9 @@ export default class AllergiesAndDiet extends Component {
 
     return (
       <View>
-        <View style={{marginTop: 10, marginLeft: 350}}>
-         <TouchableHighlight>
-           <Image style={{height: 50, width: 50}} source={{uri: 'http://www.fastbridge.org/wp-content/uploads/2015/07/person-icon.png'}}></Image>
+        <View style={{marginTop: 20, marginLeft: 350}}>
+         <TouchableHighlight onPress={this.props.goToProfile}>
+           <Image style={{height: 50, width: 50}} source={{uri: 'http://cornerstonecoastal.com/wp-content/plugins/bright/images/menu-icon.png'}}></Image>
          </TouchableHighlight>
        </View>
         <Text style={{textAlign: 'center', fontFamily: 'Didot-Italic', fontSize: 40}}>Any Allergies?</Text>

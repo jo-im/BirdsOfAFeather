@@ -39,15 +39,15 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Allergies/Diet') {
       return (
-        <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet} 
-        selected={this.props.selected} onForward={this.props.onForward} onBack={this.props.onBack} rootParent={this.props.rootParent} />
+        <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet} selected={this.props.selected} 
+        goToProfile={this.props.goToProfile} onForward={this.props.onForward} onBack={this.props.onBack} rootParent={this.props.rootParent} />
       ); 
     }
 
 
     if (this.props.page === 'Scan') {
       return (
-        <Scan goToSummary={this.props.goToSummary} onForward={this.props.onForward} onBack={this.props.onBack}/>
+        <Scan goToSummary={this.props.goToSummary} goToProfile={this.props.goToProfile} onForward={this.props.onForward} onBack={this.props.onBack}/>
       );
     }
 
@@ -62,7 +62,7 @@ export default class CurrentScene extends Component {
         <Summary concerns={this.props.concerns} allergies={this.props.allergies} diets={this.props.diets} productImage={this.props.productImage} grade={this.props.grade}
         isVegan={this.props.isVegan} isVegetarian={this.props.isVegetarian} isPescatarian={this.props.isPescatarian}
         productIngredients={this.props.productIngredients} productAllergies={this.props.productAllergies} ingredientsToAvoid={this.props.ingredientsToAvoid}
-        onBack={this.props.onBack} />
+        goToProfile={this.props.goToProfile} onBack={this.props.onBack} />
       );
     }
   }
