@@ -36,6 +36,7 @@ class bof extends Component {
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
     this.goToSearchResult = this.goToSearchResult.bind(this);
+    this.fetchItemUPC = this.fetchItemUPC.bind(this);
 
     this.state = {
       userId: null,
@@ -133,6 +134,7 @@ class bof extends Component {
   onFilterProductData(navigator, data) {
     console.log('here in onFilterProductData:');
     var parsedData = JSON.parse(data._bodyInit);
+
     if (!parsedData.validUPC) {
       Alert.alert(
             'Alert Title',
@@ -263,6 +265,34 @@ class bof extends Component {
     });
   }
 
+  fetchItemUPC(route, navigator, UPC) {
+    console.log('inside fetchItemUPC', UPC)
+    fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
+    // fetch('http://10.6.24.1:3000/api/foodfacts/upc', 
+      {
+        method: 'POST',
+        headers:
+        {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          { event: {data: '0' + UPC} }
+        )
+      })
+    .then(data => {
+      console.log(data._bodyInit);
+      this.onFilterProductData(navigator, data);
+      navigator.push({
+        page: 'Summary',
+        index: 5
+      });
+
+      // {page: 'Summary', index: 5}, navigator
+    })
+    .catch(err => console.log('err in readBarCode: ', err));
+  }
+
   onForward(route, navigator) {
     let page;
     console.log('in onForward: ', route);
@@ -294,7 +324,7 @@ class bof extends Component {
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
       onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} 
-      goToSearchResult={this.goToSearchResult} searchResult={this.state.searchResult}
+      goToSearchResult={this.goToSearchResult} searchResult={this.state.searchResult} fetchItemUPC={this.fetchItemUPC}
       onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
