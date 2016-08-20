@@ -19,6 +19,7 @@ export default class NavigatePage extends Component {
             following={this.props.following}
             profilePage={this.props.profilePage}
             goToProfile={this.props.goToProfile.bind(this, route, navigator)}
+            goToAllergiesAndDiet={this.props.goToAllergiesAndDiet.bind(this, route, navigator)}
             renderActivity={this.props.renderActivity}
             renderFavoriteProducts={this.props.renderFavoriteProducts}
             renderFollowing={this.props.renderFollowing}
