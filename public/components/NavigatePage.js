@@ -10,10 +10,10 @@ export default class NavigatePage extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{title: 'Splash', index: 0}}
+        initialRoute={{page: 'Splash', index: 0}}
         renderScene={(route, navigator) =>
         <CurrentScene
-            page={route.title}
+            page={route.page}
             username={this.props.username}
             picture={this.props.picture}
             following={this.props.following}
