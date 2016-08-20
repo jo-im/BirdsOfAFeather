@@ -29,6 +29,7 @@ class bof extends Component {
     this.onFilterProductData = this.onFilterProductData.bind(this);
     this.goToSummary = this.goToSummary.bind(this);
     this.goToProfile = this.goToProfile.bind(this);
+    this.goToAllergiesAndDiet = this.goToAllergiesAndDiet.bind(this);
     this.renderActivity = this.renderActivity.bind(this);
     this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
     this.renderFollowing = this.renderFollowing.bind(this);
@@ -206,10 +207,18 @@ class bof extends Component {
 
   goToProfile(route, navigator) {
     console.log('Inside goToProfile');
-    console.log(navigator.getCurrentRoutes());
     navigator.push({
       page: this.state.pages[6],
       index: 6
+    });
+    console.log(navigator.getCurrentRoutes());
+  }
+
+  goToAllergiesAndDiet(route, navigator) {
+    console.log('Inside allergiesanddiet');
+    navigator.push({
+      page: this.state.pages[2],
+      index: 2
     })
   }
 
@@ -260,7 +269,7 @@ class bof extends Component {
       <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following}
       renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
-      goToProfile={this.goToProfile} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
+      goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
