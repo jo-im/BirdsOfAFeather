@@ -6,6 +6,7 @@ const _ = require('lodash');
 
 
 const style = require('./../style/styles');
+const userInfo = require('./../../data/userInfo');
 
 export default class Splash extends Component {
   async getUserFromFB(userId, token) {
@@ -118,6 +119,28 @@ export default class Splash extends Component {
         }}
         onLogout={function(){
           console.log("Logged out.");
+          _this.props.rootParent.setState({ 
+            userId: null,
+            username: null,
+            picture: null,
+            profilePage: 'Comments',
+            email: null,
+            following: {},
+            friends: {},
+            concerns: [],
+            allergies: [],
+            diets: [],
+            selected: false,
+            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile'],
+            productDescription: {}
+          });
+          AsyncStorage.clear((err) => {
+            if (err) {
+              console.log('Error clearing user data: ', err);
+            } else {
+              console.log('User data cleared');
+            }
+          });
         }}
         onLoginFound={function(data){
           console.log("Existing login found.");
@@ -125,7 +148,6 @@ export default class Splash extends Component {
           _this.getUserFromFB(data.credentials.userId, data.credentials.token);
           
           // _this.retrieveUserData(data.credentials.userId);
-          _this.props.onForward();
           _this.props.onForward();
         }}
         onLoginNotFound={function(){

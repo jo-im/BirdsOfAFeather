@@ -21,12 +21,15 @@ export default class Welcome extends Component {
           </TouchableHighlight>
         </View>
         <View style={style.styles.container}>
-          <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
-            <Text style={style.styles.text}>Finish selecting concerns</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
-            <Text style={style.styles.text}>Go Back</Text>
-          </TouchableHighlight>
+        <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
+          <Text style={style.styles.text}>Finish selecting concerns</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
+          <Text style={style.styles.text}>Go Back</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={style.styles.next} onPress={this.props.goToProfile}>
+          <Text style={style.styles.text}>Go To Profile</Text>
+        </TouchableHighlight>
         </View>
       </View>
     );

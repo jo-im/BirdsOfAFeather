@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Splash from './Splash';
 import Welcome from './Welcome';
+import Profile from './Profile';
 import AllergiesAndDiet from './Allergies-Diet';
 import Scan from './Scan';
 import UPCReader from './UPCReader';
@@ -12,6 +13,7 @@ export default class CurrentScene extends Component {
   }
 
   render() {
+    console.log('this.props.page inside render of CurrentScene is', this.props.page);
     if (this.props.page === 'Splash') {
       return (
         <Splash onForward={this.props.onForward} rootParent={this.props.rootParent} />
@@ -21,8 +23,17 @@ export default class CurrentScene extends Component {
     if (this.props.page === 'Welcome') {
       return (
         <Welcome onForward={this.props.onForward} onBack={this.props.onBack} username={this.props.username} 
-        onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
+        goToProfile={this.props.goToProfile} onSelectConcern={this.props.onSelectConcern} onFinishSelectingConcerns={this.props.onFinishSelectingConcerns}
         rootParent={this.props.rootParent} />
+      );
+    }
+
+    if (this.props.page === 'Profile') {
+      return (
+        <Profile username={this.props.username} picture={this.props.picture} following={this.props.following}
+        profilePage={this.props.profilePage} renderFavoriteProducts={this.props.renderFavoriteProducts} renderActivity={this.props.renderActivity}
+        renderFollowing={this.props.renderFollowing}
+        onBack={this.props.onBack} rootParent={this.props.rootParent} />
       );
     }
 

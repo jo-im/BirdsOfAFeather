@@ -16,7 +16,7 @@ import {
   Alert
 } from 'react-native';
 import NavigatePage from './public/components/NavigatePage';
-
+const userInfo = require('./data/userInfo');
 
 
 class bof extends Component {
@@ -28,20 +28,25 @@ class bof extends Component {
     this.onSelectDiet = this.onSelectDiet.bind(this);
     this.onFilterProductData = this.onFilterProductData.bind(this);
     this.goToSummary = this.goToSummary.bind(this);
+    this.goToProfile = this.goToProfile.bind(this);
+    this.renderActivity = this.renderActivity.bind(this);
+    this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
+    this.renderFollowing = this.renderFollowing.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
 
     this.state = {
       userId: null,
       username: null,
-      email: null,
-      friends: [],
       picture: null,
+      profilePage: 'Activity',
+      following: {},
+      email: null,
       concerns: [],
       allergies: [],
       diets: [],
       selected: false,
-      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary'],
+      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile'],
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -199,12 +204,42 @@ class bof extends Component {
     });
   }
 
+  goToProfile(route, navigator) {
+    console.log('Inside goToProfile');
+    console.log(navigator.getCurrentRoutes());
+    navigator.push({
+      title: this.state.pages[6],
+      index: 6
+    })
+  }
+
+  renderActivity() {
+    this.state.profilePage = 'Activity';
+    this.setState({
+      profilePage: this.state.profilePage
+    });
+  }
+
+  renderFavoriteProducts() {
+    this.state.profilePage = 'Favorite Products';
+    this.setState({
+      profilePage: this.state.profilePage
+    });
+  }
+
+  renderFollowing() {
+    this.state.profilePage = 'Following';
+    this.setState({
+      profilePage: this.state.profilePage
+    });
+  }
+
   onForward(route, navigator) {
     let page;
     console.log('in onForward: ', route);
     const nextIndex = route.index + 1;
     navigator.push({
-      page: this.state.pages[nextIndex],
+      title: this.state.pages[nextIndex],
       index: nextIndex
     });
   }
@@ -222,8 +257,10 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets} 
-      selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
+      <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following}
+      renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
+      profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
+      goToProfile={this.goToProfile} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
