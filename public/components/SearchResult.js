@@ -18,16 +18,19 @@ export default class SearchResult extends Component {
   }
 
   render() {
+    _this = this;
     return (
       <View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => {
             return (
-              <View>
-                <Image source={{uri: rowData.product_image }} style={{height: 100, width: 100}}></Image>
-                <Text> {rowData.product_image} </Text>
-              </View>
+               <TouchableHighlight onPress={() => { _this.pressItem(rowData.product_upc); }} key={rowData.product_upc}>
+                  <View>
+                    <Image source={{uri: rowData.product_image }} style={{height: 100, width: 100}}></Image>
+                    <Text> {rowData.title} </Text>
+                  </View>
+              </TouchableHighlight>
             );
           }}
         />
@@ -40,7 +43,15 @@ export default class SearchResult extends Component {
       </View>
     );
   }
+  pressItem(upc) {
+    console.log('a button is being pressed');
+
+    console.log(upc);
+  }
+
 }
+
+
         // <View style={{flex: 1, flexDirection: 'row'}}>
         //   <Image source={{uri: this.props.searchResult[0].product_image }} style={{height: 150, width: 150}}></Image>
         // </View>
