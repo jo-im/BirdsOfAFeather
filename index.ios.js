@@ -208,7 +208,7 @@ class bof extends Component {
     console.log('Inside goToProfile');
     console.log(navigator.getCurrentRoutes());
     navigator.push({
-      title: this.state.pages[6],
+      page: this.state.pages[6],
       index: 6
     })
   }
@@ -239,7 +239,7 @@ class bof extends Component {
     console.log('in onForward: ', route);
     const nextIndex = route.index + 1;
     navigator.push({
-      title: this.state.pages[nextIndex],
+      page: this.state.pages[nextIndex],
       index: nextIndex
     });
   }
