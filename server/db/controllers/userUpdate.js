@@ -2,7 +2,7 @@ import {sequelize} from '../dbConnection';
 import Sequelize from 'sequelize';
 import {Users} from '../models/userModel';
 
-export const setNewUser = (user) => {
+export const setUserUpdate = (user) => {
   let selectedUser = JSON.parse(user.data);
 
   console.log('Trying to update user');
