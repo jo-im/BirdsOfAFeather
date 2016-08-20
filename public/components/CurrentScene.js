@@ -6,7 +6,6 @@ import AllergiesAndDiet from './Allergies-Diet';
 import Scan from './Scan';
 import UPCReader from './UPCReader';
 import Summary from './Summary';
-import TextSearch from './TextSearch';
 import SearchResult from './SearchResult';
 
 export default class CurrentScene extends Component {

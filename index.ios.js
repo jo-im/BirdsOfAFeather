@@ -209,7 +209,6 @@ class bof extends Component {
     });
   }
 
-<<<<<<< 6ef634c8c69aead12bab130999ce02ffacdb916f
   goToProfile(route, navigator) {
     console.log('Inside goToProfile');
     navigator.push({
@@ -247,21 +246,22 @@ class bof extends Component {
       profilePage: this.state.profilePage
     });
   }
-=======
+
   goToSearchResult(route, navigator, data) {
     console.log('=====================inside goToSearch function=================')
     console.log(this.state.allergies)
     // console.log(data);
     data = JSON.parse(data._bodyInit)
+
+
     this.setState({ searchResult: data })
+    
     console.log('=======================goToSearchResult state===================', this.state.searchResult)
     navigator.push({
       page: 'SearchResult',
       index: 7
     });
   }
-
->>>>>>> Add route to allow page transition to display search result page
 
   onForward(route, navigator) {
     let page;

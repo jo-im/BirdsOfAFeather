@@ -22,9 +22,14 @@ export default class SearchResult extends Component {
       <View>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => 
-            <Image source={{uri: rowData.product_image }} style={{height: 100, width: 100}}></Image>
-          }
+          renderRow={(rowData) => {
+            return (
+              <View>
+                <Image source={{uri: rowData.product_image }} style={{height: 100, width: 100}}></Image>
+                <Text> {rowData.product_image} </Text>
+              </View>
+            );
+          }}
         />
         <Text>{'\n'}</Text>
         <View style={style.styles.container}>
@@ -36,7 +41,6 @@ export default class SearchResult extends Component {
     );
   }
 }
-            // <Text> {rowData.product_image} </Text>
         // <View style={{flex: 1, flexDirection: 'row'}}>
         //   <Image source={{uri: this.props.searchResult[0].product_image }} style={{height: 150, width: 150}}></Image>
         // </View>

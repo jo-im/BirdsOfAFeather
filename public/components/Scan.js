@@ -52,8 +52,7 @@ export default class Scan extends Component {
       console.log('returned search item');
       // console.log(data);
       this.props.goToSearchResult(data);
-
-      // this.props.onForward();
+      // this.props.goToSearchResult(JSON.parse(data._bodyInit));
     })
     .catch(err => console.log(err));
   }
