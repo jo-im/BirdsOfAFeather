@@ -207,15 +207,19 @@ class bof extends Component {
 
   goToProfile(route, navigator) {
     console.log('Inside goToProfile');
-    console.log(navigator.getCurrentRoutes());
     navigator.push({
       page: this.state.pages[6],
       index: 6
-    })
+    });
+    console.log(navigator.getCurrentRoutes());
   }
 
   goToAllergiesAndDiet(route, navigator) {
     console.log('Inside allergiesanddiet');
+    navigator.push({
+      page: this.state.pages[2],
+      index: 2
+    })
   }
 
   renderActivity() {
