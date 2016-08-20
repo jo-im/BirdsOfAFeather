@@ -8,13 +8,10 @@ const style = require('./../style/styles');
 export default class SearchResult extends Component {
   constructor(props) {
     super(props);
-    // console.log('***********************props are*****************', this.props);
-
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows(this.props.searchResult)
     };
-
   }
 
   render() {
@@ -25,7 +22,9 @@ export default class SearchResult extends Component {
           dataSource={this.state.dataSource}
           renderRow={(rowData) => {
             return (
-               <TouchableHighlight onPress={() => { _this.pressItem(rowData.product_upc); }} key={rowData.product_upc}>
+              <TouchableHighlight onPress={() => { 
+                _this.props.fetchItemUPC(rowData.product_upc);
+              }} key={rowData.product_upc}>
                   <View>
                     <Image source={{uri: rowData.product_image }} style={{height: 100, width: 100}}></Image>
                     <Text> {rowData.title} </Text>
@@ -42,11 +41,6 @@ export default class SearchResult extends Component {
         </View>
       </View>
     );
-  }
-  pressItem(upc) {
-    console.log('a button is being pressed');
-
-    console.log(upc);
   }
 
 }
