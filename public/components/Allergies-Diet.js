@@ -6,11 +6,16 @@ export default class AllergiesAndDiet extends Component {
   render() {
     let shellFishSelected = {height: 50, width: 50, margin: 7};
     let peanutsSelected = {height: 50, width: 50, margin: 7};
+    let animalDerivedSelected = {height: 50, width: 50, margin: 7};
+
     if (this.props.shellFishSelected) {
       shellFishSelected = {height: 60, width: 60, margin: 7};
     }
     if (this.props.peanutsSelected) {
       peanutsSelected = {height: 60, width: 60, margin: 7};
+    }
+    if (this.props.animalDerivedSelected) {
+      animalDerivedSelected = {height: 60, width: 60, margin: 7};
     }
 
     return (
@@ -28,8 +33,8 @@ export default class AllergiesAndDiet extends Component {
           <TouchableHighlight style={peanutsSelected} onPress={this.props.onSelectAllergy.bind(this, 'Peanuts')}>
             <Image style={peanutsSelected} source={{uri: 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0001_peanuts.png'}}></Image>
           </TouchableHighlight>
-          <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Animal-derived')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-steak-512.png'}}></Image>
+          <TouchableHighlight style={animalDerivedSelected} onPress={this.props.onSelectAllergy.bind(this, 'Animal-derived')}>
+            <Image style={animalDerivedSelected} source={{uri: 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-steak-512.png'}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Soy')}>
             <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/24/19/36/soy-1004851_960_720.png'}}></Image>

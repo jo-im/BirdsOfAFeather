@@ -30,6 +30,7 @@ export default class NavigatePage extends Component {
             grade={this.props.grade}
             shellFishSelected={this.props.shellFishSelected}
             peanutsSelected={this.props.peanutsSelected}
+            animalDerivedSelected={this.props.animalDerivedSelected}
             isVegan={this.props.isVegan}
             isVegetarian={this.props.isVegetarian}
             isPescatarian={this.props.isPescatarian}

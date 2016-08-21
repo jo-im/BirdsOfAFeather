@@ -124,16 +124,53 @@ class bof extends Component {
     }
   }
 
+  deleteAllergy(allergy) {
+    let allergyIndex = this.state.allergies.indexOf(allergy);
+    this.state.allergies.splice(allergyIndex, 1);
+    this.setState({
+      allergies: this.state.allergies
+    });
+    console.log('=======================after delete====================', this.state.allergies);
+  }
+
+  addAllergy(allergy) {
+    if (this.state.allergies.indexOf(allergy) === -1) {
+      this.state.allergies.push(allergy);
+      console.log('=========================after push==============', this.state.allergies);
+    }
+  }
+
   async onSelectAllergy(allergy) {
+    console.log('=========================before delete/push=============', this.state.allergies)
     if (allergy === 'Shellfish') {
       this.state.shellFishSelected = !this.state.shellFishSelected;
+      //if shellFish is not selected anymore
+      if (!this.state.shellFishSelected) {
+          //take it out of the user's allergies list
+          this.deleteAllergy(allergy);
+      } else {
+        this.addAllergy(allergy);
+      }
     }
+
     if (allergy === 'Peanuts') {
       this.state.peanutsSelected = !this.state.peanutsSelected;
+      if (!this.state.peanutsSelected) {
+        this.deleteAllergy(allergy);
+      } else {
+        this.addAllergy(allergy);
+      }
     }
-    console.log('=========================before push=============', this.state.allergies)
-    this.state.allergies.push(allergy);
-    console.log('=========================after push==============', this.state.allergies);
+
+    if (allergy === 'Animal-derived') {
+      this.state.animalDerivedSelected = !this.state.animalDerivedSelected;
+      if (!this.state.animalDerivedSelected) {
+        this.deleteAllergy(allergy);
+      } else {
+        this.addAllergy(allergy);
+      }
+    }
+
     try {
       await AsyncStorage.setItem('ALLERGIES', JSON.stringify(this.state.allergies));
     } catch (error) {
@@ -343,7 +380,7 @@ class bof extends Component {
       renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
-      shellFishSelected={this.state.shellFishSelected} peanutsSelected={this.state.peanutsSelected}
+      shellFishSelected={this.state.shellFishSelected} peanutsSelected={this.state.peanutsSelected} animalDerivedSelected={this.state.animalDerivedSelected}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
