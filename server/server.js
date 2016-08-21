@@ -4,9 +4,10 @@ const facebookHandler = require('./utils/utils.js').facebookHandler;
 const foodFactsSearchHandler = require('./utils/utils.js').foodFactsSearchHandler;
 const foodFactsUPCHandler = require('./utils/utils.js').foodFactsUPCHandler;
 
+
 const port = process.env.PORT || 3000;
 
-const app = express();
+export const app = express();
 
 app.use(express.static(__dirname + '/../client/public'));
 app.use(bodyParser.json());
