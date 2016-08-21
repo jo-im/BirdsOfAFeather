@@ -171,6 +171,15 @@ class bof extends Component {
       }
     }
 
+    if (allergy === 'Soy') {
+      this.state.soySelected = !this.state.soySelected;
+      if (!this.state.soySelected) {
+        this.deleteAllergy(allergy);
+      } else {
+        this.addAllergy(allergy);
+      }
+    }
+
     try {
       await AsyncStorage.setItem('ALLERGIES', JSON.stringify(this.state.allergies));
     } catch (error) {
@@ -381,6 +390,7 @@ class bof extends Component {
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
       shellFishSelected={this.state.shellFishSelected} peanutsSelected={this.state.peanutsSelected} animalDerivedSelected={this.state.animalDerivedSelected}
+      soySelected={this.state.soySelected}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
@@ -389,8 +399,6 @@ class bof extends Component {
       onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
-
-
 }
 
 AppRegistry.registerComponent('bof', () => bof);
