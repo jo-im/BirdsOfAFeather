@@ -195,34 +195,43 @@ class bof extends Component {
     }
   }
 
-  async onSelectDiet(diet) {
-    //if the user did not select a diet yet
-      //they can choose one
-    //if the user already selected another diet 
-      //the use cannot select it 
-    if (this.state.diets.indexOf(diet) === -1) {
-      this.state.diets.push(diet);
-    }
+
+  toggleDiet(diet) {
     if (diet === 'Vegan') {
       this.state.vegan = !this.state.vegan;
-    }
-    if (diet === 'Vegetarian') {
+    } else if (diet === 'Vegetarian') {
       this.state.vegetarian = !this.state.vegetarian;
-    }
-    if (diet === 'Pescatarian') {
+    } else if (diet === 'Pescatarian') {
       this.state.pescatarian = !this.state.pescatarian;
     }
-    try {
-      await AsyncStorage.setItem('DIETS', JSON.stringify(this.state.diets));
-    } catch (error) {
-      console.log('Error saving data: ', error);
+
+    if (this.state.diets.length === 0) {
+      this.state.diets.push(diet);
+      console.log('===============diet after push==============', this.state.diets);
+    } else {
+      if (diet === this.state.diets[0]) {
+        this.state.diets.splice(0, 1);
+      }
+      console.log('===============diet after delete============', this.state.diets);
     }
 
     this.setState({
       vegan: this.state.vegan,
       vegetarian: this.state.vegetarian,
-      pescatarian: this.state.pescatarian
+      pescatarian: this.state.pescatarian,
+      diets: this.state.diets
     });
+  }
+
+  async onSelectDiet(diet) {
+    console.log('=================== diet before push/delete=========', this.state.diets);
+    this.toggleDiet(diet);
+
+    try {
+      await AsyncStorage.setItem('DIETS', JSON.stringify(this.state.diets));
+    } catch (error) {
+      console.log('Error saving data: ', error);
+    }
   }
 
   onFilterProductData(navigator, data) {
