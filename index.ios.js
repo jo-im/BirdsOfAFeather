@@ -35,6 +35,8 @@ class bof extends Component {
     this.renderFollowing = this.renderFollowing.bind(this);
     this.onForward = this.onForward.bind(this);
     this.onBack = this.onBack.bind(this);
+    this.goToSearchResult = this.goToSearchResult.bind(this);
+    this.fetchItemUPC = this.fetchItemUPC.bind(this);
 
     this.state = {
       userId: null,
@@ -47,7 +49,7 @@ class bof extends Component {
       allergies: [],
       diets: [],
       selected: false,
-      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile'],
+      pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile', 'SearchResult'],
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -56,6 +58,7 @@ class bof extends Component {
       isVegan: true,
       isVegetarian: true,
       isPescatarian: true,
+      searchResult: [],
     };
   }
 
@@ -86,6 +89,8 @@ class bof extends Component {
           console.log('PICTURE: ', store[4][1]);
           console.log('ALLERGIES: ', store[5][1]);
           console.log('DIETS: ', store[6][1]);
+          console.log('allergies state: ', _this.state.allergies)
+          console.log('diet state: ', _this.state.diets)
         } else {
           console.log('Initialized with no selection on disk.');
         }
@@ -129,6 +134,7 @@ class bof extends Component {
   onFilterProductData(navigator, data) {
     console.log('here in onFilterProductData:');
     var parsedData = JSON.parse(data._bodyInit);
+
     if (!parsedData.validUPC) {
       Alert.alert(
             'Alert Title',
@@ -243,6 +249,49 @@ class bof extends Component {
     });
   }
 
+  goToSearchResult(route, navigator, data) {
+    console.log('=====================inside goToSearch function=================')
+    // console.log(data);
+    data = JSON.parse(data._bodyInit)
+
+
+    this.setState({ searchResult: data })
+    
+    console.log('=======================goToSearchResult state===================', this.state.searchResult)
+    navigator.push({
+      page: 'SearchResult',
+      index: 7
+    });
+  }
+
+  fetchItemUPC(route, navigator, UPC) {
+    console.log('inside fetchItemUPC', UPC)
+    fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
+    // fetch('http://10.6.24.1:3000/api/foodfacts/upc', 
+      {
+        method: 'POST',
+        headers:
+        {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          { event: {data: '0' + UPC} }
+        )
+      })
+    .then(data => {
+      console.log(data._bodyInit);
+      this.onFilterProductData(navigator, data);
+      navigator.push({
+        page: 'Summary',
+        index: 5
+      });
+
+      // {page: 'Summary', index: 5}, navigator
+    })
+    .catch(err => console.log('err in readBarCode: ', err));
+  }
+
   onForward(route, navigator) {
     let page;
     console.log('in onForward: ', route);
@@ -273,7 +322,9 @@ class bof extends Component {
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
-      onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
+      onSelectDiet={this.onSelectDiet} onFilterProductData={this.onFilterProductData} goToSummary={this.goToSummary} 
+      goToSearchResult={this.goToSearchResult} searchResult={this.state.searchResult} fetchItemUPC={this.fetchItemUPC}
+      onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
 

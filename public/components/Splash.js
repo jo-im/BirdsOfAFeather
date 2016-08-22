@@ -26,7 +26,8 @@ export default class Splash extends Component {
           userId: responseJson.id,
           username: responseJson.name,
           friends: responseJson.friends.data,
-          picutre: responseJson.picture.data.url
+          picture: responseJson.picture.data.url,
+          friends: responseJson.friends.data
         });
         // save new FB information to DB
         this.postUserToServer(responseJson);
@@ -131,7 +132,7 @@ export default class Splash extends Component {
             allergies: [],
             diets: [],
             selected: false,
-            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile'],
+            pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile', 'SearchResult'],
             productDescription: {}
           });
           AsyncStorage.clear((err) => {

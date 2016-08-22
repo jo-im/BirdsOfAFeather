@@ -6,6 +6,7 @@ import AllergiesAndDiet from './Allergies-Diet';
 import Scan from './Scan';
 import UPCReader from './UPCReader';
 import Summary from './Summary';
+import SearchResult from './SearchResult';
 
 export default class CurrentScene extends Component {
   constructor(props) {
@@ -47,7 +48,13 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Scan') {
       return (
-        <Scan goToSummary={this.props.goToSummary} goToProfile={this.props.goToProfile} onForward={this.props.onForward} onBack={this.props.onBack}/>
+        <Scan goToSummary={this.props.goToSummary} goToProfile={this.props.goToProfile} goToSearchResult={this.props.goToSearchResult} onForward={this.props.onForward} onBack={this.props.onBack}/>
+      );
+    }
+
+    if (this.props.page === 'SearchResult') {
+      return (
+        <SearchResult searchResult={this.props.searchResult} fetchItemUPC={this.props.fetchItemUPC} onForward={this.props.onForward} onBack={this.props.onBack} />
       );
     }
 
