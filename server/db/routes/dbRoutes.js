@@ -1,5 +1,5 @@
 import {app} from '../../server';
-import {dbHandlers} from '../routeHandler/dbHandlers';
+import dbHandlers from '../routeHandler/dbHandlers';
 
 export default function(app) {
   ////////// FOLLOWING ENDPOINTS //////////

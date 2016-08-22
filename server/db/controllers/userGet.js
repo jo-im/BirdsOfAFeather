@@ -20,4 +20,4 @@ export const confirmUser = (facebookID) => {
   });
 };
 
-console.log(confirmUser(10153734367142146));
+// console.log(confirmUser(10153734367142146));

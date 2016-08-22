@@ -1,5 +1,5 @@
 import {addProductCommRate} from './productAddCommRate';
-import {getproduct} from './productGet';
+import {getProduct} from './productGet';
 import {saveNewProduct} from './productSet';
 import {addUserFollowing} from './userAddFollowing';
 import {confirmUser} from './userGet';
