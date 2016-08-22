@@ -197,13 +197,6 @@ class bof extends Component {
 
 
   toggleDiet(diet) {
-    if (diet === 'Vegan') {
-      this.state.vegan = !this.state.vegan;
-    } else if (diet === 'Vegetarian') {
-      this.state.vegetarian = !this.state.vegetarian;
-    } else if (diet === 'Pescatarian') {
-      this.state.pescatarian = !this.state.pescatarian;
-    }
 
     if (this.state.diets.length === 0) {
       this.state.diets.push(diet);
@@ -211,8 +204,46 @@ class bof extends Component {
     } else {
       if (diet === this.state.diets[0]) {
         this.state.diets.splice(0, 1);
+        if (diet === 'Vegan') {
+          this.state.vegan = !this.state.vegan;
+        }
+        if (diet === 'Vegetarian') {
+          this.state.vegetarian = !this.state.vegetarian;
+        }
+        if (diet === 'Pescatarian') {
+          this.state.pescatarian = !this.state.pescatarian;
+        }
       }
       console.log('===============diet after delete============', this.state.diets);
+    }
+
+    if (diet === 'Vegan') {
+      if (diet === this.state.diets[0]) {
+        this.state.vegan = !this.state.vegan;
+      }
+      if (this.state.vegan && this.state.diets[0] === 'Vegan') {
+        console.log('Entering in vegan if statement');
+        this.state.vegetarian = false;
+        this.state.pescatarian = false
+      }
+    } else if (diet === 'Vegetarian') {
+      if (diet === this.state.diets[0]) {
+        this.state.vegetarian = !this.state.vegetarian;
+      }
+      if (this.state.vegetarian && this.state.diets[0] === 'Vegetarian') {
+        console.log('Entering vegetarian if statement');
+        this.state.vegan = false;
+        this.state.pescatarian = false;
+      }
+    } else if (diet === 'Pescatarian') {
+      if (diet === this.state.diets[0]) {
+        this.state.pescatarian = !this.state.pescatarian;
+      }
+      if (this.state.pescatarian && this.state.pescatarian[0] === 'Pescatarian') {
+        console.log('Entering pescatarian if statement');
+        this.state.vegan = false;
+        this.state.vegetarian = false;
+      }
     }
 
     this.setState({
