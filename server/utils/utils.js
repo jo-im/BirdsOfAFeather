@@ -109,10 +109,5 @@ const parseFoodFactsData = (data) => {
 
 };
 
-const facebookHandler = (req, res) => {
-  setNewUser(req.body, res);
-};
-
-exports.facebookHandler = facebookHandler;
 exports.foodFactsSearchHandler = foodFactsSearchHandler;
 exports.foodFactsUPCHandler = foodFactsUPCHandler;
