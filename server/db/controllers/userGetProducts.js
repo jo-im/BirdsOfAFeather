@@ -15,19 +15,3 @@ export const getAllUsersProducts = (user) => {
       return err;
     });
 };
-
-/////// TESTING
-import {confirmUser} from './userGet';
-import Promise from 'bluebird';
-
-let findProds = () => {
-
-  Promise.all([
-    confirmUser(10153734367142146)])
-    .then(function (data) {
-      console.log('######## HAVE PROMISES???', typeof data[0]);
-      getAllUsersProducts(data[0]);
-    });
-};
-
-findProds();
