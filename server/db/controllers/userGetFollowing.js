@@ -15,19 +15,3 @@ export const getAllUsersFollows = (user) => {
       return err;
     });
 };
-
-/////// TESTING
-import {confirmUser} from './userGet';
-import Promise from 'bluebird';
-
-let findallfollow = () => {
-
-  Promise.all([
-    confirmUser(10153734367142146)])
-    .then(function (data) {
-      console.log('######## HAVE PROMISES???', typeof data[0]);
-      getAllUsersFollows(data[0]);
-    });
-};
-
-findallfollow();
