@@ -16,6 +16,9 @@ export default class AllergiesAndDiet extends Component {
     let nightshadesIcon = 'http://us.123rf.com/450wm/angelp/angelp1606/angelp160600050/57842125-eggplant-icon-flat-design-vector-illustration.jpg?ver=6';
     let eggIcon = 'https://cdn3.iconfinder.com/data/icons/food-icons-3/512/egg-512.png';
     let fishIcon = 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-fish-512.png';
+    let transfatIcon = 'https://cdn2.iconfinder.com/data/icons/food-and-kitchen/512/8-512.png';
+    let glutenIcon = 'http://i1.istockimg.com/file_thumbview_approve/76293945/5/stock-illustration-76293945-bread-loaf-colored-vector-icon.jpg';
+    let flavoringIcon = 'https://cdn0.iconfinder.com/data/icons/kitchen-and-cooking/512/spices_seasoning_spice_condiment_ingredient_flat_design_icon-512.png';
 
     if (this.props.shellfish) {
       shellFishIcon = 'http://www.maaii.com/assets/images/ok.png';
@@ -52,6 +55,15 @@ export default class AllergiesAndDiet extends Component {
     }
     if (this.props.fish) {
       fishIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.transfat) {
+      transfatIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.gluten) {
+      glutenIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.flavoring) {
+      flavoringIcon = 'http://www.maaii.com/assets/images/ok.png';
     }
 
     return (
@@ -120,14 +132,19 @@ export default class AllergiesAndDiet extends Component {
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Trans fat')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn2.iconfinder.com/data/icons/food-and-kitchen/512/8-512.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: transfatIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={{height: 57, width: 57, marginTop: 0, marginLeft: 3, marginRight: 3}} onPress={this.props.onSelectAllergy.bind(this, 'Gluten')}>
-            <Image style={{height: 57, width: 57, marginTop: 10, marginLeft: 7, marginRight: 3}} source={{uri: 'http://i1.istockimg.com/file_thumbview_approve/76293945/5/stock-illustration-76293945-bread-loaf-colored-vector-icon.jpg'}}></Image>
+            <Image style={{height: 57, width: 57, marginTop: 10, marginLeft: 7, marginRight: 3}} source={{uri: glutenIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Flavoring')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn0.iconfinder.com/data/icons/kitchen-and-cooking/512/spices_seasoning_spice_condiment_ingredient_flat_design_icon-512.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: flavoringIcon}}></Image>
           </TouchableHighlight>
+        </View>
+        <View style={{flex: 0.4, flexDirection: 'row'}}>
+          <Text style={{margin: 6}}>Trans fat</Text>
+          <Text style={{margin: 6}}>Gluten</Text>
+          <Text style={{margin: 6}}>Flavoring</Text>
         </View>
         <Text style={{textAlign: 'center', fontFamily: 'Didot-Italic', fontSize: 35}}>Any Dietary Concerns?</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
