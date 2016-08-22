@@ -123,7 +123,14 @@ dbHandlers.addNewUser = (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.updateUser = (req, res) => {
-
+  Promise.all([
+    dbControllers.userSetUpdate(req.body)
+  ]).then((updatedUser) => {
+    res.send(updatedUser[0]);
+  }).catch((err) => {
+    console.log('Error in updating a user from handler');
+    res.send(err);
+  });
 };
 
 ////////////////////////////////////////////////////////////////////////
