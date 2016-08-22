@@ -40,7 +40,8 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Allergies/Diet') {
       return (
-        <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet} selected={this.props.selected} 
+        <AllergiesAndDiet onSelectAllergy={this.props.onSelectAllergy} onSelectDiet={this.props.onSelectDiet} 
+        shellFishSelected={this.props.shellFishSelected} peanutsSelected={this.props.peanutsSelected}
         goToProfile={this.props.goToProfile} onForward={this.props.onForward} onBack={this.props.onBack} rootParent={this.props.rootParent} />
       ); 
     }

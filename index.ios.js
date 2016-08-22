@@ -48,8 +48,22 @@ class bof extends Component {
       concerns: [],
       allergies: [],
       diets: [],
-      selected: false,
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile', 'SearchResult'],
+      shellFishSelected: false,
+      peanutsSelected: false,
+      animalDerivedSelected: false,
+      soySelected: false,
+      cheeseSelected: false,
+      wheatSelected: false,
+      cornSelected: false,
+      sulfiteSelected: false,
+      treeNutsSelected: false,
+      nightShadesSelected: false,
+      eggSelected: false,
+      fishSelected: false,
+      transFatSelected: false,
+      glutenSelected: false,
+      flavoringSelected: false,
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -111,7 +125,12 @@ class bof extends Component {
   }
 
   async onSelectAllergy(allergy) {
-    this.state.selected = true;
+    if (allergy === 'Shellfish') {
+      this.state.shellFishSelected = !this.state.shellFishSelected;
+    }
+    if (allergy === 'Peanuts') {
+      this.state.peanutsSelected = !this.state.peanutsSelected;
+    }
     console.log('=========================before push=============', this.state.allergies)
     this.state.allergies.push(allergy);
     console.log('=========================after push==============', this.state.allergies);
@@ -120,6 +139,11 @@ class bof extends Component {
     } catch (error) {
       console.log('Error saving data: ', error);
     }
+
+    this.setState({
+      shellFishSelected: this.state.shellFishSelected,
+      peanutsSelected: this.state.peanutsSelected
+    })
   }
 
   async onSelectDiet(diet) {
@@ -318,7 +342,8 @@ class bof extends Component {
       <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following}
       renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
-      goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
+      goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
+      shellFishSelected={this.state.shellFishSelected} peanutsSelected={this.state.peanutsSelected}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
