@@ -49,21 +49,21 @@ class bof extends Component {
       allergies: [],
       diets: [],
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile', 'SearchResult'],
-      shellFishSelected: false,
-      peanutsSelected: false,
-      animalDerivedSelected: false,
-      soySelected: false,
-      cheeseSelected: false,
-      wheatSelected: false,
-      cornSelected: false,
-      sulfiteSelected: false,
-      treeNutsSelected: false,
-      nightShadesSelected: false,
-      eggSelected: false,
-      fishSelected: false,
-      transFatSelected: false,
-      glutenSelected: false,
-      flavoringSelected: false,
+      Shellfish: false,
+      Peanuts: false,
+      AnimalDerived: false,
+      Soy: false,
+      Dairy: false,
+      Wheat: false,
+      Corn: false,
+      Sulfite: false,
+      TreeNuts: false,
+      Nightshades: false,
+      Egg: false,
+      Fish: false,
+      Transfat: false,
+      Gluten: false,
+      Flavoring: false,
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -115,7 +115,6 @@ class bof extends Component {
   }
   
   async onSelectConcern(concern) {
-
     this.state.concerns.push(concern);
     try {
       await AsyncStorage.setItem('CONCERNS', JSON.stringify(this.state.concerns));
@@ -140,45 +139,47 @@ class bof extends Component {
     }
   }
 
+  toggleAllergy(allergy) {
+    console.log('inside toggleAllergy');
+    if (allergy === 'Animal-Derived') {
+      this.state.AnimalDerived = !this.state.AnimalDerived;
+      if (!this.state.AnimalDerived) {
+        this.deleteAllergy('Animal-Derived');
+      } else {
+        this.addAllergy('Animal-Derived');
+      }
+    } else if (allergy === 'Tree Nuts') {
+      if (allergy === 'Tree Nuts') {
+        this.state.TreeNuts = !this.state.TreeNuts;
+        if (!this.state.TreeNuts) {
+          this.deleteAllergy('Tree Nuts');
+        } else {
+          this.addAllergy('Tree Nuts');
+        }
+      }
+    } else if (allergy === 'Trans fat') {
+      if (allergy === 'Trans fat') {
+        this.state.Transfat = !this.state.Transfat;
+        if (!this.state.Transfat) {
+          this.deleteAllergy('Trans fat');
+        } else {
+          this.addAllergy('Trans fat');
+        }
+      }
+    } else {
+      this.state[allergy] = !this.state[allergy];
+        if (!this.state[allergy]) {
+          this.deleteAllergy(allergy);
+        } else {
+          this.addAllergy(allergy);
+        }
+    }
+  }
+
   async onSelectAllergy(allergy) {
     console.log('=========================before delete/push=============', this.state.allergies)
-    if (allergy === 'Shellfish') {
-      this.state.shellFishSelected = !this.state.shellFishSelected;
-      //if shellFish is not selected anymore
-      if (!this.state.shellFishSelected) {
-          //take it out of the user's allergies list
-          this.deleteAllergy(allergy);
-      } else {
-        this.addAllergy(allergy);
-      }
-    }
-
-    if (allergy === 'Peanuts') {
-      this.state.peanutsSelected = !this.state.peanutsSelected;
-      if (!this.state.peanutsSelected) {
-        this.deleteAllergy(allergy);
-      } else {
-        this.addAllergy(allergy);
-      }
-    }
-
-    if (allergy === 'Animal-derived') {
-      this.state.animalDerivedSelected = !this.state.animalDerivedSelected;
-      if (!this.state.animalDerivedSelected) {
-        this.deleteAllergy(allergy);
-      } else {
-        this.addAllergy(allergy);
-      }
-    }
-
-    if (allergy === 'Soy') {
-      this.state.soySelected = !this.state.soySelected;
-      if (!this.state.soySelected) {
-        this.deleteAllergy(allergy);
-      } else {
-        this.addAllergy(allergy);
-      }
-    }
+    console.log('this.state.allergy is', this.state[allergy]);
+    this.toggleAllergy(allergy);
 
     try {
       await AsyncStorage.setItem('ALLERGIES', JSON.stringify(this.state.allergies));
@@ -389,8 +390,9 @@ class bof extends Component {
       renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
-      shellFishSelected={this.state.shellFishSelected} peanutsSelected={this.state.peanutsSelected} animalDerivedSelected={this.state.animalDerivedSelected}
-      soySelected={this.state.soySelected}
+      shellfish={this.state.Shellfish} peanuts={this.state.Peanuts} animalDerived={this.state.AnimalDerived} soy={this.state.Soy}
+      dairy={this.state.Dairy} wheat={this.state.Wheat} corn={this.state.Corn} sulfite={this.state.Sulfite} treeNuts={this.state.TreeNuts}
+      nightshades={this.state.Nightshades} egg={this.state.Egg} fish={this.state.Fish} transfat={this.state.Transfat} gluten={this.state.Gluten} flavoring={this.state.Flavoring}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
