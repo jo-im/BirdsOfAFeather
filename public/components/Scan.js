@@ -4,6 +4,8 @@ const style = require('./../style/styles');
 
 export default class Scan extends Component {
   render() {
+    _this = this;
+
     return (
      <View>
        <View style={{marginTop: 20, marginLeft: 350}}>
@@ -18,7 +20,7 @@ export default class Scan extends Component {
          </TouchableHighlight>
          <Text>{'\n'}</Text>
 
-          <TextInput style={{height: 40}} placeholder="Search for Product" onChangeText={(searchTerm) => this.setState({searchTerm})} />
+          <TextInput style={{height: 40}} placeholder="Search for Product" onChangeText={(searchTerm) => this.setState({searchTerm})} onSubmitEditing={this.searchProduct.bind(this)} />
           <TouchableHighlight onPress={this.searchProduct.bind(this)}>
             <Text>Search</Text>
           </TouchableHighlight>
@@ -32,7 +34,12 @@ export default class Scan extends Component {
   }
 
   searchProduct () {
-    console.log('inside searchProduct');
+    console.log('inside searchProduct and value is', this.state);
+
+    if (!this.state) { 
+      return console.log('no text entered'); 
+    }
+
     console.log(this.state.searchTerm);
 
     // fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/search', 
