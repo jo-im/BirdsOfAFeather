@@ -251,7 +251,6 @@ class bof extends Component {
 
   goToSearchResult(route, navigator, data) {
     console.log('=====================inside goToSearch function=================')
-    console.log(this.state.allergies)
     // console.log(data);
     data = JSON.parse(data._bodyInit)
 

@@ -35,8 +35,8 @@ export default class Scan extends Component {
     console.log('inside searchProduct');
     console.log(this.state.searchTerm);
 
-    fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
-    // fetch('http://10.6.24.1:3000/api/foodfacts/search',
+    // fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/search', 
+    fetch('http://10.6.24.1:3000/api/foodfacts/search',
       {
         method: 'POST',
         headers:
