@@ -15,6 +15,7 @@ export const dbControllers = {
   followsGetAll: getAllUsersFollows,
   productSetAdd: saveNewProduct,
   productSetCommRate: addProductCommRate,
+  productGetOne: getProduct,
   userSetNew: setNewUser,
   userSetUpdate: setUserUpdate,
   userGetProduct: getAllUsersProducts,
