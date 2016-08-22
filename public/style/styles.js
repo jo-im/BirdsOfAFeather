@@ -71,6 +71,6 @@ module.exports.styles = StyleSheet.create({
   allergyAndDietIcon: {
     height: 50,
     width: 50,
-    margin: 4
+    margin: 7
   }
 });
