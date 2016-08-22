@@ -135,7 +135,16 @@ dbHandlers.updateUser = (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.confirmUser = (req, res) => {
+  let facebookId = req.body.data.facebookId;
 
+  Promise.all([
+    dbControllers.userGetOne(facebookId)
+  ]).then((userFound) => {
+    res.send(userFound[0]);
+  }).catch((err) => {
+    console.log('Error in finding a user from handler');
+    res.send(err);
+  });
 };
 
 ////////////////////////////////////////////////////////////////////////
