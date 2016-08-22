@@ -74,7 +74,21 @@ dbHandlers.addNewProduct = (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.addProductComment = (req, res) => {
+  let facebookId = req.body.facebookId;
+  let product = req.body.upc;
+  let comment = req.body.comment;
 
+  Promise.all([
+    dbControllers.userGetOne(facebookId),
+    dbControllers.productGetOne(product)
+  ]).then((userProd) => {
+    dbControllers.productSetCommRate(userProd[1], userProd[0], comment);
+  }).then((setProduct) => {
+    res.send(setProduct);
+  }).catch((err) => {
+    console.log('Error in adding product comment from handler');
+    res.send(err);
+  });
 };
 
 ////////////////////////////////////////////////////////////////////////
