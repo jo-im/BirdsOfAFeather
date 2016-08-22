@@ -111,7 +111,7 @@ dbHandlers.getAllUsersProducts = (req, res) => {
 ////////// USER ENDPOINTS //////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.addNewUser = (req, res) => {
-  console.log('postman connects');
+  console.log('postman connects', req.body);
   Promise.all([
     dbControllers.userSetNew(req)
   ]).then((newUser) => {

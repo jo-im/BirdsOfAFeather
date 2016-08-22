@@ -2,8 +2,9 @@ import {sequelize} from '../dbConnection';
 import Sequelize from 'sequelize';
 import {Users} from '../models/userModel';
 
-export const setNewUser = (user, response) => {
-  let selectedUser = JSON.parse(user.data);
+export const setNewUser = (user) => {
+  console.log('Trying before parse', user.body);
+  let selectedUser = user.body;
 
   console.log('Trying to set new user');
 
@@ -11,9 +12,10 @@ export const setNewUser = (user, response) => {
     where: {
       username: selectedUser.username,
       email: selectedUser.email,
-      facebookId: selectedUser.id,
-      profilePictUrl: selectedUser.url,
-      concerns: selectedUser.concerns
+      facebookId: selectedUser.userId,
+      profilePictUrl: selectedUser.pictureURL,
+      allergies: selectedUser.allergies,
+      diets: selectedUser.diets
     }
   })
   .then((newUser) => {

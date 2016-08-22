@@ -5,7 +5,8 @@ import Sequelize from 'sequelize';
 export const Users = sequelize.define ('User', {
   username: Sequelize.STRING,
   email: Sequelize.STRING,
-  facebookId: {type: Sequelize.BIGINT, unique: true},
+  facebookId: {type: Sequelize.STRING, unique: true},
   profilePictUrl: Sequelize.STRING,
-  concerns: Sequelize.ARRAY(Sequelize.STRING)
+  allergies: Sequelize.ARRAY(Sequelize.STRING),
+  diets: Sequelize.ARRAY(Sequelize.STRING)
 });

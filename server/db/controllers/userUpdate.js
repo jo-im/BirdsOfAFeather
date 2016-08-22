@@ -11,7 +11,8 @@ export const setUserUpdate = (user) => {
     {
       username: selectedUser.username,
       profilePictUrl: selectedUser.url,
-      concerns: selectedUser.concerns,
+      allergies: selectedUser.allergies,
+      diets: selectedUser.diets,
       email: selectedUser.email
     },
     { where: { facebookId: selectedUser.id } }
