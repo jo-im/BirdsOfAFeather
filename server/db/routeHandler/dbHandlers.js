@@ -18,7 +18,7 @@ dbHandlers.addNewFollowing = (req, res) => {
   }).then((following) => {
     res.send(following);
   }).catch((err) => {
-    console.log('Error in adding a new user from handler');
+    console.log('Error in adding a user following from handler');
     res.send(err);
   });
 };
@@ -36,7 +36,7 @@ dbHandlers.removeFollowing = (req, res) => {
   }).then((follows) => {
     res.send(follows);
   }).catch((err) => {
-    console.log('Error in adding a new user from handler');
+    console.log('Error in removing a user follows from handler');
     res.send(err);
   });
 };
@@ -53,7 +53,7 @@ dbHandlers.getAllFollows = (req, res) => {
   }).then((followings) => {
     res.send(followings);
   }).catch((err) => {
-    console.log('Error in adding a new user from handler');
+    console.log('Error in getting a user follows from handler');
     res.send(err);
   });
 };
@@ -62,7 +62,14 @@ dbHandlers.getAllFollows = (req, res) => {
 ///////// PRODUCT ENDPOINTS ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.addNewProduct = (req, res) => {
-
+  Promise.all([
+    dbControllers.productSetAdd(req.body)
+  ]).then((product) => {
+    res.send(product);
+  }).catch((err) => {
+    console.log('Error in getting user products from handler');
+    res.send(err);
+  });
 };
 
 ////////////////////////////////////////////////////////////////////////

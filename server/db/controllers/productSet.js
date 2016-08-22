@@ -23,12 +23,3 @@ export const saveNewProduct = (product) => {
     return err;
   });
 };
-
-// TESTING
-let testdata = {};
-testdata.data = JSON.stringify({
-  upc: 1234567890,
-  foodData: {test: 'random'}
-});
-
-saveNewProduct(testdata);
