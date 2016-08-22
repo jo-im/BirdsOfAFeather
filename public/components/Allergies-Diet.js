@@ -10,6 +10,12 @@ export default class AllergiesAndDiet extends Component {
     let soyIcon = 'https://pixabay.com/static/uploads/photo/2015/10/24/19/36/soy-1004851_960_720.png';
     let dairyIcon = 'http://icons.iconarchive.com/icons/webalys/kameleon.pics/256/Cheese-icon.png';
     let wheatIcon = 'https://www.allergenchecker.co.uk/images/icons/cereals_containing_gluten_icon.png';
+    let cornIcon = 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Corn-512.png';
+    let sulfiteIcon = 'http://www.freeiconspng.com/uploads/wine-icon-22.png';
+    let treeNutsIcon = 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0002_tree-nuts.png';
+    let nightshadesIcon = 'http://us.123rf.com/450wm/angelp/angelp1606/angelp160600050/57842125-eggplant-icon-flat-design-vector-illustration.jpg?ver=6';
+    let eggIcon = 'https://cdn3.iconfinder.com/data/icons/food-icons-3/512/egg-512.png';
+    let fishIcon = 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-fish-512.png';
 
     if (this.props.shellfish) {
       shellFishIcon = 'http://www.maaii.com/assets/images/ok.png';
@@ -28,6 +34,24 @@ export default class AllergiesAndDiet extends Component {
     }
     if (this.props.wheat) {
       wheatIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.corn) {
+      cornIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.sulfite) {
+      sulfiteIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.treeNuts) {
+      treeNutsIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.nightshades) {
+      nightshadesIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.egg) {
+      eggIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.fish) {
+      fishIcon = 'http://www.maaii.com/assets/images/ok.png';
     }
 
     return (
@@ -68,23 +92,31 @@ export default class AllergiesAndDiet extends Component {
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Corn')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Corn-512.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: cornIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Sulfite')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'http://www.freeiconspng.com/uploads/wine-icon-22.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: sulfiteIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Tree Nuts')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0002_tree-nuts.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: treeNutsIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Nightshades')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'http://us.123rf.com/450wm/angelp/angelp1606/angelp160600050/57842125-eggplant-icon-flat-design-vector-illustration.jpg?ver=6'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: nightshadesIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Egg')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn3.iconfinder.com/data/icons/food-icons-3/512/egg-512.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: eggIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Fish')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-fish-512.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: fishIcon}}></Image>
           </TouchableHighlight>
+        </View>
+        <View style={{flex: 0.4, flexDirection: 'row'}}>
+          <Text style={{marginTop: 6, marginRight: 22, marginBottom: 6, marginLeft: 14}}>Corn</Text>
+          <Text style={{margin: 6}}>Sulfite</Text>
+          <Text style={{marginTop: 6, marginRight: 4, marginBottom: 6, marginLeft: 6}}>Tree Nuts</Text>
+          <Text style={{margin: 6}}>Nightshades</Text>
+          <Text style={{marginTop: 6, marginRight: 15, marginBottom: 6, marginLeft: 6}}>Egg</Text>
+          <Text style={{margin: 6}}>Fish</Text>
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Trans fat')}>
