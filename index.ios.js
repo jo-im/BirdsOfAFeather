@@ -180,7 +180,7 @@ class bof extends Component {
 
     this.setState({
       Shellfish: this.state.Shellfish
-    })
+    });
   }
 
   async onSelectAllergy(allergy) {
@@ -196,6 +196,10 @@ class bof extends Component {
   }
 
   async onSelectDiet(diet) {
+    //if the user did not select a diet yet
+      //they can choose one
+    //if the user already selected another diet 
+      //the use cannot select it 
     if (this.state.diets.indexOf(diet) === -1) {
       this.state.diets.push(diet);
     }
