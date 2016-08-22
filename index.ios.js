@@ -64,6 +64,9 @@ class bof extends Component {
       Transfat: false,
       Gluten: false,
       Flavoring: false,
+      vegan: false,
+      vegetarian: false,
+      pescatarian: false,
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -174,6 +177,10 @@ class bof extends Component {
           this.addAllergy(allergy);
         }
     }
+
+    this.setState({
+      Shellfish: this.state.Shellfish
+    })
   }
 
   async onSelectAllergy(allergy) {
@@ -186,20 +193,32 @@ class bof extends Component {
     } catch (error) {
       console.log('Error saving data: ', error);
     }
-
-    this.setState({
-      shellFishSelected: this.state.shellFishSelected,
-      peanutsSelected: this.state.peanutsSelected
-    })
   }
 
   async onSelectDiet(diet) {
-    this.state.diets.push(diet);
+    if (this.state.diets.indexOf(diet) === -1) {
+      this.state.diets.push(diet);
+    }
+    if (diet === 'Vegan') {
+      this.state.vegan = !this.state.vegan;
+    }
+    if (diet === 'Vegetarian') {
+      this.state.vegetarian = !this.state.vegetarian;
+    }
+    if (diet === 'Pescatarian') {
+      this.state.pescatarian = !this.state.pescatarian;
+    }
     try {
       await AsyncStorage.setItem('DIETS', JSON.stringify(this.state.diets));
     } catch (error) {
       console.log('Error saving data: ', error);
     }
+
+    this.setState({
+      vegan: this.state.vegan,
+      vegetarian: this.state.vegetarian,
+      pescatarian: this.state.pescatarian
+    });
   }
 
   onFilterProductData(navigator, data) {
@@ -393,6 +412,7 @@ class bof extends Component {
       shellfish={this.state.Shellfish} peanuts={this.state.Peanuts} animalDerived={this.state.AnimalDerived} soy={this.state.Soy}
       dairy={this.state.Dairy} wheat={this.state.Wheat} corn={this.state.Corn} sulfite={this.state.Sulfite} treeNuts={this.state.TreeNuts}
       nightshades={this.state.Nightshades} egg={this.state.Egg} fish={this.state.Fish} transfat={this.state.Transfat} gluten={this.state.Gluten} flavoring={this.state.Flavoring}
+      vegan={this.state.vegan} vegetarian={this.state.vegetarian} pescatarian={this.state.pescatarian}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}

@@ -19,6 +19,9 @@ export default class AllergiesAndDiet extends Component {
     let transfatIcon = 'https://cdn2.iconfinder.com/data/icons/food-and-kitchen/512/8-512.png';
     let glutenIcon = 'http://i1.istockimg.com/file_thumbview_approve/76293945/5/stock-illustration-76293945-bread-loaf-colored-vector-icon.jpg';
     let flavoringIcon = 'https://cdn0.iconfinder.com/data/icons/kitchen-and-cooking/512/spices_seasoning_spice_condiment_ingredient_flat_design_icon-512.png';
+    let veganIcon = 'https://d2gg9evh47fn9z.cloudfront.net/thumb_COLOURBOX10662022.jpg';
+    let vegetarianIcon = 'https://2014mirimstudent424.files.wordpress.com/2014/03/for-vegetarian.png?w=300&h=300';
+    let pescatarianIcon = 'https://cdn0.iconfinder.com/data/icons/kitchen-colored-1/60/fish-dish-plate-chopstick-asian-512.png';
 
     if (this.props.shellfish) {
       shellFishIcon = 'http://www.maaii.com/assets/images/ok.png';
@@ -64,6 +67,15 @@ export default class AllergiesAndDiet extends Component {
     }
     if (this.props.flavoring) {
       flavoringIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.vegan) {
+      veganIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.vegetarian) {
+      vegetarianIcon = 'http://www.maaii.com/assets/images/ok.png';
+    }
+    if (this.props.pescatarian) {
+      pescatarianIcon = 'http://www.maaii.com/assets/images/ok.png';
     }
 
     return (
@@ -149,13 +161,13 @@ export default class AllergiesAndDiet extends Component {
         <Text style={{textAlign: 'center', fontFamily: 'Didot-Italic', fontSize: 35}}>Any Dietary Concerns?</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectDiet.bind(this, 'Vegan')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://d2gg9evh47fn9z.cloudfront.net/thumb_COLOURBOX10662022.jpg'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: veganIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectDiet.bind(this, 'Vegetarian')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://2014mirimstudent424.files.wordpress.com/2014/03/for-vegetarian.png?w=300&h=300'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: vegetarianIcon}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectDiet.bind(this, 'Pescatarian')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn0.iconfinder.com/data/icons/kitchen-colored-1/60/fish-dish-plate-chopstick-asian-512.png'}}></Image>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: pescatarianIcon}}></Image>
           </TouchableHighlight>
         </View>
         <View style={style.styles.container}>

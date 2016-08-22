@@ -43,6 +43,9 @@ export default class NavigatePage extends Component {
             transfat={this.props.transfat}
             gluten={this.props.gluten}
             flavoring={this.props.flavoring}
+            vegan={this.props.vegan}
+            vegetarian={this.props.vegetarian}
+            pescatarian={this.props.pescatarian}
             isVegan={this.props.isVegan}
             isVegetarian={this.props.isVegetarian}
             isPescatarian={this.props.isPescatarian}
