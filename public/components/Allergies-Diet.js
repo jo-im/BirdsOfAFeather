@@ -4,22 +4,26 @@ const style = require('./../style/styles');
 
 export default class AllergiesAndDiet extends Component {
   render() {
-    let shellFishSelected = {height: 50, width: 50, margin: 7};
-    let peanutsSelected = {height: 50, width: 50, margin: 7};
-    let animalDerivedSelected = {height: 50, width: 50, margin: 7};
-    let soySelected = {height: 50, width: 50, margin: 7};
-
-    if (this.props.shellFishSelected) {
-      shellFishSelected = {height: 60, width: 60, margin: 7};
+    let shellFishIcon = 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Crab-128.png';
+    let peanutsIcon = 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0001_peanuts.png';
+    let animalDerivedStyle = {height: 50, width: 50, margin: 7};
+    let soyStyle = {height: 50, width: 50, margin: 7};
+    let dairyStyle = {height: 50, width: 50, margin: 7};
+    console.log('this.props.animalDerived is', this.props.animalDerived);
+    if (this.props.shellfish) {
+      shellFishIcon = 'http://www.maaii.com/assets/images/ok.png';
     }
-    if (this.props.peanutsSelected) {
-      peanutsSelected = {height: 60, width: 60, margin: 7};
+    if (this.props.peanuts) {
+      peanutsIcon = 'http://www.maaii.com/assets/images/ok.png';
     }
-    if (this.props.animalDerivedSelected) {
-      animalDerivedSelected = {height: 60, width: 60, margin: 7};
+    if (this.props.animalDerived) {
+      animalDerivedStyle = {height: 60, width: 60, margin: 7};
     }
-    if (this.props.soySelected) {
-      soySelected = {height: 60, width: 60, margin: 7};
+    if (this.props.soy) {
+      soyStyle = {height: 60, width: 60, margin: 7};
+    }
+    if (this.props.dairy) {
+      dairyStyle = {height: 60, width: 60, margin: 7};
     }
 
     return (
@@ -31,17 +35,17 @@ export default class AllergiesAndDiet extends Component {
        </View>
         <Text style={{textAlign: 'center', fontFamily: 'Didot-Italic', fontSize: 40}}>Any Allergies?</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableHighlight style={shellFishSelected} onPress={this.props.onSelectAllergy.bind(this, 'Shellfish')}>
-            <Image style={shellFishSelected} source={{uri: 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Crab-128.png'}}></Image>
+          <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Shellfish')}>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: shellFishIcon}}></Image>
           </TouchableHighlight>
-          <TouchableHighlight style={peanutsSelected} onPress={this.props.onSelectAllergy.bind(this, 'Peanuts')}>
-            <Image style={peanutsSelected} source={{uri: 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0001_peanuts.png'}}></Image>
+          <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Peanuts')}>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: peanutsIcon}}></Image>
           </TouchableHighlight>
-          <TouchableHighlight style={animalDerivedSelected} onPress={this.props.onSelectAllergy.bind(this, 'Animal-derived')}>
-            <Image style={animalDerivedSelected} source={{uri: 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-steak-512.png'}}></Image>
+          <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Animal-Derived')}>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-steak-512.png'}}></Image>
           </TouchableHighlight>
-          <TouchableHighlight style={soySelected} onPress={this.props.onSelectAllergy.bind(this, 'Soy')}>
-            <Image style={soySelected} source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/24/19/36/soy-1004851_960_720.png'}}></Image>
+          <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Soy')}>
+            <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/24/19/36/soy-1004851_960_720.png'}}></Image>
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Dairy')}>
             <Image style={style.styles.allergyAndDietIcon} source={{uri: 'http://icons.iconarchive.com/icons/webalys/kameleon.pics/256/Cheese-icon.png'}}></Image>
@@ -49,6 +53,14 @@ export default class AllergiesAndDiet extends Component {
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Wheat')}>
             <Image style={style.styles.allergyAndDietIcon} source={{uri: 'https://www.allergenchecker.co.uk/images/icons/cereals_containing_gluten_icon.png'}}></Image>
           </TouchableHighlight>
+        </View>
+        <View style={{flex: 0.6, flexDirection: 'row'}}>
+          <Text style={{margin: 6}}>Shellfish</Text>
+          <Text style={{marginTop: 6, marginRight: 14, marginBottom: 6, marginLeft: 6}}>Peanuts</Text>
+          <Text style={{marginTop: 6, marginRight: 15, marginBottom: 6, marginLeft: 6}}>Animal{'\n'}Derived</Text>
+          <Text style={{marginTop: 6, marginRight: 25, marginBottom: 6, marginLeft: 6}}>Soy</Text>
+          <Text style={{marginTop: 6, marginRight: 24, marginBottom: 6, marginLeft: 6}}>Dairy</Text>
+          <Text style={{margin: 6}}>Wheat</Text>
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Corn')}>
