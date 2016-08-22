@@ -7,7 +7,7 @@ export const setNewUser = (user, response) => {
 
   console.log('Trying to set new user');
 
-  Users.findOrCreate({
+  return Users.findOrCreate({
     where: {
       username: selectedUser.username,
       email: selectedUser.email,
