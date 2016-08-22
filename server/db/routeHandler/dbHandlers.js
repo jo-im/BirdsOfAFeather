@@ -11,10 +11,10 @@ dbHandlers.addNewFollowing = (req, res) => {
   let followsId = req.body.id;
 
   Promise.all([
-    confirmUser(userId),
-    confirmUser(followsId)
+    dbControllers.userGetOne(userId),
+    dbControllers.userGetOne(followsId)
   ]).then((data) => {
-    addUserFollowing(data[0], data[1]);
+    dbControllers.followsSetAdd(data[0], data[1]);
   }).then((following) => {
     res.send(following);
   }).catch((err) => {
@@ -24,7 +24,20 @@ dbHandlers.addNewFollowing = (req, res) => {
 };
 
 dbHandlers.removeFollowing = (req, res) => {
+  let userId = req.body.facebookId;
+  let followsId = req.body.id;
 
+  Promise.all([
+    dbControllers.userGetOne(userId),
+    dbControllers.userGetOne(followsId)
+  ]).then((data) => {
+    dbControllers.followsSetRemove(data[0], data[1]);
+  }).then((follows) => {
+    res.send(follows);
+  }).catch((err) => {
+    console.log('Error in adding a new user from handler');
+    res.send(err);
+  });
 };
 
 dbHandlers.getAllFollows = (req, res) => {

@@ -22,20 +22,3 @@ export const removeUserFollowing = (user, following) => {
     return err;
   });
 };
-
-/////// TESTING
-import {confirmUser} from './userGet';
-import Promise from 'bluebird';
-
-let settingUserFoll = () => {
-
-  Promise.all([
-    confirmUser(10153734367142146),
-    confirmUser(123456)])
-    .then(function (data) {
-      console.log('######## HAVE PROMISES???', typeof data[0]);
-      removeUserFollowing(data[0], data[1]);
-    });
-};
-
-settingUserFoll();
