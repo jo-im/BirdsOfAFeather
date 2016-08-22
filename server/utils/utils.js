@@ -2,10 +2,11 @@ const request = require('request');
 require('dotenv').config();
 const _ = require('lodash');
 import {setNewUser} from '../db/controllers/userSet';
+import {setUserUpdate} from '../db/controllers/userUpdate';
 
 const foodFactsSearchHandler = function(req, res) {
   console.log('==========================req,body=====================', req.body);
-  const searchString = req.body.searchTerm.replace(/\s/g, '&'); 
+  const searchString = req.body.searchTerm.replace(/\s/g, '&');
   console.log(searchString);
 
   request.post(
@@ -55,7 +56,7 @@ const foodFactsUPCHandler = (req, res) => {
           res.send({ validUPC: false });
         } else {
           var result = parseFoodFactsData(parsedBody.results);
-          res.send(result);          
+          res.send(result);
         }
 
       } else {
@@ -108,10 +109,5 @@ const parseFoodFactsData = (data) => {
 
 };
 
-const facebookHandler = (req, res) => {
-  setNewUser(req.body, res);
-};
-
-exports.facebookHandler = facebookHandler;
 exports.foodFactsSearchHandler = foodFactsSearchHandler;
 exports.foodFactsUPCHandler = foodFactsUPCHandler;

@@ -19,8 +19,7 @@
     "dev:buildserver": "babel ./server -d ./server-dist --watch --ignore ./server-dist --presets es2015,stage-1 --copy-files",
     "dev:_buildserverNoWatch": "babel ./server -d ./server-dist --presets es2015,stage-1 --copy-files",
     "dev:_builddbtables": "node ./server-dist/db/initialization/initializeSchema.js",
-    "dev:_populateconcerns": "node ./server-dist/db/initialization/initializeConcerns.js",
-    "dev:HARDresetdb": "npm run dev:_buildserverNoWatch && npm run dev:_builddbtables && npm run dev:_populateconcerns",
+    "dev:HARDresetdb": "npm run dev:_buildserverNoWatch && npm run dev:_builddbtables",
     "postinstall": "npm run dev:_buildserverNoWatch",
     "test": "./node_modules/mocha/bin/mocha tests --recursive -R nyan",
     "start": "node server-dist/server.js"
@@ -29,6 +28,7 @@
     "babel-cli": "^6.11.4",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-1": "^6.13.0",
+    "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",

@@ -1,28 +1,26 @@
 import {sequelize} from '../dbConnection';
 import Sequelize from 'sequelize';
-import {Concerns} from '../models/concernModel';
-import User_Concerns from '../models/userConcernsModel';
 import {Users} from '../models/userModel';
 
-export const setNewUser = (user, response) => {
-  console.log('Trying to set new user', user);
-  let selectedUser = user; 
+export const setNewUser = (user) => {
+  console.log('Trying before parse', user.body);
+  let selectedUser = user.body;
 
-  Users.findOrCreate({
+  console.log('Trying to set new user');
+
+  return Users.findOrCreate({
     where: {
       username: selectedUser.username,
       email: selectedUser.email,
-      facebookId: selectedUser.id,
-      // friends: selectedUser.friends
+      facebookId: selectedUser.userId,
+      profilePictUrl: selectedUser.pictureURL,
+      allergies: selectedUser.allergies,
+      diets: selectedUser.diets
     }
   })
-  .then((selectedUser) => {
+  .then((newUser) => {
     console.log('Success in setting user');
-    if (response) {
-      response.send(JSON.stringify(selectedUser));
-    }
-
-    return selectedUser;
+    return newUser;
   })
   .catch((err) => {
     console.log('Error in setting user ===> ', err);

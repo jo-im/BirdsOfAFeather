@@ -1,8 +1,9 @@
 import {sequelize} from '../dbConnection';
 import Sequelize from 'sequelize';
 import {Users} from '../models/userModel';
-import {Concerns} from '../models/concernModel';
-import {User_Concerns} from '../models/userConcernsModel';
+import {Products} from '../models/productModel';
+import {Users_Follows} from '../models/usersFollowers';
+import {Users_Products} from '../models/usersProductsModel';
 
 // Initialize DB schema on Heroku
 sequelize
