@@ -42,6 +42,7 @@ class bof extends Component {
     this.state = {
       userId: null,
       username: null,
+      title: '',
       picture: null,
       profilePage: 'Activity',
       following: {},
@@ -69,7 +70,7 @@ class bof extends Component {
       vegetarian: false,
       pescatarian: false,
       favorited: false,
-      favoritedProducts: [],
+      favoritedProducts: {},
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -269,9 +270,8 @@ class bof extends Component {
   }
 
   onFilterProductData(navigator, data) {
-    console.log('here in onFilterProductData:');
     var parsedData = JSON.parse(data._bodyInit);
-
+    console.log('================================ parsedData =================================', parsedData);
     if (!parsedData.validUPC) {
       Alert.alert(
             'Alert Title',
@@ -288,6 +288,8 @@ class bof extends Component {
     } else {
       var allergiesProductContains = parsedData.allergies;
       this.state.grade = parsedData.score;
+      this.state.title = parsedData.title;
+      console.log('=============================this.state.title==================', this.state.title);
       this.state.productIngredients = parsedData.ingredientList;
       this.state.isVegan = true;
       this.state.isVegetarian = true;
@@ -321,6 +323,10 @@ class bof extends Component {
       this.state.ingredientsToAvoid = [];
       this.state.productAllergies = [];
 
+      if (!this.state.favoritedProducts[this.state.title]) {
+        this.state.favorited = false;
+      }
+
       this.state.allergies.forEach(allergy => {
         if (allergiesProductContains[allergy]) {
           this.state.productAllergies.push(allergy);
@@ -334,7 +340,9 @@ class bof extends Component {
         productImage: parsedData.imgURL,
         grade: parsedData.score,
         productIngredients: parsedData.ingredientList,
-        ingredientsToAvoid: this.state.ingredientsToAvoid
+        ingredientsToAvoid: this.state.ingredientsToAvoid,
+        title: parsedData.title,
+        favorited: this.state.favorited
       });
     }
   }
@@ -378,9 +386,13 @@ class bof extends Component {
     console.log('Is it favorited?', this.state.favorited);
     if (this.state.favorited) {
     //when product is favorited, make sure that you save the productImage in the favoritedProducts object/array
-      this.state.favoritedProducts.push(this.state.productImage);
+      if (!this.state.favoritedProducts[this.state.title]) {
+        this.state.favoritedProducts[this.state.title] = this.state.productImage;
+        console.log('======================================this.state.favoritedProducts ======================', this.state.favoritedProducts);
+      }
     }
     console.log('productImage is now', this.state.productImage);
+    console.log('title is', this.state.title);
 
     this.setState({
       favorited: this.state.favorited,
