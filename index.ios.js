@@ -30,6 +30,7 @@ class bof extends Component {
     this.goToSummary = this.goToSummary.bind(this);
     this.goToProfile = this.goToProfile.bind(this);
     this.goToAllergiesAndDiet = this.goToAllergiesAndDiet.bind(this);
+    this.favoriteProduct = this.favoriteProduct.bind(this);
     this.renderActivity = this.renderActivity.bind(this);
     this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
     this.renderFollowing = this.renderFollowing.bind(this);
@@ -67,6 +68,7 @@ class bof extends Component {
       vegan: false,
       vegetarian: false,
       pescatarian: false,
+      favorited: false,
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -369,6 +371,15 @@ class bof extends Component {
     });
   }
 
+  favoriteProduct() {
+    console.log('inside favoriteProduct');
+    this.state.favorited = !this.state.favorited;
+    console.log('Is it favorited?', this.state.favorited);
+    this.setState({
+      favorited: this.state.favorited
+    });
+  }
+
   renderFavoriteProducts() {
     this.state.profilePage = 'Favorite Products';
     this.setState({
@@ -449,8 +460,8 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following}
-      renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
+      <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following} favoriteProduct={this.favoriteProduct}
+      favorited={this.state.favorited} renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
       shellfish={this.state.Shellfish} peanuts={this.state.Peanuts} animalDerived={this.state.AnimalDerived} soy={this.state.Soy}
