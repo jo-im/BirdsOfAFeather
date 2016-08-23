@@ -48,8 +48,25 @@ class bof extends Component {
       concerns: [],
       allergies: [],
       diets: [],
-      selected: false,
       pages: ['Splash', 'Welcome', 'Allergies/Diet', 'Scan', 'UPCReader', 'Summary', 'Profile', 'SearchResult'],
+      Shellfish: false,
+      Peanuts: false,
+      AnimalDerived: false,
+      Soy: false,
+      Dairy: false,
+      Wheat: false,
+      Corn: false,
+      Sulfite: false,
+      TreeNuts: false,
+      Nightshades: false,
+      Egg: false,
+      Fish: false,
+      Transfat: false,
+      Gluten: false,
+      Flavoring: false,
+      vegan: false,
+      vegetarian: false,
+      pescatarian: false,
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -101,7 +118,6 @@ class bof extends Component {
   }
   
   async onSelectConcern(concern) {
-
     this.state.concerns.push(concern);
     try {
       await AsyncStorage.setItem('CONCERNS', JSON.stringify(this.state.concerns));
@@ -110,11 +126,68 @@ class bof extends Component {
     }
   }
 
+  deleteAllergy(allergy) {
+    let allergyIndex = this.state.allergies.indexOf(allergy);
+    this.state.allergies.splice(allergyIndex, 1);
+    this.setState({
+      allergies: this.state.allergies
+    });
+    console.log('=======================after delete====================', this.state.allergies);
+  }
+
+  addAllergy(allergy) {
+    if (this.state.allergies.indexOf(allergy) === -1) {
+      this.state.allergies.push(allergy);
+      console.log('=========================after push==============', this.state.allergies);
+    }
+  }
+
+  toggleAllergy(allergy) {
+    console.log('inside toggleAllergy');
+    if (allergy === 'Animal-Derived') {
+      this.state.AnimalDerived = !this.state.AnimalDerived;
+      if (!this.state.AnimalDerived) {
+        this.deleteAllergy('Animal-Derived');
+      } else {
+        this.addAllergy('Animal-Derived');
+      }
+    } else if (allergy === 'Tree Nuts') {
+      if (allergy === 'Tree Nuts') {
+        this.state.TreeNuts = !this.state.TreeNuts;
+        if (!this.state.TreeNuts) {
+          this.deleteAllergy('Tree Nuts');
+        } else {
+          this.addAllergy('Tree Nuts');
+        }
+      }
+    } else if (allergy === 'Trans fat') {
+      if (allergy === 'Trans fat') {
+        this.state.Transfat = !this.state.Transfat;
+        if (!this.state.Transfat) {
+          this.deleteAllergy('Trans fat');
+        } else {
+          this.addAllergy('Trans fat');
+        }
+      }
+    } else {
+      this.state[allergy] = !this.state[allergy];
+        if (!this.state[allergy]) {
+          this.deleteAllergy(allergy);
+        } else {
+          this.addAllergy(allergy);
+        }
+    }
+
+    this.setState({
+      Shellfish: this.state.Shellfish
+    });
+  }
+
   async onSelectAllergy(allergy) {
-    this.state.selected = true;
-    console.log('=========================before push=============', this.state.allergies)
-    this.state.allergies.push(allergy);
-    console.log('=========================after push==============', this.state.allergies);
+    console.log('=========================before delete/push=============', this.state.allergies)
+    console.log('this.state.allergy is', this.state[allergy]);
+    this.toggleAllergy(allergy);
+
     try {
       await AsyncStorage.setItem('ALLERGIES', JSON.stringify(this.state.allergies));
     } catch (error) {
@@ -122,8 +195,69 @@ class bof extends Component {
     }
   }
 
+
+  toggleDiet(diet) {
+
+    if (this.state.diets.length === 0) {
+      this.state.diets.push(diet);
+      console.log('===============diet after push==============', this.state.diets);
+    } else {
+      if (diet === this.state.diets[0]) {
+        this.state.diets.splice(0, 1);
+        if (diet === 'Vegan') {
+          this.state.vegan = !this.state.vegan;
+        }
+        if (diet === 'Vegetarian') {
+          this.state.vegetarian = !this.state.vegetarian;
+        }
+        if (diet === 'Pescatarian') {
+          this.state.pescatarian = !this.state.pescatarian;
+        }
+      }
+      console.log('===============diet after delete============', this.state.diets);
+    }
+
+    if (diet === 'Vegan') {
+      if (diet === this.state.diets[0]) {
+        this.state.vegan = !this.state.vegan;
+      }
+      if (this.state.vegan && this.state.diets[0] === 'Vegan') {
+        console.log('Entering in vegan if statement');
+        this.state.vegetarian = false;
+        this.state.pescatarian = false
+      }
+    } else if (diet === 'Vegetarian') {
+      if (diet === this.state.diets[0]) {
+        this.state.vegetarian = !this.state.vegetarian;
+      }
+      if (this.state.vegetarian && this.state.diets[0] === 'Vegetarian') {
+        console.log('Entering vegetarian if statement');
+        this.state.vegan = false;
+        this.state.pescatarian = false;
+      }
+    } else if (diet === 'Pescatarian') {
+      if (diet === this.state.diets[0]) {
+        this.state.pescatarian = !this.state.pescatarian;
+      }
+      if (this.state.pescatarian && this.state.pescatarian[0] === 'Pescatarian') {
+        console.log('Entering pescatarian if statement');
+        this.state.vegan = false;
+        this.state.vegetarian = false;
+      }
+    }
+
+    this.setState({
+      vegan: this.state.vegan,
+      vegetarian: this.state.vegetarian,
+      pescatarian: this.state.pescatarian,
+      diets: this.state.diets
+    });
+  }
+
   async onSelectDiet(diet) {
-    this.state.diets.push(diet);
+    console.log('=================== diet before push/delete=========', this.state.diets);
+    this.toggleDiet(diet);
+
     try {
       await AsyncStorage.setItem('DIETS', JSON.stringify(this.state.diets));
     } catch (error) {
@@ -318,7 +452,11 @@ class bof extends Component {
       <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following}
       renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
-      goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} selected={this.state.selected} productImage={this.state.productImage} grade={this.state.grade}
+      goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
+      shellfish={this.state.Shellfish} peanuts={this.state.Peanuts} animalDerived={this.state.AnimalDerived} soy={this.state.Soy}
+      dairy={this.state.Dairy} wheat={this.state.Wheat} corn={this.state.Corn} sulfite={this.state.Sulfite} treeNuts={this.state.TreeNuts}
+      nightshades={this.state.Nightshades} egg={this.state.Egg} fish={this.state.Fish} transfat={this.state.Transfat} gluten={this.state.Gluten} flavoring={this.state.Flavoring}
+      vegan={this.state.vegan} vegetarian={this.state.vegetarian} pescatarian={this.state.pescatarian}
       isVegan={this.state.isVegan} isVegetarian={this.state.isVegetarian} isPescatarian={this.state.isPescatarian}
       productAllergies={this.state.productAllergies} ingredientsToAvoid={this.state.ingredientsToAvoid} productIngredients={this.state.productIngredients}
       onSelectConcern={this.onSelectConcern} onSelectAllergy={this.onSelectAllergy}
@@ -327,8 +465,6 @@ class bof extends Component {
       onForward={this.onForward} onBack={this.onBack} rootParent={this}/>
     );
   }
-
-
 }
 
 AppRegistry.registerComponent('bof', () => bof);
