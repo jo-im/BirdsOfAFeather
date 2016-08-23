@@ -11,7 +11,7 @@ export default class Profile extends Component {
     if (this.props.profilePage === 'Activity') {
       profilePage = <Activity />;
     } else if (this.props.profilePage === 'Favorite Products') {
-      profilePage = <FavoriteProducts />;
+      profilePage = <FavoriteProducts favoritedProducts={this.props.favoritedProducts}/>;
     } else if (this.props.profilePage === 'Following') {
       profilePage = <Following following={this.props.following}/>;
     }

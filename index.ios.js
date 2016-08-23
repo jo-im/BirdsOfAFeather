@@ -30,6 +30,7 @@ class bof extends Component {
     this.goToSummary = this.goToSummary.bind(this);
     this.goToProfile = this.goToProfile.bind(this);
     this.goToAllergiesAndDiet = this.goToAllergiesAndDiet.bind(this);
+    this.favoriteProduct = this.favoriteProduct.bind(this);
     this.renderActivity = this.renderActivity.bind(this);
     this.renderFavoriteProducts = this.renderFavoriteProducts.bind(this);
     this.renderFollowing = this.renderFollowing.bind(this);
@@ -41,6 +42,7 @@ class bof extends Component {
     this.state = {
       userId: null,
       username: null,
+      title: '',
       picture: null,
       profilePage: 'Activity',
       following: {},
@@ -67,6 +69,8 @@ class bof extends Component {
       vegan: false,
       vegetarian: false,
       pescatarian: false,
+      favorited: false,
+      favoritedProducts: {},
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -266,9 +270,8 @@ class bof extends Component {
   }
 
   onFilterProductData(navigator, data) {
-    console.log('here in onFilterProductData:');
     var parsedData = JSON.parse(data._bodyInit);
-
+    // console.log('================================ parsedData =================================', parsedData);
     if (!parsedData.validUPC) {
       Alert.alert(
             'Alert Title',
@@ -285,6 +288,8 @@ class bof extends Component {
     } else {
       var allergiesProductContains = parsedData.allergies;
       this.state.grade = parsedData.score;
+      this.state.title = parsedData.title;
+      console.log('=============================this.state.title==================', this.state.title);
       this.state.productIngredients = parsedData.ingredientList;
       this.state.isVegan = true;
       this.state.isVegetarian = true;
@@ -318,6 +323,12 @@ class bof extends Component {
       this.state.ingredientsToAvoid = [];
       this.state.productAllergies = [];
 
+      if (!this.state.favoritedProducts[this.state.title]) {
+        this.state.favorited = false;
+      } else {
+        this.state.favorited = true;
+      }
+
       this.state.allergies.forEach(allergy => {
         if (allergiesProductContains[allergy]) {
           this.state.productAllergies.push(allergy);
@@ -331,7 +342,9 @@ class bof extends Component {
         productImage: parsedData.imgURL,
         grade: parsedData.score,
         productIngredients: parsedData.ingredientList,
-        ingredientsToAvoid: this.state.ingredientsToAvoid
+        ingredientsToAvoid: this.state.ingredientsToAvoid,
+        title: parsedData.title,
+        favorited: this.state.favorited
       });
     }
   }
@@ -366,6 +379,28 @@ class bof extends Component {
     this.state.profilePage = 'Activity';
     this.setState({
       profilePage: this.state.profilePage
+    });
+  }
+
+  favoriteProduct() {
+    this.state.favorited = !this.state.favorited;
+    console.log('Is it favorited?', this.state.favorited);
+    if (this.state.favorited) {
+    //when product is favorited, make sure that you save the productImage in the favoritedProducts object/array
+      if (!this.state.favoritedProducts[this.state.title]) {
+        this.state.favoritedProducts[this.state.title] = this.state.productImage
+        console.log('======================================this.state.favoritedProducts ======================', this.state.favoritedProducts);
+      }
+    } else {
+      //if the product is not favorited anymore
+      delete this.state.favoritedProducts[this.state.title];
+    }
+    console.log('productImage is now', this.state.productImage);
+    console.log('title is', this.state.title);
+
+    this.setState({
+      favorited: this.state.favorited,
+      favoritedProducts: this.state.favoritedProducts
     });
   }
 
@@ -449,8 +484,8 @@ class bof extends Component {
 
   render() {
     return (
-      <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following}
-      renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
+      <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following} favoriteProduct={this.favoriteProduct}
+      favorited={this.state.favorited} favoritedProducts={this.state.favoritedProducts} renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
       shellfish={this.state.Shellfish} peanuts={this.state.Peanuts} animalDerived={this.state.AnimalDerived} soy={this.state.Soy}

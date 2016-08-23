@@ -14,7 +14,6 @@ export default class CurrentScene extends Component {
   }
 
   render() {
-    console.log('this.props.page inside render of CurrentScene is', this.props.page);
     if (this.props.page === 'Splash') {
       return (
         <Splash onForward={this.props.onForward} rootParent={this.props.rootParent} />
@@ -33,7 +32,7 @@ export default class CurrentScene extends Component {
       return (
         <Profile username={this.props.username} picture={this.props.picture} following={this.props.following}
         profilePage={this.props.profilePage} renderFavoriteProducts={this.props.renderFavoriteProducts} renderActivity={this.props.renderActivity}
-        renderFollowing={this.props.renderFollowing}
+        favoritedProducts={this.props.favoritedProducts} renderFollowing={this.props.renderFollowing}
         goToAllergiesAndDiet={this.props.goToAllergiesAndDiet} onBack={this.props.onBack} rootParent={this.props.rootParent} />
       );
     }
@@ -73,7 +72,7 @@ export default class CurrentScene extends Component {
         <Summary concerns={this.props.concerns} allergies={this.props.allergies} diets={this.props.diets} productImage={this.props.productImage} grade={this.props.grade}
         isVegan={this.props.isVegan} isVegetarian={this.props.isVegetarian} isPescatarian={this.props.isPescatarian}
         productIngredients={this.props.productIngredients} productAllergies={this.props.productAllergies} ingredientsToAvoid={this.props.ingredientsToAvoid}
-        goToProfile={this.props.goToProfile} onBack={this.props.onBack} />
+        favorited={this.props.favorited} favoriteProduct={this.props.favoriteProduct} goToProfile={this.props.goToProfile} onBack={this.props.onBack} />
       );
     }
   }
