@@ -390,6 +390,9 @@ class bof extends Component {
         this.state.favoritedProducts[this.state.title] = this.state.productImage;
         console.log('======================================this.state.favoritedProducts ======================', this.state.favoritedProducts);
       }
+    } else {
+      //if the product is not favorited anymore
+      delete this.state.favoritedProducts[this.state.title];
     }
     console.log('productImage is now', this.state.productImage);
     console.log('title is', this.state.title);
