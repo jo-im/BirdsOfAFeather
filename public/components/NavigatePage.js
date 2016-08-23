@@ -22,6 +22,7 @@ export default class NavigatePage extends Component {
             goToAllergiesAndDiet={this.props.goToAllergiesAndDiet.bind(this, route, navigator)}
             favorited={this.props.favorited}
             favoriteProduct={this.props.favoriteProduct}
+            favoritedProducts={this.props.favoritedProducts}
             renderActivity={this.props.renderActivity}
             renderFavoriteProducts={this.props.renderFavoriteProducts}
             renderFollowing={this.props.renderFollowing}

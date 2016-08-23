@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 export default class FavoriteProducts extends Component {
   render() {
+  console.log('this.props.favoritedProducts is', this.props.favoritedProducts);
     return (
       <View>
-        <Text>Here is the Favorite Products page</Text>
+        {this.props.favoritedProducts.map(image =>
+          <View>
+            <Image source={{uri: image}} style={{height: 50, width: 50}}></Image>
+          </View>
+        )}
       </View>
     );
   }

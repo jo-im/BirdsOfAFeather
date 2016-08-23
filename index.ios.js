@@ -69,6 +69,7 @@ class bof extends Component {
       vegetarian: false,
       pescatarian: false,
       favorited: false,
+      favoritedProducts: [],
       productImage: '',
       grade: 'N/A',
       productIngredients: [],
@@ -375,8 +376,15 @@ class bof extends Component {
     console.log('inside favoriteProduct');
     this.state.favorited = !this.state.favorited;
     console.log('Is it favorited?', this.state.favorited);
+    if (this.state.favorited) {
+    //when product is favorited, make sure that you save the productImage in the favoritedProducts object/array
+      this.state.favoritedProducts.push(this.state.productImage);
+    }
+    console.log('productImage is now', this.state.productImage);
+
     this.setState({
-      favorited: this.state.favorited
+      favorited: this.state.favorited,
+      favoritedProducts: this.state.favoritedProducts
     });
   }
 
@@ -461,7 +469,7 @@ class bof extends Component {
   render() {
     return (
       <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following} favoriteProduct={this.favoriteProduct}
-      favorited={this.state.favorited} renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
+      favorited={this.state.favorited} favoritedProducts={this.state.favoritedProducts} renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
       goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
       shellfish={this.state.Shellfish} peanuts={this.state.Peanuts} animalDerived={this.state.AnimalDerived} soy={this.state.Soy}

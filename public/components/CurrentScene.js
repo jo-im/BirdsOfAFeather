@@ -33,7 +33,7 @@ export default class CurrentScene extends Component {
       return (
         <Profile username={this.props.username} picture={this.props.picture} following={this.props.following}
         profilePage={this.props.profilePage} renderFavoriteProducts={this.props.renderFavoriteProducts} renderActivity={this.props.renderActivity}
-        renderFollowing={this.props.renderFollowing}
+        favoritedProducts={this.props.favoritedProducts} renderFollowing={this.props.renderFollowing}
         goToAllergiesAndDiet={this.props.goToAllergiesAndDiet} onBack={this.props.onBack} rootParent={this.props.rootParent} />
       );
     }
