@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Text, TouchableHighlight, View, Image } from 'react-native';
 const style = require('./../style/styles');
 
