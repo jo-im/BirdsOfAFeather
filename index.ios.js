@@ -45,7 +45,7 @@ class bof extends Component {
       title: '',
       picture: null,
       profilePage: 'Activity',
-      following: {},
+      following: { },
       email: null,
       concerns: [],
       allergies: [],
@@ -71,7 +71,7 @@ class bof extends Component {
       pescatarian: false,
       favorited: false,
       favoritedProducts: {},
-      productImage: '',
+      productImage: 'http://cdn.shopify.com/s/files/1/0984/6418/t/7/assets/noimage.jpg?17276477175536323609',
       grade: 'N/A',
       averageGrade: 'N/A',
       productIngredients: [],
@@ -81,6 +81,17 @@ class bof extends Component {
       isVegetarian: true,
       isPescatarian: true,
       searchResult: [],
+      avgRating: 0,
+      comments: [{ userid: 123, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 234, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 345, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 123, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 456, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 789, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 890, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 134, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 246, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
+                  { userid: 357, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'}]
     };
   }
 

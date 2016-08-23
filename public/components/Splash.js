@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Text, TouchableHighlight, View, Image, AsyncStorage } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 const _ = require('lodash');

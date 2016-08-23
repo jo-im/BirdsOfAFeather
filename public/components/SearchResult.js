@@ -1,6 +1,6 @@
 
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Text, TouchableHighlight, ListView, Image, View } from 'react-native';
 const _ = require('lodash');
 const style = require('./../style/styles');
