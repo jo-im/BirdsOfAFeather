@@ -102,6 +102,7 @@ const parseFoodFactsData = (data) => {
     ingredientList: ingredientList,
     reportCard: data.report_card,
     score: data.product_detail.food_facts_score,
+    title: data.product_detail.title,
     validUPC: true
   };
   console.log(foodFactsData);
