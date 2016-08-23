@@ -464,6 +464,31 @@ class bof extends Component {
   onForward(route, navigator) {
     let page;
     console.log('in onForward: ', route);
+
+    if (route.index === 2) {
+      console.log('Updating user info');
+      fetch('http://10.6.24.1:3000/api/user/update', // local server for testing purposes
+      {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: this.state.userId,
+          username: this.state.username,
+          email: this.state.email,
+          profilePictUrl: this.state.picture,
+          allergies: this.state.allergies,
+          diets: this.state.diets
+        })
+      })
+      .then(data => {
+        console.log('data received back from server posting is', data);
+      })
+      .catch(err => console.log('postUserToServer error message is: '));
+    }
+
     const nextIndex = route.index + 1;
     navigator.push({
       page: this.state.pages[nextIndex],
