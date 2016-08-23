@@ -7,7 +7,7 @@ import {Products} from './productModel';
 // and rating
 
 const Users_Products = sequelize.define ('Users_Products', {
-  favorite: {type: Sequelize.BOOLEAN, default: null},
+  favorite: {type: Sequelize.BOOLEAN, defaultValue: null},
   rating: Sequelize.INTEGER,
   comment: Sequelize.STRING(1000)
 });
