@@ -7,7 +7,7 @@ export const setUserUpdate = (user) => {
 
   console.log('Trying to update user');
 
-  Users.update(
+  return Users.update(
     {
       username: selectedUser.username,
       profilePictUrl: selectedUser.url,
@@ -15,7 +15,7 @@ export const setUserUpdate = (user) => {
       diets: selectedUser.diets,
       email: selectedUser.email
     },
-    { where: { facebookId: selectedUser.id } }
+    { where: { facebookId: selectedUser.userId } }
   )
   .then((updatedUser) => {
     console.log('Success in updating user');
