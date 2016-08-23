@@ -4,15 +4,13 @@ import {Products} from '../models/productModel';
 import {Users_Products} from '../models/usersProductsModel';
 import {Users} from '../models/userModel';
 
-export const addProductCommRate = (product, user, data) => {
-  let additionalInfo = JSON.parse(data);
-
+export const addProductCommRate = (product, user, rating, comment) => {
   return user.addProduct(product, {
-    rating: additionalInfo.rating,
-    comment: additionalInfo.comment
+    rating: rating,
+    comment: comment
   })
   .then((userProduct) => {
-    console.log('success in creating user comment/rating');
+    console.log('success in creating user comment/rating', userProduct);
     return userProduct;
   })
   .catch((err) => {
