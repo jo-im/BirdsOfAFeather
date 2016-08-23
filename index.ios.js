@@ -134,6 +134,7 @@ class bof extends Component {
   deleteAllergy(allergy) {
     let allergyIndex = this.state.allergies.indexOf(allergy);
     this.state.allergies.splice(allergyIndex, 1);
+
     this.setState({
       allergies: this.state.allergies
     });
