@@ -3,7 +3,7 @@ import Sequelize from 'sequelize';
 import {Users} from '../models/userModel';
 
 export const setUserUpdate = (user) => {
-  let selectedUser = JSON.parse(user.data);
+  let selectedUser = user;
 
   console.log('Trying to update user');
 
