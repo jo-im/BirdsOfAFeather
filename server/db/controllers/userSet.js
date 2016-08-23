@@ -10,9 +10,11 @@ export const setNewUser = (user) => {
 
   return Users.findOrCreate({
     where: {
+      facebookId: selectedUser.userId
+    },
+    defaults: {
       username: selectedUser.username,
       email: selectedUser.email,
-      facebookId: selectedUser.userId,
       profilePictUrl: selectedUser.pictureURL,
       allergies: selectedUser.allergies,
       diets: selectedUser.diets
