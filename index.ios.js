@@ -271,7 +271,7 @@ class bof extends Component {
 
   onFilterProductData(navigator, data) {
     var parsedData = JSON.parse(data._bodyInit);
-    console.log('================================ parsedData =================================', parsedData);
+    // console.log('================================ parsedData =================================', parsedData);
     if (!parsedData.validUPC) {
       Alert.alert(
             'Alert Title',
@@ -325,6 +325,8 @@ class bof extends Component {
 
       if (!this.state.favoritedProducts[this.state.title]) {
         this.state.favorited = false;
+      } else {
+        this.state.favorited = true;
       }
 
       this.state.allergies.forEach(allergy => {
@@ -381,13 +383,12 @@ class bof extends Component {
   }
 
   favoriteProduct() {
-    console.log('inside favoriteProduct');
     this.state.favorited = !this.state.favorited;
     console.log('Is it favorited?', this.state.favorited);
     if (this.state.favorited) {
     //when product is favorited, make sure that you save the productImage in the favoritedProducts object/array
       if (!this.state.favoritedProducts[this.state.title]) {
-        this.state.favoritedProducts[this.state.title] = this.state.productImage;
+        this.state.favoritedProducts[this.state.title] = this.state.productImage
         console.log('======================================this.state.favoritedProducts ======================', this.state.favoritedProducts);
       }
     } else {

@@ -45,7 +45,7 @@ export default class UPCReader extends Component {
         )
       })
     .then(data => {
-      console.log('data in readBarCode: ', data);
+      // console.log('data in readBarCode: ', data);
       this.props.onFilterProductData(data);
       this.props.onForward();
     })
