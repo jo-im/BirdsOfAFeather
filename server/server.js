@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 
 export const app = express();
 
+
 app.use(express.static(__dirname + '/../client/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,6 +19,7 @@ app.post('/api/foodfacts/upc', foodFactsUPCHandler);
 
 // Routes for database interaction
 dbRoutes(app);
+app.use('*', () => console.log('request to server'));
 
 app.listen(port, function() {
   console.log('NodeJS Running on port', port);
