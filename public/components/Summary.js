@@ -120,9 +120,9 @@ export default class Summary extends Component {
     if (!this.props.isVegan) {
       dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: 'http://pythagoreancrank.com/wp-content/uploads/2013/09/OrganicNotVegan.png'}}></Image>;
     } else if (!this.props.isVegetarian) {
-      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/non-veg-icon.png')}></Image>;
+      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('image!non-veg-icon')}></Image>;
     } else if (!this.props.isPescatarian) {
-      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/not-pescatarian-icon.png')}></Image>;
+      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('image!not-pescatarian-icon')}></Image>;
     } else {
       dietIcon = <Text style={{fontFamily: 'Didot-Italic', marginLeft: 8}}>Does not conflict with your diet</Text>;
     }

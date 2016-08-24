@@ -330,9 +330,12 @@ class bof extends Component {
       }
 
       if (this.state.diets.indexOf('Vegetarian') !== -1) {
+        if (allergiesProductContains['Shellfish']) {
+          this.state.isVegetarian = false;
+        }
         if (allergiesProductContains['Animal-Derived']) {
           allergiesProductContains['Animal-Derived'].forEach(allergies => {
-            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1 || allergiesProductContains['Shellfish'].indexOf(allergies) !== -1) {
+            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
               this.state.isVegetarian = false;
             }
           });
