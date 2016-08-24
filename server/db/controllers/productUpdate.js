@@ -3,7 +3,6 @@ import Sequelize from 'sequelize';
 import {Products} from '../models/productModel';
 
 export const setProductUpdate = (product, newRate) => {
-  console.log('Trying to update product');
   let upc = product.dataValues.upc;
   let totalNumRating = product.dataValues.totalNumRatings;
   let average = product.dataValues.averageRating;
@@ -12,7 +11,6 @@ export const setProductUpdate = (product, newRate) => {
     (totalNumRating / (totalNumRating + 1)) * average +
     (1 / (totalNumRating + 1)) * newRate);
   totalNumRating += 1;
-
   return product.update(
     {
       averageRating: average,
