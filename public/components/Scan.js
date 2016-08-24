@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Text, TouchableHighlight, View, Image, TextInput } from 'react-native';
 const style = require('./../style/styles');
 
@@ -27,6 +27,9 @@ export default class Scan extends Component {
 
          <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
            <Text style={style.styles.text}>Go Back</Text>
+         </TouchableHighlight>
+         <TouchableHighlight style={style.styles.back} onPress={this.props.goToSummary}>
+           <Text style={style.styles.text}>Go to Summary</Text>
          </TouchableHighlight>
        </View>
      </View>

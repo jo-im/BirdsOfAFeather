@@ -414,7 +414,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = E5736WXPE9;
+						DevelopmentTeam = P6A5K67373;
 					};
 				};
 			};
@@ -712,10 +712,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build1.bof;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build6.bof;
 				PRODUCT_NAME = bof;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -739,10 +739,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build1.bof;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build6.bof;
 				PRODUCT_NAME = bof;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
