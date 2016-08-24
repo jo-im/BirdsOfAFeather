@@ -17,15 +17,15 @@ describe('Postgres unit tests', function() {
       }
     };
 
-    // beforeEach((done) => { 
-    //   Users.findOrCreate(options).then(() => done())
-    //   .catch((err) => console.log('error is', err));
-    // });
+    beforeEach((done) => { 
+      Users.findOrCreate(options).then(() => done())
+      .catch((err) => console.log('error is', err));
+    });
 
-    // afterEach((done) => {
-    //   Users.destroy(options).then(() => done())
-    //   .catch((err) => console.log('error is', err));
-    // });
+    afterEach((done) => {
+      Users.destroy(options).then(() => done())
+      .catch((err) => console.log('error is', err));
+    });
 
     it('should retrieves all users', (done) => {
       Users.findAll()
