@@ -9,7 +9,9 @@ export const saveNewProduct = (product) => {
 
   return Products.findOrCreate({
     where: {
-      upc: selectedProduct.upc,
+      upc: selectedProduct.upc
+    },
+    defaults: {
       refreshTime: expires,
       foodFacts: selectedProduct.foodData
     }

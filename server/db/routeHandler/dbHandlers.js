@@ -75,27 +75,31 @@ dbHandlers.addNewProduct = (req, res) => {
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.addProductComment = (req, res) => {
   let facebookId = req.body.userId;
-  let productUPC = req.body.upc;
+  let product = {};
+  product.upc = req.body.upc;
+  product.foodData = {};
+
   let comment = req.body.comment;
   let newRate = req.body.rating;
   console.log('adding product req body', req.body);
   console.log(req.body.upc);
   Promise.all([
     dbControllers.userGetOne(facebookId),
-    dbControllers.productGetOne(productUPC)
+    dbControllers.productSetAdd(product)
   ]).then((userProd) => {
-    dbControllers.productSetCommRate(
-      userProd[1],
+    Promise.all([dbControllers.productSetCommRate(
+      userProd[1][0],
       userProd[0],
       newRate,
-      comment);
+      comment),
 
-    dbControllers.productSetUpdate(userProd[1], newRate);
-  }).then((setProduct) => {
-    res.send(setProduct);
-  }).catch((err) => {
-    console.log('Error in adding product comment from handler');
-    res.send(err);
+    dbControllers.productSetUpdate(userProd[1][0], newRate)
+    ]).then((setProduct) => {
+      res.send(setProduct[1]);
+    }).catch((err) => {
+      console.log('Error in adding product comment from handler');
+      res.send(err);
+    });
   });
 };
 
