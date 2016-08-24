@@ -32,7 +32,7 @@ export default class UPCReader extends Component {
 
   readBarCode(event) {
     Vibration.vibrate();
-    fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
+    fetch('http://10.6.24.31:3000/api/foodfacts/upc', 
       {
         method: 'POST',
         headers:

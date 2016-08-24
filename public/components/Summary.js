@@ -97,10 +97,32 @@ export default class Summary extends Component {
   }
 
   _addComment(value) {
-    console.log('here inside _addComment: ---- ', value);
-    if (value) {
-    }
     this.clearForm();
+    let newComment = {
+      userId: this.props.rootParent.state.userId,
+      username: this.props.rootParent.state.username,
+      comment: value.Comment,
+      time: new Date()
+    };
+    let comments = this.props.rootParent.state.comments
+    comments.push(newComment);
+    this.props.rootParent.setState({ comments });
+    newComment.upc = this.props.rootParent.state.upc;
+    newComment.rating = this.props.rootParent.state.myRating;
+    fetch('http://10.6.24.31:3000/api/product/addComm',
+      {
+        method: 'POST',
+        headers:
+        {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newComment)
+      })
+    .then(data => {
+      console.log('returned added comment  ', data);
+    })
+    .catch(err => console.log(err));
   }
 
   onChange(value) {

@@ -19,23 +19,28 @@ var options = {
 
 
 export default class CommentForm extends Component {
-	constructor(props) {
-    super(props);
-    
-    this.state = {
-      
-    };
+
+  onStarRatingPress(rating) {
+    this.props.rootParent.setState({
+      myRating: rating
+    });
+    console.log('here is my rating ', rating );
   }
 
   render() {
+    let _this = this;
   	return (
   		<View>
-        
+        <StarRating 
+          disabled={false}
+          maxStars={5}
+          rating={this.props.rootParent.state.myRating}
+          selectedStar={(rating) => _this.onStarRatingPress(rating)}
+        />
   			<Form
           ref="form"
           type={Comment}
           options={options}
-          value={this.state.value}
         />
         <TouchableHighlight style={{height: 36,
                                   width: 180,

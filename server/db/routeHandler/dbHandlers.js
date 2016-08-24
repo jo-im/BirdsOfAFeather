@@ -79,7 +79,7 @@ dbHandlers.addProductComment = (req, res) => {
   let comment = req.body.comment;
   let newRate = req.body.rating;
   console.log('adding product req body', req.body);
-
+  console.log(req.body.upc);
   Promise.all([
     dbControllers.userGetOne(facebookId),
     dbControllers.productGetOne(productUPC)
