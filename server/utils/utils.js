@@ -3,6 +3,8 @@ require('dotenv').config();
 const _ = require('lodash');
 import {setNewUser} from '../db/controllers/userSet';
 import {setUserUpdate} from '../db/controllers/userUpdate';
+import {getComments} from '../db/controllers/productCommGet';
+import Promise from 'bluebird';
 
 const foodFactsSearchHandler = function(req, res) {
   console.log('==========================req,body=====================', req.body);
@@ -24,7 +26,7 @@ const foodFactsSearchHandler = function(req, res) {
     function (error, response, body) {
       if (!error) {
         var result = JSON.parse(body);
-        console.log(result.results.products);
+        // console.log(result.results.products);
         res.send(result.results.products);
       } else {
         console.log('Food Facts API error', error);
@@ -35,39 +37,54 @@ const foodFactsSearchHandler = function(req, res) {
 
 const foodFactsUPCHandler = (req, res) => {
   console.log('inside foodfacts api');
-  const upc = req.body.event.data.slice(1);
-  console.log(upc);
-  request.post(
-    'https://api.foodfacts.com/ci/api/foodfacts/food_find_product_by_upc/format/json',
-    {
-      form: {
-        login: process.env.FOOD_FACTS_LOGIN,
-        password: process.env.FOOD_FACTS_PASSWORD,
-        upc: upc
-        // upc: '07502125' // test invalid UPC
-        // upc: '014100085461' // test valid UPC
-      }
-    },
-    function (error, response, body) {
-      if (!error) {
-        var parsedBody = JSON.parse(body);
+  // const upc = req.body.event.data.slice(1);
+  const upc = req.body.upc;
+  // console.log('have upc?', req.body.upc);
 
-        if (parsedBody.code === 1010 || parsedBody.message === 'Invalid food UPC provided') {
-          res.send({ validUPC: false });
-        } else {
-          var result = parseFoodFactsData(parsedBody.results);
-          res.send(result);
+  let ffRequest = () => {
+    return request.post(
+      'https://api.foodfacts.com/ci/api/foodfacts/food_find_product_by_upc/format/json',
+      {
+        form: {
+          login: process.env.FOOD_FACTS_LOGIN,
+          password: process.env.FOOD_FACTS_PASSWORD,
+          upc: upc
+          // upc: '07502125' // test invalid UPC
+          // upc: '014100085461' // test valid UPC
         }
+      },
+      function (error, response, body) {
+        if (!error) {
+          var parsedBody = JSON.parse(body);
 
-      } else {
-        console.log('Food Facts API error', error);
+          if (parsedBody.code === 1010 || parsedBody.message === 'Invalid food UPC provided') {
+            res.send({ validUPC: false });
+          } else {
+            var result = parseFoodFactsData(parsedBody.results);
+            // res.send(result);
+            return result;
+          }
+
+        } else {
+          console.log('Food Facts API error', error);
+        }
       }
-    }
-  );
+    );
+  };
+
+  Promise.all([
+    ffRequest(),
+    getComments(upc)
+  ]).then((data) => {
+    console.log('got data ******');
+    res.send(data);
+  }).catch((err) => {
+    console.log('Error in grabbing all data for UPC', err);
+  });
 };
 
 const parseFoodFactsData = (data) => {
-  console.log(data);
+  // console.log(data);
   const allergies = {};
   const diet = {};
   const ingredientList = [];
@@ -106,7 +123,7 @@ const parseFoodFactsData = (data) => {
     upc: data.product_detail.product_upc,
     validUPC: true
   };
-  console.log(foodFactsData);
+  // console.log(foodFactsData);
   return foodFactsData;
 
 };
