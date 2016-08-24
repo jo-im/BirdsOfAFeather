@@ -32,7 +32,11 @@ export default class UPCReader extends Component {
 
   readBarCode(event) {
     Vibration.vibrate();
+<<<<<<< 7603f32bc7c45980d63561bfdee47bf57179ef0f
     fetch('https://murmuring-dusk-10598.herokuapp.com/api/foodfacts/upc', 
+=======
+    fetch('http://10.6.24.1:3000/api/foodfacts/upc',
+>>>>>>> Able to scan by changing the ip address in fetch
       {
         method: 'POST',
         headers:
