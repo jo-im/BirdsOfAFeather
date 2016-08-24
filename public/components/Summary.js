@@ -1,13 +1,8 @@
-<<<<<<< a748c01e20f64b94643d2f9a77e88763580472cc
-import React, { Component, PropTypes } from 'react';
-import { Text, TouchableHighlight, View, ScrollView, ListView, Image } from 'react-native';
-=======
 import React, { Component } from 'react';
 import { Text, TouchableHighlight, ListView, Image, StyleSheet } from 'react-native';
 import { View } from 'react-native';
 import CommentForm from './CommentForm';
 
->>>>>>> Added comments and following functionality in the Summary page
 const _ = require('lodash');
 const Accordion = require('react-native-accordion');
 const style = require('./../style/styles');
