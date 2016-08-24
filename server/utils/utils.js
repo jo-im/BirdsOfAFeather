@@ -37,9 +37,9 @@ const foodFactsSearchHandler = function(req, res) {
 
 const foodFactsUPCHandler = (req, res) => {
   console.log('inside foodfacts api');
-  // const upc = req.body.event.data.slice(1);
-  const upc = req.body.upc;
-  // console.log('have upc?', req.body.upc);
+  const upc = req.body.event.data.slice(1);
+  // const upc = req.body.upc;
+  console.log('have upc?', upc);
 
   let ffRequest = () => {
     return request.post(
@@ -61,6 +61,7 @@ const foodFactsUPCHandler = (req, res) => {
             res.send({ validUPC: false });
           } else {
             var result = parseFoodFactsData(parsedBody.results);
+            getComments(upc, result, res);
             // res.send(result);
             return result;
           }
@@ -72,15 +73,7 @@ const foodFactsUPCHandler = (req, res) => {
     );
   };
 
-  Promise.all([
-    ffRequest(),
-    getComments(upc)
-  ]).then((data) => {
-    console.log('got data ******');
-    res.send(data);
-  }).catch((err) => {
-    console.log('Error in grabbing all data for UPC', err);
-  });
+  ffRequest();
 };
 
 const parseFoodFactsData = (data) => {

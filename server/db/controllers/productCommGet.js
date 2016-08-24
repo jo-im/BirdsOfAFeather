@@ -4,7 +4,7 @@ import {Products} from '../models/productModel';
 import {Users_Products} from '../models/usersProductsModel';
 import {Users} from '../models/userModel';
 
-export const getComments = (productUPC) => {
+export const getComments = (productUPC, foodData, res) => {
 
   return Products.find({
     where: {
@@ -19,12 +19,12 @@ export const getComments = (productUPC) => {
       return [rating, comment];
     });
 
-    return comments;
+    foodData.commRate = comments;
+    foodData.averageRate = gotProduct.dataValues.averageRating;
+    res.send(foodData);
   })
   .catch((err) => {
     console.log('Error in getting product ===> ', err);
     return err;
   });
 };
-
-// console.log(getComments('7474728778238'));
