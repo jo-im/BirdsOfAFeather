@@ -89,7 +89,6 @@ export default class Summary extends Component {
   }
 
   _renderComment(comment) {
-    console.log(`here in renderComments ${comment}`);
     return (
       <View>
         <View style={{flexDirection:'row', flexWrap:'wrap'}}>
@@ -118,14 +117,10 @@ export default class Summary extends Component {
   }
 
   _renderHeader() {
+    let favoriteProductIcon = 'http://www.clipartbest.com/cliparts/LiK/kxa/LiKkxa9ia.png';
     return (
-<<<<<<< a748c01e20f64b94643d2f9a77e88763580472cc
-      <ScrollView>
-         <View style={{marginTop: 20, marginLeft: 350}}>
-=======
       <View>
         <View style={{marginTop: 20, marginLeft: 350}}>
->>>>>>> Added comments and following functionality in the Summary page
           <TouchableHighlight onPress={this.props.goToProfile}>
             <Image style={{height: 50, width: 50}} source={{uri: 'http://cornerstonecoastal.com/wp-content/plugins/bright/images/menu-icon.png'}}></Image>
           </TouchableHighlight>
@@ -177,12 +172,8 @@ export default class Summary extends Component {
             <Text style={style.styles.text}>Go Back</Text>
           </TouchableHighlight>
         </View>
-<<<<<<< a748c01e20f64b94643d2f9a77e88763580472cc
-      </ScrollView>
-=======
-        <CommentForm addComment={this._addComment.bind(this)}/>
+        <CommentForm addComment={this._addComment.bind(this)} rootParent={this.props.rootParent} />
       </View>
->>>>>>> Added comments and following functionality in the Summary page
     );
   }
 
@@ -202,6 +193,10 @@ export default class Summary extends Component {
 
   render() {
     let dietIcon;
+    let favoriteProductIcon = 'http://www.clipartbest.com/cliparts/LiK/kxa/LiKkxa9ia.png';
+    if (this.props.favorited) {
+      favoriteProductIcon = 'http://cliparts.co/cliparts/rcL/xGB/rcLxGBBni.png';
+    }
     if (!this.props.isVegan) {
       dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: 'http://pythagoreancrank.com/wp-content/uploads/2013/09/OrganicNotVegan.png'}}></Image>;
     } else if (!this.props.isVegetarian) {
@@ -211,14 +206,11 @@ export default class Summary extends Component {
     } else {
       dietIcon = <Text style={{fontFamily: 'Didot-Italic', marginLeft: 8}}>Does not conflict with your diet</Text>;
     }
-
     let ingredientsToAvoid = 'No bad ingredients!';
     if (this.props.ingredientsToAvoid.length > 1) {
       ingredientsToAvoid = this.addComma(this.props.ingredientsToAvoid);
     }
-
     const allIngredients = this.addComma(this.props.productIngredients);
-
     let productAllergies = 'No allergens found';
     if (this.props.productAllergies.length > 0) {
       productAllergies = this.addComma(this.props.productAllergies);
