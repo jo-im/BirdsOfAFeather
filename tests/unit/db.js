@@ -67,7 +67,7 @@ describe('Postgres unit tests', function() {
   describe('Postgres Product Model unit tests', function() {
     var options = { 
       where: {
-        upc: 999999999,
+        upc: '999999999',
         // upc: '999999999',
         refreshTime: new Date(),
         foodFacts: {}
@@ -81,7 +81,7 @@ describe('Postgres unit tests', function() {
     });
 
     afterEach((done) => {
-      Products.destroy({where: {upc: 999999999}})
+      Products.destroy({where: {upc: '999999999'}})
       // Products.destroy({where: {upc: '999999999'}})
       .then(() => done())
       .catch((err) => console.log('error is', err));
@@ -102,7 +102,7 @@ describe('Postgres unit tests', function() {
     });
 
     it('should get a product given a valid UPC', (done) => {
-      Products.findOne({where: {upc: 999999999}})
+      Products.findOne({where: {upc: '999999999'}})
       .then((product) => {
         expect(product.dataValues.foodFacts).to.be.an('object');
         done();
@@ -110,7 +110,7 @@ describe('Postgres unit tests', function() {
     });
 
     it('should return null given an invalid UPC', (done) => {
-      Products.findOne({where: {upc: 0}})
+      Products.findOne({where: {upc: '0'}})
       .then((product) => {
         expect(product).to.equal(null);
         done();
