@@ -111,7 +111,7 @@ export default class Summary extends Component {
     this.setState({ value: null });
   }
 
-  _renderHeader() {
+  _renderHeader(ingredients) {
     let favoriteProductIcon = 'http://www.clipartbest.com/cliparts/LiK/kxa/LiKkxa9ia.png';
     return (
       <View>
@@ -153,7 +153,7 @@ export default class Summary extends Component {
         <Text>{'\n'}</Text>
         <ListView
           dataSource={this.state.ingrediantsDataSource}
-          renderRow={this.renderRow.bind(this, this.props.allIngredients)}
+          renderRow={this.renderRow.bind(this, ingredients)}
         />
         <Text>{'\n'}</Text>
         <View style={{backgroundColor: '#ffb84d', height: 160, width: 160, borderRadius: 160 / 2, marginTop: 30, marginLeft: 230}}>
@@ -217,10 +217,10 @@ export default class Summary extends Component {
         <ListView style={{height: Viewport.height}}
           dataSource={this.state.commentsDataSource}
           renderRow={this._renderComment.bind(this)}
-          renderHeader={this._renderHeader.bind(this, this)} 
+          renderHeader={this._renderHeader.bind(this, allIngredients)}
         />
           
-      </View>        
+      </View>
     );
   }
 }
