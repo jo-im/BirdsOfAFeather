@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, TouchableHighlight, View, Image, TextInput } from 'react-native';
+import StarRating from 'react-native-star-rating';
 var t = require('tcomb-form-native');
 var Form = t.form.Form;
 var Comment = t.struct({
@@ -29,6 +30,7 @@ export default class CommentForm extends Component {
   render() {
   	return (
   		<View>
+        
   			<Form
           ref="form"
           type={Comment}
