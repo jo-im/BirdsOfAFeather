@@ -73,6 +73,7 @@ class bof extends Component {
       favoritedProducts: {},
       productImage: '',
       grade: 'N/A',
+      averageGrade: 'N/A',
       productIngredients: [],
       productAllergies: [],
       ingredientsToAvoid: [],
@@ -133,6 +134,7 @@ class bof extends Component {
   deleteAllergy(allergy) {
     let allergyIndex = this.state.allergies.indexOf(allergy);
     this.state.allergies.splice(allergyIndex, 1);
+
     this.setState({
       allergies: this.state.allergies
     });
@@ -512,7 +514,7 @@ class bof extends Component {
       <NavigatePage username={this.state.username} picture={this.state.picture} following={this.state.following} favoriteProduct={this.favoriteProduct}
       favorited={this.state.favorited} favoritedProducts={this.state.favoritedProducts} renderActivity={this.renderActivity} renderFavoriteProducts={this.renderFavoriteProducts} renderFollowing={this.renderFollowing}
       profilePage={this.state.profilePage} concerns={this.state.concerns} allergies={this.state.allergies} diets={this.state.diets}
-      goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade}
+      goToProfile={this.goToProfile} goToAllergiesAndDiet={this.goToAllergiesAndDiet} productImage={this.state.productImage} grade={this.state.grade} averageGrade={this.state.averageGrade}
       shellfish={this.state.Shellfish} peanuts={this.state.Peanuts} animalDerived={this.state.AnimalDerived} soy={this.state.Soy}
       dairy={this.state.Dairy} wheat={this.state.Wheat} corn={this.state.Corn} sulfite={this.state.Sulfite} treeNuts={this.state.TreeNuts}
       nightshades={this.state.Nightshades} egg={this.state.Egg} fish={this.state.Fish} transfat={this.state.Transfat} gluten={this.state.Gluten} flavoring={this.state.Flavoring}

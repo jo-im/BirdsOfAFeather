@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, TouchableHighlight, ListView, Image } from 'react-native';
-import { View } from 'react-native';
+import { Text, TouchableHighlight, View, ScrollView, ListView, Image } from 'react-native';
 const _ = require('lodash');
 const Accordion = require('react-native-accordion');
 const style = require('./../style/styles');
@@ -79,7 +78,7 @@ export default class Summary extends Component {
     }
 
     return (
-      <View>
+      <ScrollView>
          <View style={{marginTop: 20, marginLeft: 350}}>
           <TouchableHighlight onPress={this.props.goToProfile}>
             <Image style={{height: 50, width: 50}} source={{uri: 'http://cornerstonecoastal.com/wp-content/plugins/bright/images/menu-icon.png'}}></Image>
@@ -121,12 +120,18 @@ export default class Summary extends Component {
           renderRow={this.renderRow.bind(this, allIngredients)}
         />
         <Text>{'\n'}</Text>
+        <View style={{backgroundColor: '#ffb84d', height: 160, width: 160, borderRadius: 160 / 2, marginTop: 30, marginLeft: 230}}>
+          <View style={{width: 100, marginLeft: 30}}>
+            <Text style={{textAlign: 'center', fontSize: 30, fontFamily: 'Didot-Italic', marginTop: 40, color: 'white'}}>Grade:</Text>
+            <Text style={{textAlign: 'center', fontSize: 30, fontFamily: 'Didot-Italic', color: 'white'}}>{this.props.averageGrade}</Text>
+          </View>
+        </View>
         <View style={style.styles.container}>
           <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
             <Text style={style.styles.text}>Go Back</Text>
           </TouchableHighlight>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
