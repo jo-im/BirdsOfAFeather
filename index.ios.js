@@ -320,7 +320,6 @@ class bof extends Component {
       var allergiesProductContains = parsedData.allergies;
       this.state.grade = parsedData.score;
       this.state.title = parsedData.title;
-      console.log('=============================this.state.title==================', this.state.title);
       this.state.productIngredients = parsedData.ingredientList;
       this.state.isVegan = true;
       this.state.isVegetarian = true;
@@ -333,7 +332,7 @@ class bof extends Component {
       if (this.state.diets.indexOf('Vegetarian') !== -1) {
         if (allergiesProductContains['Animal-Derived']) {
           allergiesProductContains['Animal-Derived'].forEach(allergies => {
-            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
+            if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1 || allergiesProductContains['Shellfish'].indexOf(allergies) !== -1) {
               this.state.isVegetarian = false;
             }
           });
