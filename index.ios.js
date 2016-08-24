@@ -3,7 +3,6 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -82,6 +81,7 @@ class bof extends Component {
       isPescatarian: true,
       searchResult: [],
       avgRating: 3.5,
+      myRating: 0,
       comments: [{ userid: 123, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
                   { userid: 234, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
                   { userid: 345, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
@@ -352,6 +352,7 @@ class bof extends Component {
       });
 
       this.setState({
+        upc: parsedData.upc,
         productImage: parsedData.imgURL,
         grade: parsedData.score,
         productIngredients: parsedData.ingredientList,
