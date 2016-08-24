@@ -4,10 +4,10 @@ import {Products} from '../models/productModel';
 
 export const saveNewProduct = (product) => {
   console.log('Trying to set new product');
-  let selectedProduct = JSON.parse(product.data);
+  let selectedProduct = product;
   let expires = new Date();
 
-  Products.findOrCreate({
+  return Products.findOrCreate({
     where: {
       upc: selectedProduct.upc,
       refreshTime: expires,

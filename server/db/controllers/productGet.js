@@ -2,16 +2,15 @@ import {sequelize} from '../dbConnection';
 import Sequelize from 'sequelize';
 import {Products} from '../models/productModel';
 
-export const getProduct = (product) => {
-  let selectedProduct = JSON.parse(product.data);
+export const getProduct = (productUPC) => {
 
   return Products.find({
     where: {
-      upc: selectedProduct.upc,
+      upc: productUPC,
     }
   })
   .then((gotProduct) => {
-    console.log('Success in getting product', gotProduct);
+    console.log('Success in getting product');
     return gotProduct;
   })
   .catch((err) => {

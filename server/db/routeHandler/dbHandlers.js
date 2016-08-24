@@ -74,15 +74,23 @@ dbHandlers.addNewProduct = (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.addProductComment = (req, res) => {
-  let facebookId = req.body.facebookId;
-  let product = req.body.upc;
+  let facebookId = req.body.userId;
+  let productUPC = req.body.upc;
   let comment = req.body.comment;
+  let newRate = req.body.rating;
+  console.log('adding product req body', req.body);
 
   Promise.all([
     dbControllers.userGetOne(facebookId),
-    dbControllers.productGetOne(product)
+    dbControllers.productGetOne(productUPC)
   ]).then((userProd) => {
-    dbControllers.productSetCommRate(userProd[1], userProd[0], comment);
+    dbControllers.productSetCommRate(
+      userProd[1],
+      userProd[0],
+      newRate,
+      comment);
+
+    dbControllers.productSetUpdate(userProd[1], newRate);
   }).then((setProduct) => {
     res.send(setProduct);
   }).catch((err) => {
@@ -98,7 +106,7 @@ dbHandlers.getAllUsersProducts = (req, res) => {
   Promise.all([
     dbControllers.userGetOne(facebookId)
   ]).then((foundUser) => {
-    getAllUsersProducts(foundUser[0]);
+    dbControllers.userGetProduct(foundUser[0]);
   }).then((products) => {
     res.send(products);
   }).catch((err) => {
@@ -136,7 +144,7 @@ dbHandlers.updateUser = (req, res) => {
 
 ////////////////////////////////////////////////////////////////////////
 dbHandlers.confirmUser = (req, res) => {
-  let facebookId = req.body.data.facebookId;
+  let facebookId = req.headers.userid;
 
   Promise.all([
     dbControllers.userGetOne(facebookId)

@@ -8,6 +8,7 @@ import {getAllUsersProducts} from './userGetProducts';
 import {removeUserFollowing} from './userRemoveFollow';
 import {setNewUser} from './userSet';
 import {setUserUpdate} from './userUpdate';
+import {setProductUpdate} from './productUpdate';
 
 export const dbControllers = {
   followsSetAdd: addUserFollowing,
@@ -15,6 +16,7 @@ export const dbControllers = {
   followsGetAll: getAllUsersFollows,
   productSetAdd: saveNewProduct,
   productSetCommRate: addProductCommRate,
+  productSetUpdate: setProductUpdate,
   productGetOne: getProduct,
   userSetNew: setNewUser,
   userSetUpdate: setUserUpdate,

@@ -11,7 +11,7 @@ export const confirmUser = (facebookID) => {
     }
   })
   .then((user) => {
-    console.log('success');
+    console.log('success in getting user');
     return user;
   })
   .catch((err) => {
