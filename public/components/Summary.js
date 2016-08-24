@@ -135,6 +135,29 @@ export default class Summary extends Component {
 
   _renderHeader() {
     let favoriteProductIcon = 'http://www.clipartbest.com/cliparts/LiK/kxa/LiKkxa9ia.png';
+    if (this.props.favorited) {
+      favoriteProductIcon = 'http://cliparts.co/cliparts/rcL/xGB/rcLxGBBni.png';
+    }
+    let dietIcon;
+    if (!this.props.isVegan) {
+      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: 'http://pythagoreancrank.com/wp-content/uploads/2013/09/OrganicNotVegan.png'}}></Image>;
+    } else if (!this.props.isVegetarian) {
+      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('image!non-veg-icon')}></Image>;
+    } else if (!this.props.isPescatarian) {
+      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('image!not-pescatarian-icon')}></Image>;
+    } else {
+      dietIcon = <Text style={{fontFamily: 'Didot-Italic', marginLeft: 8}}>Does not conflict with your diet</Text>;
+    }
+    let ingredientsToAvoid = 'No bad ingredients!';
+    if (this.props.ingredientsToAvoid.length > 1) {
+      const uniqAvoidIngredients = _.uniq(this.props.ingredientsToAvoid);
+      ingredientsToAvoid = this.addComma(uniqAvoidIngredients);
+    }
+    const allIngredients = this.addComma(this.props.productIngredients);
+    let productAllergies = 'No allergens found';
+    if (this.props.productAllergies.length > 0) {
+      productAllergies = this.addComma(this.props.productAllergies);
+    }
     return (
       <View>
         <View style={{marginTop: 20, marginLeft: 350}}>
@@ -160,10 +183,10 @@ export default class Summary extends Component {
         <Text>{'\n'}</Text>
         <Text>{'\n'}</Text>
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Allergies</Text>
-        <Text style={{color: 'red', fontFamily: 'Didot-Italic', marginLeft: 8}}>{this.props.productAllergies}</Text>
+        <Text style={{color: 'red', fontFamily: 'Didot-Italic', marginLeft: 8}}>{productAllergies}</Text>
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Dietary Concerns</Text>
         <View style={{flex: 0.5, flexDirection: 'row'}}>
-          {this.props.dietIcon}
+          {dietIcon}
         </View>
         <View style={{flex: 0.5, flexDirection: 'row'}}>
           <Text style={{marginLeft: 10, fontFamily: 'Didot', fontSize: 18, color: 'green'}}>Healthy</Text>
@@ -171,11 +194,11 @@ export default class Summary extends Component {
           <Text style={{marginLeft: 10, fontFamily: 'Didot', fontSize: 18, color: 'purple'}}>Controversial</Text>
           <Text style={{marginLeft: 10, fontFamily: 'Didot', fontSize: 18, color: 'red'}}>Avoid</Text>
         </View>
-        <Text style={{color: 'red', fontFamily: 'Didot', textAlign: 'center'}}>{this.props.ingredientsToAvoid}</Text>
+        <Text style={{color: 'red', fontFamily: 'Didot', textAlign: 'center'}}>{ingredientsToAvoid}</Text>
         <Text>{'\n'}</Text>
         <ListView
           dataSource={this.state.ingrediantsDataSource}
-          renderRow={this.renderRow.bind(this, this.props.allIngredients)}
+          renderRow={this.renderRow.bind(this, allIngredients)}
         />
         <Text>{'\n'}</Text>
         <View style={{backgroundColor: '#ffb84d', height: 160, width: 160, borderRadius: 160 / 2, marginTop: 30, marginLeft: 230}}>
@@ -209,40 +232,16 @@ export default class Summary extends Component {
   }
 
   render() {
-    let dietIcon;
-    let favoriteProductIcon = 'http://www.clipartbest.com/cliparts/LiK/kxa/LiKkxa9ia.png';
-    if (this.props.favorited) {
-      favoriteProductIcon = 'http://cliparts.co/cliparts/rcL/xGB/rcLxGBBni.png';
-    }
-    if (!this.props.isVegan) {
-      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={{uri: 'http://pythagoreancrank.com/wp-content/uploads/2013/09/OrganicNotVegan.png'}}></Image>;
-    } else if (!this.props.isVegetarian) {
-      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/non-veg-icon.png')}></Image>;
-    } else if (!this.props.isPescatarian) {
-      dietIcon = <Image style={{height: 30, width: 30, marginLeft: 8}} source={require('./../../images/not-pescatarian-icon.png')}></Image>;
-    } else {
-      dietIcon = <Text style={{fontFamily: 'Didot-Italic', marginLeft: 8}}>Does not conflict with your diet</Text>;
-    }
-    let ingredientsToAvoid = 'No bad ingredients!';
-    if (this.props.ingredientsToAvoid.length > 1) {
-      ingredientsToAvoid = this.addComma(this.props.ingredientsToAvoid);
-    }
-    const allIngredients = this.addComma(this.props.productIngredients);
-    let productAllergies = 'No allergens found';
-    if (this.props.productAllergies.length > 0) {
-      productAllergies = this.addComma(this.props.productAllergies);
-    }
-
     return (
       <View>
         
         <ListView style={{height: Viewport.height}}
           dataSource={this.state.commentsDataSource}
           renderRow={this._renderComment.bind(this)}
-          renderHeader={this._renderHeader.bind(this, this)} 
+          renderHeader={this._renderHeader.bind(this)}
         />
           
-      </View>        
+      </View>
     );
   }
 }

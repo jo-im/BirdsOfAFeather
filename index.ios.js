@@ -114,6 +114,22 @@ class bof extends Component {
             allergies: JSON.parse(store[5][1]) || [],
             diets: JSON.parse(store[6][1]) || [],
           })
+
+          for (var i = 0; i < this.state.allergies.length; i++) {
+            this.toggleAllergy(this.state.allergies[i]);
+          }
+          if (this.state.diets[0]) {
+            if (this.state.diets[0] === 'Vegan') {
+              this.state.vegan = true;
+            }
+            if (this.state.diets[0] === 'Vegetarian') {
+              this.state.vegetarian = true;
+            }
+            if (this.state.diets[0] === 'Pescatarian') {
+              this.state.pescatarian = true;
+            }
+          }
+
           console.log('This is the locally stored data:')
           console.log('USERID: ', store[0][1]);
           console.log('USERNAME: ', store[1][1]);
@@ -214,49 +230,51 @@ class bof extends Component {
 
 
   toggleDiet(diet) {
-
+    if (!this.state.diets[0]) {
+      this.state.diets = [];
+    }
     if (this.state.diets.length === 0) {
       this.state.diets.push(diet);
       console.log('===============diet after push==============', this.state.diets);
+      if (diet === 'Vegan') {
+        this.state.vegan = true;
+      }
+      if (diet === 'Vegetarian') {
+        this.state.vegetarian = true;
+      }
+      if (diet === 'Pescatarian') {
+        this.state.pescatarian = true;
+      }
     } else {
       if (diet === this.state.diets[0]) {
         this.state.diets.splice(0, 1);
         if (diet === 'Vegan') {
-          this.state.vegan = !this.state.vegan;
+          this.state.vegan = false;
         }
         if (diet === 'Vegetarian') {
-          this.state.vegetarian = !this.state.vegetarian;
+          this.state.vegetarian = false;
         }
         if (diet === 'Pescatarian') {
-          this.state.pescatarian = !this.state.pescatarian;
+          this.state.pescatarian = false;
         }
       }
       console.log('===============diet after delete============', this.state.diets);
     }
 
     if (diet === 'Vegan') {
-      if (diet === this.state.diets[0]) {
-        this.state.vegan = !this.state.vegan;
-      }
       if (this.state.vegan && this.state.diets[0] === 'Vegan') {
         console.log('Entering in vegan if statement');
         this.state.vegetarian = false;
         this.state.pescatarian = false
       }
     } else if (diet === 'Vegetarian') {
-      if (diet === this.state.diets[0]) {
-        this.state.vegetarian = !this.state.vegetarian;
-      }
       if (this.state.vegetarian && this.state.diets[0] === 'Vegetarian') {
         console.log('Entering vegetarian if statement');
         this.state.vegan = false;
         this.state.pescatarian = false;
       }
     } else if (diet === 'Pescatarian') {
-      if (diet === this.state.diets[0]) {
-        this.state.pescatarian = !this.state.pescatarian;
-      }
-      if (this.state.pescatarian && this.state.pescatarian[0] === 'Pescatarian') {
+      if (this.state.pescatarian && this.state.diets[0] === 'Pescatarian') {
         console.log('Entering pescatarian if statement');
         this.state.vegan = false;
         this.state.vegetarian = false;
@@ -302,7 +320,6 @@ class bof extends Component {
       var allergiesProductContains = parsedData.allergies;
       this.state.grade = parsedData.score;
       this.state.title = parsedData.title;
-      console.log('=============================this.state.title==================', this.state.title);
       this.state.productIngredients = parsedData.ingredientList;
       this.state.isVegan = true;
       this.state.isVegetarian = true;
@@ -313,6 +330,9 @@ class bof extends Component {
       }
 
       if (this.state.diets.indexOf('Vegetarian') !== -1) {
+        if (allergiesProductContains['Shellfish']) {
+          this.state.isVegetarian = false;
+        }
         if (allergiesProductContains['Animal-Derived']) {
           allergiesProductContains['Animal-Derived'].forEach(allergies => {
             if (allergiesProductContains['Dairy'].indexOf(allergies) === -1 && allergiesProductContains['Eggs'].indexOf(allergies) === -1) {
