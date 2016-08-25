@@ -36,8 +36,8 @@ export default class Splash extends Component {
     // var _this = this;
     console.log('POST request to murmuring-dusk-10598');
     console.log('the data being posted to server is', data);
-    // fetch('https://murmuring-dusk-10598.herokuapp.com/api/facbook',
-    fetch('http://10.6.24.1:3000/api/user/new', // local server for testing purposes
+    fetch('https://murmuring-dusk-10598.herokuapp.com/api/user/new',
+    // fetch('http://10.6.24.1:3000/api/user/new', // local server for testing purposes
     {
       method: 'POST',
       headers: {
