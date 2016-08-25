@@ -104,7 +104,7 @@ export default class Summary extends Component {
       comment: value.Comment,
       time: new Date()
     };
-    let comments = this.props.rootParent.state.comments
+    let comments = this.props.rootParent.state.comments;
     comments.push(newComment);
     this.props.rootParent.setState({ comments });
     newComment.upc = this.props.rootParent.state.upc;
