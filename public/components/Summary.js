@@ -84,14 +84,17 @@ export default class Summary extends Component {
   }
 
   _renderComment(comment) {
+    if (!comment) {
+      return;
+    }
     return (
       <View>
         <View style={{flexDirection:'row', flexWrap:'wrap'}}>
-          <Text>{`${comment.username}`}</Text>
-          <Text>{`(last edited at: ${comment.time})   `}</Text>
-          {this._isFollowing(comment.userid, comment.username)}
+          <Text>{`${comment.username}:  `}</Text>
+          {this._isFollowing(comment.userId, comment.username)}
         </View>
-        <Text style={{fontFamily: 'Didot-Italic', textAlign: 'left'}}>{`${comment.text}\n`}</Text>
+        <Text style={{fontFamily: 'Didot-Italic', textAlign: 'left'}}>{`${comment.comment}`}</Text>
+        <Text>{`(${comment.time})\n `}</Text>
       </View>
     );
   }
@@ -199,6 +202,7 @@ export default class Summary extends Component {
         <ListView
           dataSource={this.state.ingrediantsDataSource}
           renderRow={this.renderRow.bind(this, allIngredients)}
+          enableEmptySections={true}
         />
         <Text>{'\n'}</Text>
         <View style={{backgroundColor: '#ffb84d', height: 160, width: 160, borderRadius: 160 / 2, marginTop: 30, marginLeft: 230}}>
@@ -239,6 +243,7 @@ export default class Summary extends Component {
           dataSource={this.state.commentsDataSource}
           renderRow={this._renderComment.bind(this)}
           renderHeader={this._renderHeader.bind(this)}
+          enableEmptySections={true}
         />
           
       </View>
