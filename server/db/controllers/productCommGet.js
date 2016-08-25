@@ -13,8 +13,12 @@ export const getComments = (productUPC, foodData, res) => {
     include: [Users]
   })
   .then((gotProduct) => {
-    if (gotProduct) {
-      let comments = gotProduct.Users.map((user) => {
+    let comments = [];
+    let avgRate = 0;
+
+    console.log('we get in here', gotProduct);
+    if (gotProduct !== null) {
+      comments = gotProduct.Users.map((user) => {
         console.log('user ****', user);
         let userName = user.dataValues.username;
         let userId = user.dataValues.facebookId;
@@ -27,10 +31,11 @@ export const getComments = (productUPC, foodData, res) => {
           rating: rating
         };
       });
+      avgRate = gotProduct.dataValues.averageRating;
     }
 
-    foodData.commRate = comments || [];
-    foodData.averageRate = gotProduct.dataValues.averageRating || 0;
+    foodData.commRate = comments;
+    foodData.averageRate = avgRate;
 
     res.send(foodData);
   })
