@@ -501,7 +501,7 @@ class bof extends Component {
 
     if (route.index === 2) {
       console.log('Updating user info');
-      fetch('http://10.6.24.1:3000/api/user/update', // local server for testing purposes
+      fetch('https://murmuring-dusk-10598.herokuapp.com/api/user/update', // local server for testing purposes
       {
         method: 'POST',
         headers: {
