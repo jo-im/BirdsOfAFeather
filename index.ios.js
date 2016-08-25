@@ -293,7 +293,7 @@ class bof extends Component {
 
   onFilterProductData(navigator, data) {
     var parsedData = JSON.parse(data._bodyInit);
-    // console.log('================================ parsedData =================================', parsedData);
+    console.log('================================ parsedData =================================', parsedData);
     if (!parsedData.validUPC) {
       Alert.alert(
             'Alert Title',
