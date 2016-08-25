@@ -93,6 +93,7 @@ export default class Summary extends Component {
           <Text>{`${comment.username}:  `}</Text>
           {this._isFollowing(comment.userId, comment.username)}
         </View>
+        <Text>{`Rated ${comment.rating} stars`}</Text>
         <Text style={{fontFamily: 'Didot-Italic', textAlign: 'left'}}>{`${comment.comment}`}</Text>
         <Text>{`(${comment.time})\n `}</Text>
       </View>
@@ -238,7 +239,7 @@ export default class Summary extends Component {
   render() {
     return (
       <View>
-        
+        <View style={{height: 20}}></View>
         <ListView style={{height: Viewport.height}}
           dataSource={this.state.commentsDataSource}
           renderRow={this._renderComment.bind(this)}

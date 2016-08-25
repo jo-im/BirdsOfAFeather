@@ -31,12 +31,19 @@ export default class CommentForm extends Component {
     let _this = this;
   	return (
   		<View>
-        <StarRating 
-          disabled={false}
-          maxStars={5}
-          rating={this.props.rootParent.state.myRating}
-          selectedStar={(rating) => _this.onStarRatingPress(rating)}
-        />
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+          <View style={{width: 130}}></View>
+          <StarRating 
+            disabled={false}
+            maxStars={5}
+            rating={this.props.rootParent.state.myRating}
+            selectedStar={(rating) => _this.onStarRatingPress(rating)}
+            starColor={'#ffcc33'}
+            emptyStarColor={'#ffe699'}
+            starSize={30}
+          />
+          <View style={{width: 130}}></View>
+        </View>
   			<Form
           ref="form"
           type={Comment}
