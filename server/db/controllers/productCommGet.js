@@ -14,9 +14,17 @@ export const getComments = (productUPC, foodData, res) => {
   })
   .then((gotProduct) => {
     let comments = gotProduct.Users.map((user) => {
+      console.log('user ****', user);
+      let userName = user.dataValues.username;
+      let userId = user.dataValues.facebookId;
       let comment = user.dataValues.Users_Products.dataValues.comment;
       let rating = user.dataValues.Users_Products.dataValues.rating;
-      return [rating, comment];
+      return {
+        userName: userName,
+        userId: userId,
+        comment: comment,
+        rating: rating
+      };
     });
 
     foodData.commRate = comments;
