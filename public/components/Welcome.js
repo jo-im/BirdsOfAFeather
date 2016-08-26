@@ -14,7 +14,7 @@ export default class Welcome extends Component {
         <Text style={style.styles.welcome}>{this.props.username}</Text>
         <Text>{'\n'}</Text>
         <Text>{'\n'}</Text>
-        <Text style={{color: 'white', fontSize: 40, textAlign: 'center', fontFamily: 'Didot-Italic'}}>Please press start to continue</Text>
+        <Text style={{color: 'white', fontSize: 40, textAlign: 'center', fontFamily: 'Didot-Italic'}}>Press start to continue</Text>
         <View style={{alignItems: 'center'}}>
           <Text>{'\n'}</Text>
           <TouchableHighlight style={{borderColor: 'white', borderWidth: 1}} onPress={this.props.onForward}>
