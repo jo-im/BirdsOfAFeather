@@ -32,19 +32,29 @@ module.exports.styles = StyleSheet.create({
     paddingLeft: 60
   },
   next: {
-    flex: 4,
+    marginLeft: 10,
     flexDirection: 'row',
     backgroundColor: '#5c5c8a',
-    marginTop: 30,
-    height: 50,
-    width: 250
+    height: 30,
+    width: 175,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+ 
   },
   back: {
-    flex: 4,
     flexDirection: 'row',
     backgroundColor: '#ffcc80',
-    height: 50,
-    width: 250
+    height: 30,
+    width: 175,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  navigationText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white'
   },
   icon: {
     height: 100,
