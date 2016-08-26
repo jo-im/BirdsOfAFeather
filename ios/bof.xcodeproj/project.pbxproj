@@ -36,6 +36,7 @@
 		35E9FC4F1D6D47A8004C4E2E /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E9FC471D6D47A8004C4E2E /* Octicons.ttf */; };
 		35E9FC501D6D47A8004C4E2E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E9FC481D6D47A8004C4E2E /* Zocial.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8DA1904E1D63DE430090D7EE /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1904D1D63DE430090D7EE /* main.jsbundle */; };
 		FF9892A6DED34BC49AFF0977 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C190616701BB4EEA933BE5DA /* libRCTCamera.a */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +169,8 @@
 		35E9FC481D6D47A8004C4E2E /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+
+		8DA1904D1D63DE430090D7EE /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = bof/main.jsbundle; sourceTree = "<group>"; };
 		C190616701BB4EEA933BE5DA /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		E6708FC5944D4DFA8546B582 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -620,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35E9FC4F1D6D47A8004C4E2E /* Octicons.ttf in Resources */,
+				8DA1904E1D63DE430090D7EE /* main.jsbundle in Resources */,
 				35E9FC4C1D6D47A8004C4E2E /* Foundation.ttf in Resources */,
 				35E9FC4D1D6D47A8004C4E2E /* Ionicons.ttf in Resources */,
 				35E9FC491D6D47A8004C4E2E /* Entypo.ttf in Resources */,
@@ -697,6 +701,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -710,6 +716,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bof.app/bof";
 			};
 			name = Debug;
@@ -718,6 +725,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = bofTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
@@ -728,6 +737,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bof.app/bof";
 			};
 			name = Release;
