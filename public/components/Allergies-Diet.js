@@ -167,12 +167,12 @@ export default class AllergiesAndDiet extends Component {
             <Image style={style.styles.allergyAndDietIcon} source={{uri: pescatarianIcon}}></Image>
           </TouchableHighlight>
         </View>
-        <View style={style.styles.container}>
-          <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
-            <Text style={style.styles.text}>Continue</Text>
-          </TouchableHighlight>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
           <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
-            <Text style={style.styles.text}>Go Back</Text>
+            <Text style={style.styles.navigationText}>Back</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={style.styles.next} onPress={this.props.onForward}>
+            <Text style={style.styles.navigationText}>Continue</Text>
           </TouchableHighlight>
         </View>
       </View>
