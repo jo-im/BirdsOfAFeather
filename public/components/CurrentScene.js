@@ -51,7 +51,8 @@ export default class CurrentScene extends Component {
 
     if (this.props.page === 'Scan') {
       return (
-        <Scan goToSummary={this.props.goToSummary} goToProfile={this.props.goToProfile} goToSearchResult={this.props.goToSearchResult} onForward={this.props.onForward} onBack={this.props.onBack}/>
+        <Scan goToSummary={this.props.goToSummary} goToProfile={this.props.goToProfile} goToSearchResult={this.props.goToSearchResult} goToAllergiesAndDiet={this.props.goToAllergiesAndDiet}
+        onForward={this.props.onForward} onBack={this.props.onBack}/>
       );
     }
 
