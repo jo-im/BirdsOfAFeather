@@ -4,7 +4,7 @@
 
 # Xcode
 ios/bof/main.jsbundle
-ios/bof.xcodeproj/project.pbxproj
+
 #
 build/
 *.pbxuser
