@@ -753,10 +753,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build9.bof;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build10.bof;
 				PRODUCT_NAME = bof;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -781,10 +781,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build9.bof;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.build10.bof;
 				PRODUCT_NAME = bof;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

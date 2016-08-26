@@ -24,11 +24,14 @@ export const getComments = (productUPC, foodData, res) => {
         let userId = user.dataValues.facebookId;
         let comment = user.dataValues.Users_Products.dataValues.comment;
         let rating = user.dataValues.Users_Products.dataValues.rating;
+        let time = user.dataValues.Users_Products.dataValues.updatedAt;
+
         return {
           userName: userName,
           userId: userId,
           comment: comment,
-          rating: rating
+          rating: rating,
+          time: time
         };
       });
       avgRate = gotProduct.dataValues.averageRating;

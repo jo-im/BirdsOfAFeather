@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TouchableHighlight, ListView, Image, StyleSheet } from 'react-native';
 import { View } from 'react-native';
 import CommentForm from './CommentForm';
+import StarRating from 'react-native-star-rating';
 
 const _ = require('lodash');
 const Accordion = require('react-native-accordion');
@@ -15,7 +16,6 @@ const ds2 = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 export default class Summary extends Component {
   constructor(props) {
     super(props);
-    
     this.state = {
       value: null,
       count: 0,
@@ -90,10 +90,21 @@ export default class Summary extends Component {
     return (
       <View>
         <View style={{flexDirection:'row', flexWrap:'wrap'}}>
-          <Text>{`${comment.username}:  `}</Text>
-          {this._isFollowing(comment.userId, comment.username)}
+          <Text>{`${comment.userName}:  `}</Text>
+          {this._isFollowing(comment.userId, comment.userName)}
         </View>
-        <Text>{`Rated ${comment.rating} stars`}</Text>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+          <StarRating 
+                disabled={true}
+                maxStars={5}
+                rating={comment.rating}
+                starColor={'#FFD700'}
+                selectedStar={(rating) => {console.log(`Average user rating is ${rating}`)}}
+                emptyStarColor={'#ffe699'}
+                starSize={15}
+          />
+          <View style={{width: 100}}></View>
+        </View>
         <Text style={{fontFamily: 'Didot-Italic', textAlign: 'left'}}>{`${comment.comment}`}</Text>
         <Text>{`(${comment.time})\n `}</Text>
       </View>
@@ -104,15 +115,15 @@ export default class Summary extends Component {
     this.clearForm();
     let newComment = {
       userId: this.props.rootParent.state.userId,
-      username: this.props.rootParent.state.username,
+      userName: this.props.rootParent.state.username,
       comment: value.Comment,
+      rating: this.props.rootParent.state.myRating,
       time: new Date()
     };
     let comments = this.props.rootParent.state.comments
-    comments.push(newComment);
+    comments.unshift(newComment);
     this.props.rootParent.setState({ comments });
     newComment.upc = this.props.rootParent.state.upc;
-    newComment.rating = this.props.rootParent.state.myRating;
     fetch('https://murmuring-dusk-10598.herokuapp.com/api/product/addComm',
       {
         method: 'POST',
@@ -183,9 +194,7 @@ export default class Summary extends Component {
             </View>
           </View>
         </View>
-        <Text>{'\n'}</Text>
-        <Text>{'\n'}</Text>
-        <Text>{'\n'}</Text>
+
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Allergies</Text>
         <Text style={{color: 'red', fontFamily: 'Didot-Italic', marginLeft: 8}}>{productAllergies}</Text>
         <Text style={{fontSize: 20, fontFamily: 'Didot-Italic', marginLeft: 8}}>Dietary Concerns</Text>
@@ -199,22 +208,41 @@ export default class Summary extends Component {
           <Text style={{marginLeft: 10, fontFamily: 'Didot', fontSize: 18, color: 'red'}}>Avoid</Text>
         </View>
         <Text style={{color: 'red', fontFamily: 'Didot', textAlign: 'center'}}>{ingredientsToAvoid}</Text>
-        <Text>{'\n'}</Text>
         <ListView
           dataSource={this.state.ingrediantsDataSource}
           renderRow={this.renderRow.bind(this, allIngredients)}
           enableEmptySections={true}
         />
-        <Text>{'\n'}</Text>
-        <View style={{backgroundColor: '#ffb84d', height: 160, width: 160, borderRadius: 160 / 2, marginTop: 30, marginLeft: 230}}>
-          <View style={{width: 100, marginLeft: 30}}>
-            <Text style={{textAlign: 'center', fontSize: 30, fontFamily: 'Didot-Italic', marginTop: 40, color: 'white'}}>Grade:</Text>
-            <Text style={{textAlign: 'center', fontSize: 30, fontFamily: 'Didot-Italic', color: 'white'}}>{this.props.averageGrade}</Text>
+        <View style={{width: 400, marginLeft: 30, alignItems: 'center'}}>
+          <Text style={{textAlign: 'center', fontSize: 20, fontFamily: 'Didot-Italic', marginTop: 40, color: '#995c00'}}>Average User's Rating:</Text>
+          <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <View style={{width: 100}}></View>
+            <StarRating 
+              disabled={true}
+              maxStars={5}
+              rating={this.props.rootParent.state.averageRating}
+              starColor={'#FFD700'}
+              selectedStar={(rating) => {console.log(`Average user rating is ${rating}`)}}
+              emptyStarColor={'#ffe699'}
+              starSize={30}
+            />
+            <View style={{width: 130}}></View>
           </View>
         </View>
-        <View style={style.styles.container}>
-          <TouchableHighlight style={style.styles.back} onPress={this.props.onBack}>
-            <Text style={style.styles.text}>Go Back</Text>
+        <View style={{flex: 0.5, flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}}>
+          <TouchableHighlight style={{
+                                  height: 30,
+                                  width: 175,
+                                  backgroundColor: '#ffcc80',
+                                  borderColor: '#ff9900',
+                                  borderWidth: 0,
+                                  borderRadius: 8,
+                                  marginBottom: 10,
+                                  alignSelf: 'center',
+                                  justifyContent: 'center'
+                                }} 
+                              onPress={this.props.onBack}>
+            <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white', alignSelf: 'center'}}>Back</Text>
           </TouchableHighlight>
         </View>
         <CommentForm addComment={this._addComment.bind(this)} rootParent={this.props.rootParent} />

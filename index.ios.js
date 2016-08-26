@@ -80,7 +80,7 @@ class bof extends Component {
       isVegetarian: true,
       isPescatarian: true,
       searchResult: [],
-      avgRating: 3.5,
+      averageRating: 0,
       myRating: 0,
       comments: []
     };
@@ -369,7 +369,9 @@ class bof extends Component {
         productIngredients: parsedData.ingredientList,
         ingredientsToAvoid: this.state.ingredientsToAvoid,
         title: parsedData.title,
-        favorited: this.state.favorited
+        favorited: this.state.favorited,
+        comments: parsedData.commRate.reverse(),
+        averageRating: parsedData.averageRate
       });
     }
   }
