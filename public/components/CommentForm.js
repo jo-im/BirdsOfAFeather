@@ -11,9 +11,11 @@ var options = {
   fields: {
     Comment: {
       auto: 'none',
-      help: 'Please add a comment',
+      placeholder: 'Please add a comment',
       multiline: true,
+      style: {height: 300},
     }
+
   }
 };
 
@@ -31,17 +33,32 @@ export default class CommentForm extends Component {
     let _this = this;
   	return (
   		<View>
-        <StarRating 
-          disabled={false}
-          maxStars={5}
-          rating={this.props.rootParent.state.myRating}
-          selectedStar={(rating) => _this.onStarRatingPress(rating)}
-        />
-  			<Form
-          ref="form"
-          type={Comment}
-          options={options}
-        />
+        <Text style={{textAlign: 'center', fontSize: 20, fontFamily: 'Didot-Italic', marginTop: 40, color: '#995c00'}}>Rate this product:</Text>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+          <View style={{width: 130}}></View>
+          <StarRating 
+            disabled={false}
+            maxStars={5}
+            rating={this.props.rootParent.state.myRating}
+            selectedStar={(rating) => _this.onStarRatingPress(rating)}
+            starColor={'#ffd700'}
+            emptyStarColor={'#ffe699'}
+            starSize={30}
+          />
+          <View style={{width: 130}}></View>
+        </View>
+        <View style={{
+                  width: 280,
+                  borderWidth: 0,
+                  borderRadius: 8,
+                  alignSelf: 'center',
+                  justifyContent: 'space-between'}} >
+    			<Form
+            ref="form"
+            type={Comment}
+            options={options}
+          />
+        </View>
         <TouchableHighlight style={{height: 36,
                                   width: 180,
                                   backgroundColor: '#48BBEC',

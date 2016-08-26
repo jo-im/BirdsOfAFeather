@@ -80,18 +80,9 @@ class bof extends Component {
       isVegetarian: true,
       isPescatarian: true,
       searchResult: [],
-      avgRating: 3.5,
+      averageRating: 0,
       myRating: 0,
-      comments: [{ userid: 123, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 234, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 345, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 123, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 456, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 789, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 890, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 134, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 246, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'},
-                  { userid: 357, username: 'Hong', text: 'comment comment comment comment comment comment comment comment comment comment comment ', time: 'time'}]
+      comments: []
     };
   }
 
@@ -378,7 +369,9 @@ class bof extends Component {
         productIngredients: parsedData.ingredientList,
         ingredientsToAvoid: this.state.ingredientsToAvoid,
         title: parsedData.title,
-        favorited: this.state.favorited
+        favorited: this.state.favorited,
+        comments: parsedData.commRate.reverse(),
+        averageRating: parsedData.averageRate
       });
     }
   }
