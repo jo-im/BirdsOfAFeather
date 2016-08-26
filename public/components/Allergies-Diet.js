@@ -4,18 +4,18 @@ const style = require('./../style/styles');
 
 export default class AllergiesAndDiet extends Component {
   render() {
-    let shellFishIcon = 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Crab-128.png';
-    let peanutsIcon = 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0001_peanuts.png';
-    let animalDerivedIcon = 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-steak-512.png';
-    let soyIcon = 'https://pixabay.com/static/uploads/photo/2015/10/24/19/36/soy-1004851_960_720.png';
-    let dairyIcon = 'http://icons.iconarchive.com/icons/webalys/kameleon.pics/256/Cheese-icon.png';
-    let wheatIcon = 'https://www.allergenchecker.co.uk/images/icons/cereals_containing_gluten_icon.png';
-    let cornIcon = 'https://cdn0.iconfinder.com/data/icons/food-icons-rounded/110/Corn-512.png';
-    let sulfiteIcon = 'http://www.freeiconspng.com/uploads/wine-icon-22.png';
-    let treeNutsIcon = 'https://0.s3.envato.com/files/117161280/Allergen%20Icon%20Package%202/allergen_icons_500px_0002_tree-nuts.png';
-    let nightshadesIcon = 'http://us.123rf.com/450wm/angelp/angelp1606/angelp160600050/57842125-eggplant-icon-flat-design-vector-illustration.jpg?ver=6';
-    let eggIcon = 'https://cdn3.iconfinder.com/data/icons/food-icons-3/512/egg-512.png';
-    let fishIcon = 'https://cdn4.iconfinder.com/data/icons/chef-s-kitchen/256/icon-fish-512.png';
+    let shellFishIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!crab')}></Image>;
+    let peanutsIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!peanuts')}></Image>;
+    let animalDerivedIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!steak')}></Image>;
+    let soyIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!soy')}></Image>;
+    let dairyIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!cheeseIcon')}></Image>;
+    let wheatIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!wheat')}></Image>;
+    let cornIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!corn')}></Image>;
+    let sulfiteIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!wine-glass-flat')}></Image>;
+    let treeNutsIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!treehuts')}></Image>;
+    let nightshadesIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!eggplant')}></Image>;
+    let eggIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!egg')}></Image>;
+    let fishIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!fish')}></Image>;
     let transfatIcon = 'https://cdn2.iconfinder.com/data/icons/food-and-kitchen/512/8-512.png';
     let glutenIcon = 'http://i1.istockimg.com/file_thumbview_approve/76293945/5/stock-illustration-76293945-bread-loaf-colored-vector-icon.jpg';
     let flavoringIcon = 'https://cdn0.iconfinder.com/data/icons/kitchen-and-cooking/512/spices_seasoning_spice_condiment_ingredient_flat_design_icon-512.png';
@@ -24,40 +24,40 @@ export default class AllergiesAndDiet extends Component {
     let pescatarianIcon = 'https://cdn0.iconfinder.com/data/icons/kitchen-colored-1/60/fish-dish-plate-chopstick-asian-512.png';
 
     if (this.props.shellfish) {
-      shellFishIcon = 'http://www.maaii.com/assets/images/ok.png';
+      shellFishIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.peanuts) {
-      peanutsIcon = 'http://www.maaii.com/assets/images/ok.png';
+      peanutsIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.animalDerived) {
-      animalDerivedIcon = 'http://www.maaii.com/assets/images/ok.png';
+      animalDerivedIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.soy) {
-      soyIcon = 'http://www.maaii.com/assets/images/ok.png';
+      soyIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.dairy) {
-      dairyIcon = 'http://www.maaii.com/assets/images/ok.png';
+      dairyIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.wheat) {
-      wheatIcon = 'http://www.maaii.com/assets/images/ok.png';
+      wheatIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.corn) {
-      cornIcon = 'http://www.maaii.com/assets/images/ok.png';
+      cornIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.sulfite) {
-      sulfiteIcon = 'http://www.maaii.com/assets/images/ok.png';
+      sulfiteIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.treeNuts) {
-      treeNutsIcon = 'http://www.maaii.com/assets/images/ok.png';
+      treeNutsIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.nightshades) {
-      nightshadesIcon = 'http://www.maaii.com/assets/images/ok.png';
+      nightshadesIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.egg) {
-      eggIcon = 'http://www.maaii.com/assets/images/ok.png';
+      eggIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.fish) {
-      fishIcon = 'http://www.maaii.com/assets/images/ok.png';
+      fishIcon = <Image style={style.styles.allergyAndDietIcon} source={require('image!selected')}></Image>;
     }
     if (this.props.transfat) {
       transfatIcon = 'http://www.maaii.com/assets/images/ok.png';
@@ -80,30 +80,27 @@ export default class AllergiesAndDiet extends Component {
 
     return (
       <View>
-        <View style={{marginTop: 20, marginLeft: 350}}>
-         <TouchableHighlight onPress={this.props.goToProfile}>
-           <Image style={{height: 50, width: 50}} source={{uri: 'http://cornerstonecoastal.com/wp-content/plugins/bright/images/menu-icon.png'}}></Image>
-         </TouchableHighlight>
-       </View>
+        <Text>{'\n'}</Text>
+        <Text>{'\n'}</Text>
         <Text style={{textAlign: 'center', fontFamily: 'Didot-Italic', fontSize: 40}}>Any Allergies?</Text>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Shellfish')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: shellFishIcon}}></Image>
+            {shellFishIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Peanuts')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: peanutsIcon}}></Image>
+            {peanutsIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Animal-Derived')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: animalDerivedIcon}}></Image>
+            {animalDerivedIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Soy')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: soyIcon}}></Image>
+            {soyIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Dairy')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: dairyIcon}}></Image>
+            {dairyIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Wheat')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: wheatIcon}}></Image>
+            {wheatIcon}
           </TouchableHighlight>
         </View>
         <View style={{flex: 0.6, flexDirection: 'row'}}>
@@ -116,22 +113,22 @@ export default class AllergiesAndDiet extends Component {
         </View>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Corn')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: cornIcon}}></Image>
+            {cornIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Sulfite')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: sulfiteIcon}}></Image>
+            {sulfiteIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Tree Nuts')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: treeNutsIcon}}></Image>
+            {treeNutsIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Nightshades')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: nightshadesIcon}}></Image>
+            {nightshadesIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Egg')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: eggIcon}}></Image>
+            {eggIcon}
           </TouchableHighlight>
           <TouchableHighlight style={style.styles.allergyAndDietIcon} onPress={this.props.onSelectAllergy.bind(this, 'Fish')}>
-            <Image style={style.styles.allergyAndDietIcon} source={{uri: fishIcon}}></Image>
+            {fishIcon}
           </TouchableHighlight>
         </View>
         <View style={{flex: 0.4, flexDirection: 'row'}}>
