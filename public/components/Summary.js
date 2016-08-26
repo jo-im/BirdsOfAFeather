@@ -214,7 +214,7 @@ export default class Summary extends Component {
           enableEmptySections={true}
         />
         <View style={{width: 400, marginLeft: 30, alignItems: 'center'}}>
-          <Text style={{textAlign: 'center', fontSize: 20, fontFamily: 'Didot-Italic', marginTop: 40, color: '#995c00'}}>Average User's Rating:</Text>
+          <Text style={{textAlign: 'center', fontSize: 20, fontFamily: 'Didot-Italic', marginTop: 40, color: '#995c00'}}>Average Rating:</Text>
           <View style={{flexDirection:'row', flexWrap:'wrap'}}>
             <View style={{width: 100}}></View>
             <StarRating 
