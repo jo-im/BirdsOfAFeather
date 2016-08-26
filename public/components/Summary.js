@@ -54,7 +54,7 @@ export default class Summary extends Component {
       return (
         <TouchableHighlight onPress={this._follow.bind(this, userid, username)}>
           <Image
-            style={{padding:10, height: 25, width: 88}}
+            style={{padding: 10, height: 25, width: 88}}
             source={require('image!following')}
           />
         </TouchableHighlight>
@@ -63,7 +63,7 @@ export default class Summary extends Component {
       return(
         <TouchableHighlight onPress={this._follow.bind(this, userid, username)}>
           <Image
-            style={{padding:10, height: 25, width: 88}}
+            style={{padding: 10, height: 25, width: 88}}
             source={require('image!follow')}
           />
         </TouchableHighlight> 
@@ -161,7 +161,7 @@ export default class Summary extends Component {
     return (
       <View>
         <View style={{marginTop: 20, marginLeft: 350}}>
-          <TouchableHighlight onPress={this.props.goToProfile}>
+          <TouchableHighlight onPress={this.props.goToAllergiesAndDiet}>
             <Image style={{height: 50, width: 50}} source={{uri: 'http://cornerstonecoastal.com/wp-content/plugins/bright/images/menu-icon.png'}}></Image>
           </TouchableHighlight>
         </View>
